@@ -162,8 +162,137 @@ increasing reliance on asocial learning.
 
 \section{Model}
 
+We developed an agent-based model of a society of $N$ individuals who each must decide
+which of $B$ behaviors to perform at each time step. Each behavior is a ``bandit'',
+a common modelling and experimental approach for representing behaviors with
+probabilistic payoffs~\cite{SuttonBartoBook, McElreath2005,Rendell2010,Schulz2019}. %Bandits are like  slot machines in a casino~\ref{fig:behaviorSelection}.
+Each behavior $b$ yields a payoff of 1 with probability $\pi_b$ and a payoff of zero
+otherwise; $\pi_b$ is therefore also the expected payoff of behavior $b$. Agents must
+decide which behavior to perform at each time step. To do this, agents 
+use an explore-exploit strategy to sometimes try the most profitable behavior
+they know about, and other times try alternatives that may pay off more reliably. 
+
+We operationalized uncertainty in four different ways: 
+(1) payoff ambiguity, $A_\pi$, which measures the difference
+between the optimal expected payoff behavior $\pi_{high}$ and the expected payoff
+of the other behaviors, $\pi_{low}$; 
+(2) environmental variability, $u$, the probability the optimal behavior changes from one generation to another; 
+(3) the number of possible behaviors, $B$; and 
+(4) the lifespan, or time steps per generation, $M$. 
+
+We ran the simulation for $T=1000$ time steps. At
+the end of each generation agents reproduce and then die off. 
+Those selected to reproduce
+pass on their boolean social learning trait, $s$, without mutation,
+which specifes whether agents learn socially. We developed a series of
+computational analyses where we systematically vary the uncertainty
+variables and observe the average prevalence of social learning trait $s$
+across agents and trials, which is our primary outcome measure, 
+denoted $\langle s \rangle$. 
+
+\subsection{Agents and learning}
+
+In each time step, $N$ agents---autonomous problem solvers---select 
+which behavior to perform based on their running tally of mean payoffs for 
+each available behavior. %information (Figure~\ref{fig:behaviorSelection}). 
+Agents track the mean payoff of each behavior $b$, denoted $\bar\pi_b$, and a \emph{count} of how many times it has performed each behavior, denoted $c_b$. 
+Agents' beliefs about mean payoffs are updated from $\bar\pi_b$ to $\bar\pi_b'$ using exponential weighted
+averaging, $\bar\pi_b' = \bar\pi_b + \frac{\mathrm{Bandit_b(0, 1)} - \bar\pi_b}{c_b'}$, where
+$\mathrm{Bandit_b(0, 1)}$ is 0 or 1 depending on the result of the bandit draw for behavior $b$. 
+$\bar\pi_b$ is initialized to 0 for all $b$ at model initialization for
+all agents, and after each generation for individual learner agents. Social
+learning agents' $\bar\pi_b$ is initialized as that of its teacher selected
+through performance-biased oblique learning.
+
+Social learning in this model is oblique, which here means
+any agent from the previous generation, including an agent's parent,
+could be an agent's teacher. 
+Agents learn from exactly one teacher, selected as follows:
+First, a learner agent from a new generation selects $N_T$ teachers at random.
+The best-performing of the $N_T$ becomes a new agent's teacher, with ties broken
+randomly. At the end of each generation, all agents die off with some selected
+randomly for reproduction, weighted by accumulated payoffs within the round. 
+
+Following Luce's choice axiom \cite{Luce1959}, an agent using asocial information selects a behavior at random, with the probability of selecting any particular behavior weighted by the softmax function applied to that behavior's observed mean payoff relative to all 
+mean payoffs: 
+$\Pr(\text{choose behavior }b) = 
+  \frac{\exp(\bar\pi_b / \tau) }{ 
+\sum_{b=1}^B \exp(\bar\pi_b / \tau)}$.
+The softmax method is a biologically plausible model~\cite{Schulz2019} that enables agents to explore alternative behaviors sometimes and exploit the best observed behavior other times.  The parameter $\tau$ specifies
+how frequently alternative behaviors are explored---higher $\tau$ means more
+frequent exploration. We set $\tau = 0.1$ for all computational analyses 
+presented in the main paper. We (WILL) perform(ED) sensitivity analyses 
+and found a weak dependence on $\tau$ that does not affect our main conclusions.
+
+
+\subsection{Modeling uncertainty}
+
+In our model uncertainty is a tunable consequence of four environmental features:
+%that structure the behavior of agents.  
+% Many factors contribute to the 
+% uncertainty involved in both social and asocial learning. 
+%We model uncertainty in four distinct ways: 
+\begin{enumerate}
+    \item We vary the frequency at which the optimal behavior changes, which we call \emph{environmental variability}, $u$. At the start of each generation, with probability $u$, a new behavior is assigned a payoff of $\pi_{high}$ while all other behaviors are assigned a payoff of $\pi_{low}$. Otherwise, the same behavior remains optimal across generations. 
+    \item We vary the latent expected payoffs yielded by the bandits. For simplicity,
+      we assume that in any given environmental state, there is one optimal behavior that
+      yields an expected payoff of $\pi_{high}$, while all other behaviors yield a 
+      payoff of $\pi_{low} < \pi_{high}$. 
+      The difference between these quantities is the \emph{payoff ambiguity}, 
+    \begin{equation}
+      A_\pi = 1 - (\pi_{high} - \pi_{low}),
+      \label{eq:payoffAmbiguity}
+    \end{equation}
+    which is maximized when the expected payoffs are close to equal and minimized
+    when they differ greatly. For simplicity we will set $\pi_{high} = 0.9$
+    for all analyses and vary $\pi_{low}$ in order to vary $A_\pi$.
+    \item We vary the total \emph{number of available behaviors}, $B$, which is a
+      source of uncertainty since agents are less likely to know which behavior yields high payoffs.  %risk, as it becomes increasingly costly to experiment with alternatives. \cm{is this risk if it reduces variance of outcomes? it sounds like it's just bad for there to be more 0 payoff options}
+    \item Finally, we vary number of behavioral events per generation, $M$. This can be viewed as the \emph{effective lifespan} of an agent.  Decreasing this lifespan effectively increases the importance of each event for acquiring payoffs. When lifespans are short ($M$ is small), agents experience greater uncertainty about which behavior is optimal given the fewer learning opportunities.
+\end{enumerate}
+
+
+\subsection{Dynamics and evolution}
+
+
+\subsection{Computational analyses}
+
+We manipulated environmental uncertainty parameters described above, $u$,
+$\pi_{low}$, $B$, and $M$, to examine their effects on our
+main outcome measure, the prevalence of social learning $s$. For each parameter setting
+in our analysis we calculated the average value of $s$ at the final time step
+of $T=1000$ across 100 runs for each combination of uncertainty parameter values.
+The model 
+
+
 
 \section{Analysis}
+
+To analyze the effect of various forms of uncertainty on social learning 
+prevalence, we analyzed the outcomes of several model runs initialized with
+different uncertainty parameters $u$, $A_\pi$ (via $\pi_{low}$), 
+and $M$ (AND SOON $B$???). Specifically, for each parameter setting over
+$\pi_{low} \in \{0.1, 0.5, 0.8\}$ and $M \in \{1, 2, 4\}$, we varied 
+$u \in \{0.0, 0.2, \ldots, 1.0\}$.
+Our analysis confirmed existing theoretical predictions that social learning
+is valuable only when environmental uncertainty is sufficiently small. However
+our analysis also revealed that environmental uncertainty is not the only 
+relevant factor. Payoff ambiguity can alter selection selection pressure for or
+against social learning, depending on the number of time steps per generation.
+We tested three values of $\pi_{low} \in \{0.1, 0.5, 0.8\}$, representing
+low, moderate, and high values of $A_\pi$. 
+
+When $\pi_{low} = 0.1$, $M$ had little to no effect (Figure~\ref{fig:results_pilow_0p1}).
+For all three values of $M$, social learning decreases from 1 dramatically over moderate
+values of $u$, going to 0 by $u=0.6$. When $\pi_{low}=0.5$, however, the 
+transition from $\langle s \rangle = 1$ to $\langle s \rangle = 0$ is not as
+sharp, and it is slower for $M=1$ compared to $M=2$ and $M=4$. When $\pi_{low} = 0.8$
+there appears to be a weak dependence of social learning on $u$ across $M$,
+but this trend is mostly dominated by noise.
+(EXPAND THIS---PROBABLY NEED B > 2, WHAT ELSE?)
+
+(EXPLAIN WHY)
+
 
 \begin{figure}
   \centering
@@ -171,7 +300,7 @@ increasing reliance on asocial learning.
     \centering
     \includegraphics[width=\textwidth]{{Figures/SL_over_u_lowpayoff=0.1.pdf}}
   \caption{}
-  \label{fig:}
+  \label{fig:results_pilow_0p1}
   \end{subfigure}
 
   \begin{subfigure}[t]{0.5\textwidth}
@@ -188,8 +317,13 @@ increasing reliance on asocial learning.
   \label{fig:}
   \end{subfigure}
   
-  \caption{}
-  \label{fig:}
+  \caption{Dependence of Social Learning ($\langle s \rangle$) on environmental
+  variability $u$ for several values of low payoff $\pi_{low}$ and steps per
+  round, $M$. $\langle s \rangle$ decreases monotonically for $\pi_{low} = 0.1, 0.5$,
+but noise dominates the results for $\pi_{low}=0.8$. When $\pi_{low} = 0.5$, 
+the sigmoid is not as sharp as for $\pi_{low}=0.1$, meaning that social learning
+is reduced for smaller $u$ and increased for larger $u$.}
+  \label{fig:results}
 \end{figure}
 
 

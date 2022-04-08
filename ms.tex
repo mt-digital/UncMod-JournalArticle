@@ -255,6 +255,21 @@ In our model uncertainty is a tunable consequence of four environmental features
 \subsection{Dynamics and evolution}
 
 
+\begin{figure}
+  \centering
+    \includegraphics[width=0.95\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
+  \caption{Model dynamics are composed of two major parts: first, agents perform
+  behaviors for $M$ time steps in a single generation. Then agents reproduce
+  randomly, with more successful agents being more likely to reproduce. Newly
+  ``born'' social learner agents use success bias to select and learn from a chosen
+  teacher. Then, all agents from the previous generation die off, all new agents
+  begin a new generation, and the process continues until 1000 total time steps
+  have elapsed. At model initialization all agents are ``blank slates''.}
+  \label{fig:IntraInterGenerationalDynamics}
+\end{figure}
+
+
+
 \subsection{Computational analyses}
 
 We manipulated environmental uncertainty parameters described above, $u$,

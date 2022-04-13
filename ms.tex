@@ -9,8 +9,8 @@
 \usepackage{tabulary}
 \usepackage{tabularx}
 \usepackage{float}
-% \usepackage[margin=1.00in]{geometry}
-\usepackage[margin=0.90in]{geometry}
+\usepackage[margin=1.00in]{geometry}
+% \usepackage[margin=0.90in]{geometry}
 
 \usepackage{caption}
 \usepackage{booktabs}
@@ -36,6 +36,11 @@
 
 \begin{document}
 \maketitle
+
+\newcommand{\pisub}[1]{\pi_{\mathrm{#1}}}
+\newcommand{\pilow}{\pisub{low}}
+
+\newcommand{\meansl}{\langle s \rangle}
 
 
 \begin{abstract}
@@ -172,8 +177,8 @@ they know about, and other times try alternatives that may pay off more reliably
 
 We operationalized uncertainty in four different ways: 
 (1) payoff ambiguity, $A_\pi$, which measures the difference
-between the optimal expected payoff behavior $\pi_{high}$ and the expected payoff
-of the other behaviors, $\pi_{low}$; 
+between the optimal expected payoff behavior $\pisub{high}$ and the expected payoff
+of the other behaviors, $\pisub{low}$; 
 (2) environmental variability, $u$, the probability the optimal behavior changes from one generation to another; 
 (3) the number of possible behaviors, $B$; and 
 (4) the lifespan, or time steps per generation, $M$. 
@@ -196,7 +201,7 @@ each available behavior. %information (Figure~\ref{fig:behaviorSelection}).
 Agents track the mean payoff of each behavior $b$, denoted $\bar\pi_b$, and a \emph{count} of how many times it has performed each behavior, denoted $c_b$. 
 Agents' beliefs about mean payoffs are updated from $\bar\pi_b$ to $\bar\pi_b'$ using exponential weighted
 averaging, $\bar\pi_b' = \bar\pi_b + \frac{\mathrm{Bandit_b(0, 1)} - \bar\pi_b}{c_b'}$, where
-$\mathrm{Bandit_b(0, 1)}$ is 0 or 1 depending on the result of the bandit draw for behavior $b$. 
+$\mathrm{Bandit}_b(0, 1)$ is 0 or 1 depending on the result of the bandit draw for behavior $b$. 
 $\bar\pi_b$ is initialized to 0 for all $b$ at model initialization for
 all agents, and after each generation for individual learner agents. Social
 learning agents' $\bar\pi_b$ is initialized as that of its teacher selected
@@ -231,19 +236,19 @@ In our model uncertainty is a tunable consequence of four environmental features
 % uncertainty involved in both social and asocial learning. 
 %We model uncertainty in four distinct ways: 
 \begin{enumerate}
-    \item We vary the frequency at which the optimal behavior changes, which we call \emph{environmental variability}, $u$. At the start of each generation, with probability $u$, a new behavior is assigned a payoff of $\pi_{high}$ while all other behaviors are assigned a payoff of $\pi_{low}$. Otherwise, the same behavior remains optimal across generations. 
+    \item We vary the frequency at which the optimal behavior changes, which we call \emph{environmental variability}, $u$. At the start of each generation, with probability $u$, a new behavior is assigned a payoff of $\pisub{high}$ while all other behaviors are assigned a payoff of $\pisub{low}$. Otherwise, the same behavior remains optimal across generations. 
     \item We vary the latent expected payoffs yielded by the bandits. For simplicity,
       we assume that in any given environmental state, there is one optimal behavior that
-      yields an expected payoff of $\pi_{high}$, while all other behaviors yield a 
-      payoff of $\pi_{low} < \pi_{high}$. 
+      yields an expected payoff of $\pisub{high}$, while all other behaviors yield a 
+      payoff of $\pisub{low} < \pisub{high}$. 
       The difference between these quantities is the \emph{payoff ambiguity}, 
     \begin{equation}
-      A_\pi = 1 - (\pi_{high} - \pi_{low}),
+      A_\pi = 1 - (\pisub{high} - \pisub{low}),
       \label{eq:payoffAmbiguity}
     \end{equation}
     which is maximized when the expected payoffs are close to equal and minimized
-    when they differ greatly. For simplicity we will set $\pi_{high} = 0.9$
-    for all analyses and vary $\pi_{low}$ in order to vary $A_\pi$.
+    when they differ greatly. For simplicity we will set $\pisub{high} = 0.9$
+    for all analyses and vary $\pisub{low}$ in order to vary $A_\pi$.
     \item We vary the total \emph{number of available behaviors}, $B$, which is a
       source of uncertainty since agents are less likely to know which behavior yields high payoffs.  %risk, as it becomes increasingly costly to experiment with alternatives. \cm{is this risk if it reduces variance of outcomes? it sounds like it's just bad for there to be more 0 payoff options}
     \item Finally, we vary number of behavioral events per generation, $M$. This can be viewed as the \emph{effective lifespan} of an agent.  Decreasing this lifespan effectively increases the importance of each event for acquiring payoffs. When lifespans are short ($M$ is small), agents experience greater uncertainty about which behavior is optimal given the fewer learning opportunities.
@@ -254,15 +259,15 @@ In our model uncertainty is a tunable consequence of four environmental features
 
 
 \begin{figure}
-  \centering
-    \includegraphics[width=0.95\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
   \caption{Model dynamics are composed of two major parts: first, agents perform
   behaviors for $M$ time steps in a single generation. Then agents reproduce
   randomly, with more successful agents being more likely to reproduce. Newly
   ``born'' social learner agents use success bias to select and learn from a chosen
   teacher. Then, all agents from the previous generation die off, all new agents
   begin a new generation, and the process continues until 1000 total time steps
-  have elapsed. At model initialization all agents are ``blank slates''.}
+  have elapsed. Agents are initialized as ``blank slates''.}
+  \centering
+    \includegraphics[width=0.9\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
   \label{fig:IntraInterGenerationalDynamics}
 \end{figure}
 
@@ -271,40 +276,85 @@ In our model uncertainty is a tunable consequence of four environmental features
 \subsection{Computational analyses}
 
 We manipulated environmental uncertainty parameters described above, $u$,
-$\pi_{low}$, $B$, and $M$, to examine their effects on our
+$\pisub{low}$, $B$, and $M$, to examine their effects on our
 main outcome measure, the prevalence of social learning $s$. For each parameter setting
 in our analysis we calculated the average value of $s$ at the final time step
 of $T=1000$ across 100 runs for each combination of uncertainty parameter values.
-The model 
+
+To analyze the effect of various forms of uncertainty on social learning 
+prevalence in our Analysis, we initialized several model runs with
+different uncertainty parameters $u$, $\pisub{\mathrm{low}}$, $B$,
+and $M$. We varied $u \in \{0.0, 0.1, \ldots, 1.0\}$ for each combination of
+the following parameters:
+$\pisub{low} \in \{0.1, 0.5, 0.8\}$, $B \in \{2, 4, 10\}$, $M \in \{B/2, B, 2B\}$.
 
 
 
 \section{Analysis}
 
-To analyze the effect of various forms of uncertainty on social learning 
-prevalence, we analyzed the outcomes of several model runs initialized with
-different uncertainty parameters $u$, $A_\pi$ (via $\pi_{low}$), 
-and $M$ (AND SOON $B$???). Specifically, for each parameter setting over
-$\pi_{low} \in \{0.1, 0.5, 0.8\}$ and $M \in \{1, 2, 4\}$, we varied 
-$u \in \{0.0, 0.2, \ldots, 1.0\}$.
-Our analysis confirmed existing theoretical predictions that social learning
-is valuable only when environmental uncertainty is sufficiently small. However
-our analysis also revealed that environmental uncertainty is not the only 
-relevant factor. Payoff ambiguity can alter selection selection pressure for or
-against social learning, depending on the number of time steps per generation.
-We tested three values of $\pi_{low} \in \{0.1, 0.5, 0.8\}$, representing
-low, moderate, and high values of $A_\pi$. 
+\begin{itemize}
+  \item 
+    To understand how different forms of uncertainty affect social learning evolution
+    we systematically varied environmental variables in our model and observed
+    corresponding changes in mean social learning prevalence, $\meansl$. We
+    confirmed that, in many cases, increased environmental variability $u$ 
+    suppresses social learning. However\ldots 
 
-When $\pi_{low} = 0.1$, $M$ had little to no effect (Figure~\ref{fig:results_pilow_0p1}).
-For all three values of $M$, social learning decreases from 1 dramatically over moderate
-values of $u$, going to 0 by $u=0.6$. When $\pi_{low}=0.5$, however, the 
-transition from $\langle s \rangle = 1$ to $\langle s \rangle = 0$ is not as
-sharp, and it is slower for $M=1$ compared to $M=2$ and $M=4$. When $\pi_{low} = 0.8$
-there appears to be a weak dependence of social learning on $u$ across $M$,
-but this trend is mostly dominated by noise.
-(EXPAND THIS---PROBABLY NEED B > 2, WHAT ELSE?)
 
-(EXPLAIN WHY)
+  \item 
+    Our analysis confirmed existing theoretical predictions that social learning
+    is valuable only when environmental variability $u$ is sufficiently small.
+    Because of the central role of $u$, it is set on the x-axis in
+    all plots shown in Figure~\ref{fig:results}. 
+    The threshold at which social learning stops being strongly selected for
+    varies depending on the value of other environmental parameters. 
+
+  \item 
+    However, more possible behaviors $B$ ($B=2,4,10$ for the first, second, and
+    third column respectively in Figure~\ref{fig:results}) can lead
+    social learning to be selected for even for large values of $u$, possibly
+    due to the low risk and potentially high reward of learning an accurate
+    tally of mean payoffs from the previous generation. 
+    Since there are so many behaviors and so
+    few observations, softmax weighting will not significantly 
+    favor a sub-optimal behavior. However, if one does learn an accurate tally
+    then one does have an increased chance of performing the best one.
+    \begin{itemize}
+      \item 
+        (THIS MAKES SENSE, BUT THE EFFECT IS TOO STRONG. WHY SHOULD THERE BE ANY
+        SOCIAL LEARNING WHEN U = 1.0?  I THINK SOMETHING IS SLIGHTLY WRONG WITH THE
+        MODEL---I'M WORKING ON CHECKING WHAT THAT MIGHT BE)
+      \item
+        ONE THING TO CHECK IS THE FRACTION DOING THE OPTIMAL BEHAVIOR WHEN
+        $u=1$. IF MANY START OUT DOING OPTIMAL, THEN SOMETHING MAY BE WRONG.
+    \end{itemize}
+
+  \item 
+    $\pilow$ can alter selection selection pressure for or
+    against social learning, depending on the number of time steps per generation.
+    For instance, when $B=2$, increasing $\pilow$ (i.e. increased uncertainty
+    about which behavior is optimal) leads at first to less sharp sigmoid curve, 
+    where social learning is less prevalent with increased $\pilow$ when
+    $u < 0.5$ and social learning is more prevalent with increased $\pilow$
+    when $u > 0.5$. When $\pilow = 0.8$ noise and genetic drift dominate across
+    tested values of $B$, with possibly a slight inverse correlation 
+    in social learning as $u$ increases. When $B \in \{4,10\}$, increasing
+    $\pilow \in \{0.1, 0.5\}$ leads uniformly to increased $\meansl$ over 
+    $u$ in those settings.     
+
+  \item
+    If $M/B$ has an effect it is mostly to 
+    increase reliance on social learning due to social information being of 
+    higher quality since teachers would have had more learning opportunities
+    for larger $M$. (THERE ARE CASES WHERE THIS IS NOT THE CASE BUT THERE IS 
+    STILL TOO MUCH NOISE DUE TO SMALL NTRIALS)
+
+  \item
+    Synthesis/analysis conclusion 
+    
+\end{itemize}
+
+
 
 
 \include{mainResultsPlots.tex}
@@ -317,7 +367,7 @@ but this trend is mostly dominated by noise.
 \setlength{\bibleftmargin}{.125in}
 \setlength{\bibindent}{-\bibleftmargin}
 
-% \bibliography{/Users/mt/workspace/Writing/library.bib}
-\bibliography{this.bib}
+\bibliography{/Users/mt/workspace/Writing/library.bib}
+% \bibliography{this.bib}
 
 \end{document}

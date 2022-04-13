@@ -28,6 +28,21 @@
 \usepackage[export]{adjustbox}
 \setlength\intextsep{0pt}
 
+% Colored comments 
+\usepackage{color}
+\definecolor{myorange}{RGB}{240, 96, 0}
+\newcommand{\mt}[1]{{\textcolor{myorange} {({\tiny MT:} #1)}}}
+
+\definecolor{myblue}{RGB}{30,144,255}
+\newcommand{\jhj}[1]{{\textcolor{myblue} {({\tiny JHJ:} #1)}}}
+
+\definecolor{mypurple}{RGB}{148,0,211}
+\newcommand{\cm}[1]{{\textcolor{mypurple} {({\tiny CM:} #1)}}}
+
+\definecolor{mygreen}{RGB}{26, 153, 51}
+\newcommand{\ps}[1]{{\textcolor{mygreen} {({\tiny PS:} #1)}}}
+
+
 \usepackage{graphicx}
 
 \title{Some forms of uncertainty may suppress the evolution of social learning}
@@ -224,7 +239,7 @@ $\Pr(\text{choose behavior }b) =
 The softmax method is a biologically plausible model~\cite{Schulz2019} that enables agents to explore alternative behaviors sometimes and exploit the best observed behavior other times.  The parameter $\tau$ specifies
 how frequently alternative behaviors are explored---higher $\tau$ means more
 frequent exploration. We set $\tau = 0.1$ for all computational analyses 
-presented in the main paper. We (WILL) perform(ED) sensitivity analyses 
+presented in the main paper. We (WILL HAVE) performed sensitivity analyses 
 and found a weak dependence on $\tau$ that does not affect our main conclusions.
 
 
@@ -303,10 +318,11 @@ $\pisub{low} \in \{0.1, 0.5, 0.8\}$, $B \in \{2, 4, 10\}$, $M \in \{B/2, B, 2B\}
 
   \item 
     Our analysis confirmed existing theoretical predictions that social learning
-    is valuable only when environmental variability $u$ is sufficiently small.
+    is valuable only when environments are sufficiently stable, i.e., 
+    environmental variability $u$ is sufficiently small.
     Because of the central role of $u$, it is set on the x-axis in
-    all plots shown in Figure~\ref{fig:results}. 
-    The threshold at which social learning stops being strongly selected for
+    all analysis plots shown in Figure~\ref{fig:results}. 
+    The threshold over $u$ at which social learning begins to decline
     varies depending on the value of other environmental parameters. 
 
   \item 
@@ -321,12 +337,12 @@ $\pisub{low} \in \{0.1, 0.5, 0.8\}$, $B \in \{2, 4, 10\}$, $M \in \{B/2, B, 2B\}
     then one does have an increased chance of performing the best one.
     \begin{itemize}
       \item 
-        (THIS MAKES SENSE, BUT THE EFFECT IS TOO STRONG. WHY SHOULD THERE BE ANY
-        SOCIAL LEARNING WHEN U = 1.0?  I THINK SOMETHING IS SLIGHTLY WRONG WITH THE
-        MODEL---I'M WORKING ON CHECKING WHAT THAT MIGHT BE)
+        \mt{This makes sense, but the effect is too strong. Why should there be any
+        social learning when u = 1.0?  I think something is slightly wrong with the
+        model---I'm working on checking what that might be}
       \item
-        ONE THING TO CHECK IS THE FRACTION DOING THE OPTIMAL BEHAVIOR WHEN
-        $u=1$. IF MANY START OUT DOING OPTIMAL, THEN SOMETHING MAY BE WRONG.
+        \mt{One thing to check is the fraction doing the optimal behavior when
+        $u=1$. If many start out doing optimal, then something may be wrong.}
     \end{itemize}
 
   \item 

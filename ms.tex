@@ -54,6 +54,7 @@
 
 \newcommand{\pisub}[1]{\pi_{\mathrm{#1}}}
 \newcommand{\pilow}{\pisub{low}}
+\newcommand{\pihigh}{\pisub{high}}
 
 \newcommand{\meansl}{\langle s \rangle}
 
@@ -213,14 +214,45 @@ denoted $\langle s \rangle$.
 In each time step, $N$ agents---autonomous problem solvers---select 
 which behavior to perform based on their running tally of mean payoffs for 
 each available behavior. %information (Figure~\ref{fig:behaviorSelection}). 
-Agents track the mean payoff of each behavior $b$, denoted $\bar\pi_b$, and a \emph{count} of how many times it has performed each behavior, denoted $c_b$. 
-Agents' beliefs about mean payoffs are updated from $\bar\pi_b$ to $\bar\pi_b'$ using exponential weighted
-averaging, $\bar\pi_b' = \bar\pi_b + \frac{\mathrm{Bandit_b(0, 1)} - \bar\pi_b}{c_b'}$, where
-$\mathrm{Bandit}_b(0, 1)$ is 0 or 1 depending on the result of the bandit draw for behavior $b$. 
-$\bar\pi_b$ is initialized to 0 for all $b$ at model initialization for
+Agent $i$ tracks the mean payoff of each behavior $b$, denoted $\bar\pi_{ib}$, and
+a \emph{count} of how many times it has performed each behavior, denoted $c_{ib}$.
+$\bar\pi_{ib}$
+is initialized to 0 for all $b$ at model initialization for
 all agents, and after each generation for individual learner agents. Social
-learning agents' $\bar\pi_b$ is initialized as that of its teacher selected
+learning agents' $\bar\pi_{ib}$ is initialized as that of its teacher selected
 through performance-biased oblique learning.
+
+
+\vspace{2em}
+
+\begin{table}[h]
+    \caption{Dynamic agent-level variables.}
+    \label{tab:modelParameters}
+    \centering \hspace{-3em}
+    \begin{tabular}{cp{4.0in}l} \toprule
+
+        Attribute & Description & Initial value \\ 
+
+        \midrule  
+
+        $s_i$  & Social learner trait: 1 if agent $i$ is social learner; 0 otherwise & 0
+        or 1 w/ equal prob. \\
+
+        $\bar\pi_{ib}$ & ``Ledger'': mean payoffs acquired via behavior $b$ by $i$ 
+                       & $B$-vector of floating-point zeros \\
+
+        $c_{ib}$ & Count of how many times agent $i$ performed $b$ 
+              & $B$-vector of integer zeros \\
+
+        $\pi_i$ & Net payoffs accumulated by $i$ within generation
+                                & 0.0 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\vspace{2em}
+
+
 
 Social learning in this model is oblique, which here means
 any agent from the previous generation, including an agent's parent,
@@ -231,16 +263,6 @@ The best-performing of the $N_T$ becomes a new agent's teacher, with ties broken
 randomly. At the end of each generation, all agents die off with some selected
 randomly for reproduction, weighted by accumulated payoffs within the round. 
 
-Following Luce's choice axiom \cite{Luce1959}, an agent using asocial information selects a behavior at random, with the probability of selecting any particular behavior weighted by the softmax function applied to that behavior's observed mean payoff relative to all 
-mean payoffs: 
-$\Pr(\text{choose behavior }b) = 
-  \frac{\exp(\bar\pi_b / \tau) }{ 
-\sum_{b=1}^B \exp(\bar\pi_b / \tau)}$.
-The softmax method is a biologically plausible model~\cite{Schulz2019} that enables agents to explore alternative behaviors sometimes and exploit the best observed behavior other times.  The parameter $\tau$ specifies
-how frequently alternative behaviors are explored---higher $\tau$ means more
-frequent exploration. We set $\tau = 0.1$ for all computational analyses 
-presented in the main paper. We (WILL HAVE) performed sensitivity analyses 
-and found a weak dependence on $\tau$ that does not affect our main conclusions.
 
 
 \subsection{Modeling uncertainty}
@@ -255,23 +277,48 @@ In our model uncertainty is a tunable consequence of four environmental features
     \item We vary the latent expected payoffs yielded by the bandits. For simplicity,
       we assume that in any given environmental state, there is one optimal behavior that
       yields an expected payoff of $\pisub{high}$, while all other behaviors yield a 
-      payoff of $\pisub{low} < \pisub{high}$. 
-      The difference between these quantities is the \emph{payoff ambiguity}, 
-    \begin{equation}
-      A_\pi = 1 - (\pisub{high} - \pisub{low}),
-      \label{eq:payoffAmbiguity}
-    \end{equation}
-    which is maximized when the expected payoffs are close to equal and minimized
-    when they differ greatly. For simplicity we will set $\pisub{high} = 0.9$
-    for all analyses and vary $\pisub{low}$ in order to vary $A_\pi$.
+      payoff of $\pisub{low} < \pisub{high}$. As $\pilow$ increases towards 
+      $\pihigh$, uncertainty in the form of \emph{payoff ambiguity} also increases,
+      making it more difficult, and less rewarding, for agents to determine which
+      behavior is the optimal one.
+      % The difference between these quantities is the \emph{payoff ambiguity}, 
+    % \begin{equation}
+    %   A_\pi = 1 - (\pisub{high} - \pisub{low}),
+    %   \label{eq:payoffAmbiguity}
+    % \end{equation}
+    % which is maximized when the expected payoffs are close to equal and minimized
+    % when they differ greatly. For simplicity we will set $\pisub{high} = 0.9$
+    % for all analyses and vary $\pisub{low}$ in order to vary $A_\pi$.
     \item We vary the total \emph{number of available behaviors}, $B$, which is a
-      source of uncertainty since agents are less likely to know which behavior yields high payoffs.  %risk, as it becomes increasingly costly to experiment with alternatives. \cm{is this risk if it reduces variance of outcomes? it sounds like it's just bad for there to be more 0 payoff options}
+      source of uncertainty since agents are less likely to know which behavior yields high payoffs.  
     \item Finally, we vary number of behavioral events per generation, $M$. This can be viewed as the \emph{effective lifespan} of an agent.  Decreasing this lifespan effectively increases the importance of each event for acquiring payoffs. When lifespans are short ($M$ is small), agents experience greater uncertainty about which behavior is optimal given the fewer learning opportunities.
 \end{enumerate}
 
 
 \subsection{Dynamics and evolution}
 
+Model dynamics can be split into three parts: initialization,
+\emph{intra}generational behavior and payoff accumulation, and
+\emph{inter}generational transmission of the social learning trait and oblique
+learning (Figure~\ref{fig:IntraInterGenerationalDynamics}). 
+The model runs that we analyze here were initialized with $N=100$ agents
+to randomly have the social learner trait or not, with no accumulated payoffs, and
+blank ``ledgers''. At each time step, agents select one of $B$ possible behaviors
+to perform, accumulating a payoff of 1 if the bandit pays off, and 0 if it does
+not---a bandit pays off with probability $\pihigh$ if it is the unique optimal
+behavior, or with probability $\pilow$ if it is one of $B-1$ non-optimal
+behaviors. Agents accumulate payoffs in this way for $M$ time steps in each
+generation. At the end of each generation, $N=100$ agents are randomly selected with
+replacement to reproduce (asexual, haploid reproduction), 
+weighted by their net payoffs over the generation,
+i.e., \emph{performance-biased} reproduction. Child agents then learn from 
+one teacher, selected again via a form of performance bias: a child agent chooses
+its teacher by first selecting a fully random subset of agents from the 
+parent generation as potential teachers, then selecting the one with the 
+greatest net payoffs among the subset. This process continues until $T=1000$
+time steps have elapsed \mt{this should probably be changed depending on $M$ so that
+    all analyses use the same number of generations. my informal checks have shown quick
+convergence, but i haven't tested b=4 and b=10 as much.}.
 
 \begin{figure}
   \caption{Model dynamics are composed of two major parts: first, agents perform
@@ -286,6 +333,150 @@ In our model uncertainty is a tunable consequence of four environmental features
   \label{fig:IntraInterGenerationalDynamics}
 \end{figure}
 
+
+\subsubsection{Initialization}
+
+Model initialization includes agent and environment initializations. Agents are
+randomly initialized to have the social learning trait or not, with equal 
+probability. Agent ``ledgers'' and behavior counts 
+are uniformly initialized to the no-knowledge,
+blank-slate case where all $\pi_{ib} = 0$ and $c_{ib} = 0$. Both the 
+ledger and behavior count vectors have $B$ entries, one for each
+behavior the environment affords. Net payoffs for
+the generation are also initialized to zero. All agents are initialized with
+the same softmax temperature, $\tau$, that guides their behavior selection 
+to be either more exploratory (greater $\tau$) or more exploitative of
+what agents believe to be the optimal behavior(s) (lesser $\tau$).
+
+The environment is initialized to have $B$ behaviors with one of them selected
+at random to be the optimal behavior, denoted $b^*$. Behavior $b^*$ is 
+initialized to have a probability $\pihigh$ of paying off 1. All other behaviors
+are initialized to have probability $\pilow$ of paying off 1. The modeler must
+specify the environmental variability, $u$, and the number of time steps per 
+generation, $M$. 
+
+
+\vspace{2em}
+\begin{table}[h]
+    \caption{Global environmental and cognitive initialization parameters.}
+    \label{tab:modelParameters}
+    \centering \hspace{-3em}
+    \begin{tabular}{cp{4.0in}l} \toprule
+
+        Symbol & Description & Values tested (bold$=$default) \\ 
+
+        \midrule  
+
+        $B$       & Number of possible behaviors (represented by ``bandits'') 
+                  & 2, 4, 10 \\
+
+        $\pihigh$ & Probability that the unique optimal behavior pays off 1 
+                & \textbf{0.9} \\
+
+        $\pilow$ & Probability one of $B - 1$ non-optimal behaviors pays off 1 
+                 & 0.1, 0.45, 0.8 \\ 
+
+        $\tau$ & Softmax temp.; $\uparrow=$more exploration, $\downarrow=$more
+                    exploitation 
+               & 0.01, \textbf{0.1}, 1.0 \\
+        
+        $u$    & Probability optimal behavior changes between generations 
+               & 0.0, 0.1, \ldots, 1.0 \\
+
+        $M$    & Number of time steps per generation & 1, $B/2$, $B$, $2B$, $4B$ \\
+
+        $N_T$    & Number of teachers to pool, from which best selected 
+                 & \textbf{5} \mt{TODO: Test more for sensitivity analysis?} \\
+
+            
+               
+        \bottomrule
+        \end{tabular} 
+\end{table}
+\vspace{2em}
+
+
+\subsubsection{Intra-generational behaviors and payoffs}
+
+Each generation begins with agents initialized either by the $t=0$ initialization
+outlined above, or initialized via inter-generational reproduction and learning,
+described in detail below. Within generations, there is no social learning.
+At each time step within a generation, agents select a behavior to perform
+using the softmax algorithm, then update their ledgers $\bar\pi_{ib}$ and behavior
+counts $c_{ib}$. If 
+the chosen bandit pays off for an agent, its net payoff is incremented by one,
+$\pi'_i \leftarrow \pi_i + 1$. This process continues for $M$ time steps, 
+when reproduction, learning, and die-off occur, re-initializing the next 
+generation for performing $M$ behaviors selected via this same process.
+
+At each time step, 
+agent $i$ chooses behavior $b$ at random, with each behavior
+weighted by the softmax function applied to that behavior's observed mean payoff
+relative to all mean payoffs in the ledger,
+\begin{equation}
+  \Pr(i \text{ chooses behavior } b) = \frac{\exp(\bar\pi_{ib}
+  / \tau) }{ \sum_{b=1}^B \exp(\bar\pi_{ib} / \tau)}.
+\end{equation}  
+Softmax behavior selection is a
+biologically plausible model of behavior~\cite{Schulz2019} 
+that enables agents to explore
+alternative behaviors sometimes and exploit the best observed behavior other times,
+in accordance with Luce's choice axiom~\cite{Luce1959},.
+The parameter $\tau$ specifies how frequently alternative behaviors are
+explored versus how frequently the best observed behaviors are 
+exploited. Greater $\tau$ means more frequent exploration, lesser $\tau$ means
+more frequent exploitation. We set $\tau = 0.1$ for
+all computational analyses presented in the main paper. We (WILL HAVE) performed
+sensitivity analyses and found a weak dependence on $\tau$ that does not affect our
+main conclusions.
+
+When agent $i$ performs behavior $b$, $i$'s behavior count 
+is incremented by 1, $c'_{ib} \leftarrow c_{ib} + 1$. Agent $i$'s ledger of mean 
+payoffs are updated % from $\bar\pi_{ib}$ to $\bar\pi_{ib}'$
+using exponential weighted averaging, 
+
+\begin{equation}
+  \bar\pi_{ib}' = \bar\pi_{ib} +
+    \frac{\mathrm{Bandit_{b}(0, 1)} - \bar\pi_{ib}}{c_{ib}'},
+\end{equation}
+where 
+$\mathrm{Bandit}_{b}(0, 1)$
+is 0 or 1 depending on the result of the bandit draw for behavior $b$. 
+
+
+\subsubsection{Inter-generational inheritance and social learning}
+
+Every $M$ time steps, agents from the current generation reproduce, teach,
+and die, while the next generation to perform the next $M$ time steps learns
+from one teacher from the previous generation if they inherited the social 
+learner trait. Inter-generational dynamics thus depend on 
+two payoff-biased selection mechanisms: reproducer selection
+and teacher selection. 
+
+$N$ reproducers are sampled from the population with
+replacement weighted by net payoffs, i.e., at each of $N$ draws for a parent,
+\begin{equation}
+  \Pr(\text{Agent $i$ chosen for reproduction}) = \frac{\pi_i}{\sum_{i=1}^N \pi_i}.
+\end{equation}
+\noindent
+We sample with replacement to allow for more successful agents to have multiple
+offspring. Child agents inherit their parents' social learning trait, so 
+all social learner parents spawn social learner offspring, and parents lacking
+the trait spawn offspring lacking the trait. 
+
+Child agents with the social learning trait then must select and learn from a
+teacher from their parent's generation, including possibly their parent.
+Child agents give no preference to whether potential teachers are social 
+learners. A child selects a teacher by first selecting a pool of $N_T = 5$ potential
+teachers. Among this pool, each child selects the teacher with the greatest
+net payoffs. In case of a tie the teacher is chosen at random from those with
+the shared maximum net payoff. 
+
+Social learner child agents each acquire their teacher's ledger, and all social
+learner children behavior counts are reset to 1 to limit ledger values to be between
+0 and 1. Child agents without the social learner trait have all ledger and behavior
+count values re-initialized to 0. At this point the re-initialized child agents
+engage in behavior selection and payoff accumulation described above. 
 
 
 \subsection{Computational analyses}
@@ -303,6 +494,36 @@ and $M$. We varied $u \in \{0.0, 0.1, \ldots, 1.0\}$ for each combination of
 the following parameters:
 $\pisub{low} \in \{0.1, 0.5, 0.8\}$, $B \in \{2, 4, 10\}$, $M \in \{B/2, B, 2B\}$.
 
+\subsubsection{Outcome variables}
+
+Our primary outcome variable is the mean prevalence of the social learning
+trait over $N=100$ agents in 100 trials at the final time step of each trial,
+denoted $\meansl$.
+Typically at the final time step all agents either have the social learning
+trait or do not (see Supplement for a presentation of time series collections for
+a representative sampling of \mt{TODO}).
+
+\begin{table}[h]
+    \caption{Global environmental and cognitive initialization parameters.}
+    \label{tab:modelParameters}
+    \centering \hspace{-3em}
+    \begin{tabular}{cp{4.0in}l} \toprule
+
+        Symbol & Description & Values \\ 
+
+        \midrule  
+
+        $\meansl$ & Mean social learning prevalence over agents and trials
+                  & $\in [0.0, 1.0]$ \\
+
+        $p_{\text{opt}}$ & Fraction of population performing optimal behavior
+                         & $\in [0.0, 1.0]$ \\
+
+        \texttt{count}$(b_i)$ & Number of agents performing behavior $b$ 
+                              & Behavior-count key-value pairs\\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
 \section{Analysis}
@@ -335,15 +556,6 @@ $\pisub{low} \in \{0.1, 0.5, 0.8\}$, $B \in \{2, 4, 10\}$, $M \in \{B/2, B, 2B\}
     few observations, softmax weighting will not significantly 
     favor a sub-optimal behavior. However, if one does learn an accurate tally
     then one does have an increased chance of performing the best one.
-    \begin{itemize}
-      \item 
-        \mt{This makes sense, but the effect is too strong. Why should there be any
-        social learning when u = 1.0?  I think something is slightly wrong with the
-        model---I'm working on checking what that might be}
-      \item
-        \mt{One thing to check is the fraction doing the optimal behavior when
-        $u=1$. If many start out doing optimal, then something may be wrong.}
-    \end{itemize}
 
   \item 
     $\pilow$ can alter selection selection pressure for or

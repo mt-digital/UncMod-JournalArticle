@@ -209,7 +209,7 @@ variables and observe the average prevalence of social learning trait $s$
 across agents and trials, which is our primary outcome measure, 
 denoted $\langle s \rangle$. 
 
-\subsection{Agents and learning}
+\subsection{Agents and their attributes}
 
 In each time step, $N$ agents---autonomous problem solvers---select 
 which behavior to perform based on their running tally of mean payoffs for 
@@ -220,13 +220,15 @@ $\bar\pi_{ib}$
 is initialized to 0 for all $b$ at model initialization for
 all agents, and after each generation for individual learner agents. Social
 learning agents' $\bar\pi_{ib}$ is initialized as that of its teacher selected
-through performance-biased oblique learning.
+through performance-biased oblique learning. Agent $i$'s accumulated payoffs
+from performing several behaviors over their lifetime of $M$ time steps is
+denoted $\pi_{i}$.
 
 
 \vspace{2em}
 
 \begin{table}[h]
-    \caption{Dynamic agent-level variables.}
+    \caption{Dynamic agent-level variables. Each has an implicit time dependence.}
     \label{tab:modelParameters}
     \centering \hspace{-3em}
     \begin{tabular}{cp{4.0in}l} \toprule
@@ -252,16 +254,6 @@ through performance-biased oblique learning.
 
 \vspace{2em}
 
-
-
-Social learning in this model is oblique, which here means
-any agent from the previous generation, including an agent's parent,
-could be an agent's teacher. 
-Agents learn from exactly one teacher, selected as follows:
-First, a learner agent from a new generation selects $N_T$ teachers at random.
-The best-performing of the $N_T$ becomes a new agent's teacher, with ties broken
-randomly. At the end of each generation, all agents die off with some selected
-randomly for reproduction, weighted by accumulated payoffs within the round. 
 
 
 

@@ -209,7 +209,7 @@ variables and observe the average prevalence of social learning trait $s$
 across agents and trials, which is our primary outcome measure, 
 denoted $\langle s \rangle$. 
 
-\subsection{Agents and learning}
+\subsection{Agents and their attributes}
 
 In each time step, $N$ agents---autonomous problem solvers---select 
 which behavior to perform based on their running tally of mean payoffs for 
@@ -220,13 +220,15 @@ $\bar\pi_{ib}$
 is initialized to 0 for all $b$ at model initialization for
 all agents, and after each generation for individual learner agents. Social
 learning agents' $\bar\pi_{ib}$ is initialized as that of its teacher selected
-through performance-biased oblique learning.
+through performance-biased oblique learning. Agent $i$'s accumulated payoffs
+from performing several behaviors over their lifetime of $M$ time steps is
+denoted $\pi_{i}$.
 
 
 \vspace{2em}
 
 \begin{table}[h]
-    \caption{Dynamic agent-level variables.}
+    \caption{Dynamic agent-level variables. Each has an implicit time dependence.}
     \label{tab:modelParameters}
     \centering \hspace{-3em}
     \begin{tabular}{cp{4.0in}l} \toprule
@@ -252,16 +254,6 @@ through performance-biased oblique learning.
 
 \vspace{2em}
 
-
-
-Social learning in this model is oblique, which here means
-any agent from the previous generation, including an agent's parent,
-could be an agent's teacher. 
-Agents learn from exactly one teacher, selected as follows:
-First, a learner agent from a new generation selects $N_T$ teachers at random.
-The best-performing of the $N_T$ becomes a new agent's teacher, with ties broken
-randomly. At the end of each generation, all agents die off with some selected
-randomly for reproduction, weighted by accumulated payoffs within the round. 
 
 
 
@@ -529,59 +521,59 @@ a representative sampling of variables \mt{TODO}).
 
 \section{Analysis}
 
-\begin{itemize}
-  \item 
-    To understand how different forms of uncertainty affect social learning evolution
-    we systematically varied environmental variables in our model and observed
-    corresponding changes in mean social learning prevalence, $\meansl$. We
-    confirmed that, in many cases, increased environmental variability $u$ 
-    suppresses social learning. However\ldots 
+% \begin{itemize}
+%   \item 
+%     To understand how different forms of uncertainty affect social learning evolution
+%     we systematically varied environmental variables in our model and observed
+%     corresponding changes in mean social learning prevalence, $\meansl$. We
+%     confirmed that, in many cases, increased environmental variability $u$ 
+%     suppresses social learning. However\ldots 
 
 
-  \item 
-    Our analysis confirmed existing theoretical predictions that social learning
-    is valuable only when environments are sufficiently stable, i.e., 
-    environmental variability $u$ is sufficiently small.
-    Because of the central role of $u$, it is set on the x-axis in
-    all analysis plots shown in Figure~\ref{fig:results}. 
-    The threshold over $u$ at which social learning begins to decline
-    varies depending on the value of other environmental parameters. 
+%   \item 
+%     Our analysis confirmed existing theoretical predictions that social learning
+%     is valuable only when environments are sufficiently stable, i.e., 
+%     environmental variability $u$ is sufficiently small.
+%     Because of the central role of $u$, it is set on the x-axis in
+%     all analysis plots shown in Figure~\ref{fig:results}. 
+%     The threshold over $u$ at which social learning begins to decline
+%     varies depending on the value of other environmental parameters. 
 
-  \item 
-    However, more possible behaviors $B$ ($B=2,4,10$ for the first, second, and
-    third column respectively in Figure~\ref{fig:results}) can lead
-    social learning to be selected for even for large values of $u$, possibly
-    due to the low risk and potentially high reward of learning an accurate
-    tally of mean payoffs from the previous generation. 
-    Since there are many behaviors and
-    few observations, softmax weighting will not significantly 
-    favor a sub-optimal behavior. However, if one does learn an accurate tally
-    then one does have an increased chance of performing the best one.
+%   \item 
+%     However, more possible behaviors $B$ ($B=2,4,10$ for the first, second, and
+%     third column respectively in Figure~\ref{fig:results}) can lead
+%     social learning to be selected for even for large values of $u$, possibly
+%     due to the low risk and potentially high reward of learning an accurate
+%     tally of mean payoffs from the previous generation. 
+%     Since there are many behaviors and
+%     few observations, softmax weighting will not significantly 
+%     favor a sub-optimal behavior. However, if one does learn an accurate tally
+%     then one does have an increased chance of performing the best one.
 
-  \item 
-    $\pilow$ can alter selection selection pressure for or
-    against social learning, depending on the number of time steps per generation.
-    For instance, when $B=2$, increasing $\pilow$ (i.e. increased uncertainty
-    about which behavior is optimal) leads at first to less sharp sigmoid curve, 
-    where social learning is less prevalent with increased $\pilow$ when
-    $u < 0.5$ and social learning is more prevalent with increased $\pilow$
-    when $u > 0.5$. When $\pilow = 0.8$ noise and genetic drift dominate across
-    tested values of $B$, with possibly a slight inverse correlation 
-    in social learning as $u$ increases. When $B \in \{4,10\}$, increasing
-    $\pilow \in \{0.1, 0.5\}$ leads uniformly to increased $\meansl$ over 
-    $u$ in those settings.     
+%   \item 
+%     $\pilow$ can alter selection selection pressure for or
+%     against social learning, depending on the number of time steps per generation.
+%     For instance, when $B=2$, increasing $\pilow$ (i.e. increased uncertainty
+%     about which behavior is optimal) leads at first to less sharp sigmoid curve, 
+%     where social learning is less prevalent with increased $\pilow$ when
+%     $u < 0.5$ and social learning is more prevalent with increased $\pilow$
+%     when $u > 0.5$. When $\pilow = 0.8$ noise and genetic drift dominate across
+%     tested values of $B$, with possibly a slight inverse correlation 
+%     in social learning as $u$ increases. When $B \in \{4,10\}$, increasing
+%     $\pilow \in \{0.1, 0.5\}$ leads uniformly to increased $\meansl$ over 
+%     $u$ in those settings.     
 
-  \item
-    If $M/B$ has an effect it is mostly to 
-    increase reliance on social learning due to social information being of 
-    higher quality since teachers would have had more learning opportunities
-    for larger $M$. (THERE ARE CASES WHERE THIS IS NOT THE CASE BUT THERE IS 
-    STILL TOO MUCH NOISE DUE TO SMALL NTRIALS)
+%   \item
+%     If $M/B$ has an effect it is mostly to 
+%     increase reliance on social learning due to social information being of 
+%     higher quality since teachers would have had more learning opportunities
+%     for larger $M$. (THERE ARE CASES WHERE THIS IS NOT THE CASE BUT THERE IS 
+%     STILL TOO MUCH NOISE DUE TO SMALL NTRIALS)
 
-  \item
-    Synthesis/analysis conclusion 
+%   \item
+%     Synthesis/analysis conclusion 
     
-\end{itemize}
+% \end{itemize}
 
 
 \include{mainResultsPlots.tex}

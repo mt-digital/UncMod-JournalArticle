@@ -1,52 +1,94 @@
 \begin{figure}
-  \caption{Dependence of Social Learning ($\langle s \rangle$) on environmental
-  variability $u$ for several values of low payoff $\pisub{low}$, number of
-  behaviors $B$, and steps per round, $M = 0.5B,~B,~2B$. Average over 100 trials.} 
+  \caption{Dependence of Social Learning ($\meansl$) on environmental
+  variability $u$ for several values of low payoff $\pilow$, number of
+  behaviors $B$, and lifespan $L$. Average over 1000 trials.} 
+  \vspace{3em}
   % $\langle s \rangle$ decreases monotonically for $\pisub{low} = 0.1, 0.5$,
 % but noise dominates the results for $\pisub{low}=0.8$. When $\pisub{low} = 0.5$, 
 % the sigmoid is not as sharp as for $\pisub{low}=0.1$, meaning that social learning
 % is reduced for smaller $u$ and increased for larger $u$.}
   \label{fig:results}
   \centering
-  \begin{subfigure}[t]{0.33\textwidth}
+  \begin{subfigure}[t]{0.08\textwidth}
+    \vspace{-2em}
+    \hspace{-4em}
+    % \centering
+    \begin{tikzpicture}
+      \draw[->,thick] (-.1,0)--(1,0) node[above]
+        {$B$};
+        % {Number of behaviors $B$};
+      \draw[->,thick] (0,.1)--(0,-1) node[below]
+        {$\pilow$};
+        % {Low payoff frequency $\pilow$};
+    \end{tikzpicture}
+
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.3\textwidth}
     \centering
-  \caption{$B = 2$, $M=1,2,4$}
-    \includegraphics[width=\textwidth]{
+    $B = 2$ 
+    \begin{rotate}{90}
+      {\parbox{4cm}{
+          \centering
+          \vspace{-3.5em}$ \pilow = 0.1$ \\[0.25em]
+          {\begin{rotate}{-90}$\meansl$\end{rotate}}
+      }}
+    \end{rotate}%
+    % \begin{rotate}{90}
+    %   Social learning $\meansl$
+    % \end{rotate}%
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.1_nbehaviors=2.pdf}
     }
     \centering
-    \includegraphics[width=\textwidth]{
+    \begin{rotate}{90}
+      {\parbox{4cm}{
+          \centering
+          \vspace{-3.5em}$ \pilow = 0.45$ \\[0.25em]
+          {\begin{rotate}{-90}$\meansl$\end{rotate}}
+      }}
+    \end{rotate}%
+    % \hspace{1.5em}%
+    % \begin{rotate}{90}
+    %   Social learning $\meansl$
+    % \end{rotate}%
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.45_nbehaviors=2.pdf}
     }
-    \includegraphics[width=\textwidth]{
+    \begin{rotate}{90}
+      {\parbox{4cm}{
+          \centering
+          \vspace{-3.5em}$ \pilow = 0.8$ \\[0.25em]
+          {\begin{rotate}{-90}$\meansl$\end{rotate}}
+      }}
+    \end{rotate}%
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.8_nbehaviors=2.pdf}
     }
   \end{subfigure}%
-  \begin{subfigure}[t]{0.33\textwidth}
-    \centering
-    \caption{$B = 4$, $M=2,4,8$}
-    \includegraphics[width=\textwidth]{
+  \begin{subfigure}[t]{0.3\textwidth}
+    $B = 4$
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.1_nbehaviors=4.pdf}
     } \\
     \centering
-    \includegraphics[width=\textwidth]{
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.45_nbehaviors=4.pdf}
     } \\
-    \includegraphics[width=\textwidth]{
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.8_nbehaviors=4.pdf}
     }
   \end{subfigure}
-  \begin{subfigure}[t]{0.33\textwidth}
+  \begin{subfigure}[t]{0.3\textwidth}
     \centering
-    \caption{$B = 10$, $M=5,10,20$}
-    \includegraphics[width=\textwidth]{
+    $B = 10$
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.1_nbehaviors=10.pdf}
     } \\
     \centering
-    \includegraphics[width=\textwidth]{
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.45_nbehaviors=10.pdf}
     } \\
-    \includegraphics[width=\textwidth]{
+    \includegraphics[width=1.1\textwidth]{
       {Figures/SL_over_u_lowpayoff=0.8_nbehaviors=10.pdf}
     }
   \end{subfigure}

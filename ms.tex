@@ -6,6 +6,7 @@
 \usepackage[bookmarks, hidelinks]{hyperref}
 \usepackage[chatter]{rotating}
 \usepackage{amssymb,amsmath}
+\usepackage[title]{appendix}
 % \usepackage{fullpage}
 \usepackage{tabulary}
 \usepackage{tabularx}
@@ -589,5 +590,31 @@ a representative sampling of variables \mt{TODO}).
 
 % \bibliography{/Users/mt/workspace/Writing/library.bib}
 \bibliography{this.bib}
+
+
+\appendix
+
+\section{Appendix}
+
+\subsection{Mean payoffs at final time step}
+
+\include{supplement/meanNetPayoffs.tex}
+
+
+\subsection{Convergence information}
+
+\begin{table}[h]
+  \caption{Max. iterations = 5000.}
+  \centering
+  \begin{tabular}{cccc} \toprule
+    $B$ & \# not at fixation & \# total series & Pct. not fixated \\
+    \midrule  
+    2  & 21  & 132000 & 0.016 \% \\
+    4  & 30  & 132000 & 0.023 \% \\
+    10 & 971 & 132000 & 0.74  \% \\
+    \bottomrule
+  \end{tabular} 
+\end{table}
+
 
 \end{document}

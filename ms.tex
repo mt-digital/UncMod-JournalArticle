@@ -267,7 +267,12 @@ In our model uncertainty is a tunable consequence of four environmental features
 % uncertainty involved in both social and asocial learning. 
 %We model uncertainty in four distinct ways: 
 \begin{enumerate}
-    \item We vary the frequency at which the optimal behavior changes, which we call \emph{environmental variability}, $u$. At the start of each generation, with probability $u$, a new behavior is assigned a payoff of $\pisub{high}$ while all other behaviors are assigned a payoff of $\pisub{low}$. Otherwise, the same behavior remains optimal across generations. 
+    \item 
+      We vary the frequency at which the optimal behavior changes, which we call
+      \emph{environmental variability}, $u$. At the start of each generation, with
+      probability $u$, a new behavior is assigned a payoff of $\pisub{high}$ while all
+      other behaviors are assigned a payoff of $\pisub{low}$. Otherwise, the same
+      behavior remains optimal across generations. 
     \item We vary the latent expected payoffs yielded by the bandits. For simplicity,
       we assume that in any given environmental state, there is one optimal behavior that
       yields an expected payoff of $\pisub{high}$, while all other behaviors yield a 
@@ -600,24 +605,34 @@ chance.
 \subsection{Social learning capacity increases payoffs}
 
 For social learning to evolve, it must improve upon individual learning. 
-We found that different parameter settings change how advantageous social learning
-is over and above individual learning. To analyze the effect of uncertainty on
+We found that different parameter settings indeed change how advantageous social learning
+is compared to individual learning (Figure~\ref{fig:meanNetPayoffs}). 
+To analyze the effect of uncertainty on
 payoffs, it is useful to identify some constant reference values which we will
 use to evaluate the benefit of social learning. First, the optimal expected payoff
 is the optimal behavior payoff times the lifespan, which we can denote
 $\langle \pi^*(L) \rangle = L\cdot\pihigh$. The expected base payoff by chance is 
 $\langle \pi_{\text{base}} \rangle = L \left[ (B - 1) \pilow + \pihigh \right]$, which
 an agent would receive on average from performing purely random behaviors. 
-Agents learn adaptively over their lifespan (via the softmax algorithm in 
-our model), whether or not they are social learners. We calculated this
-value for reference for each triplet of $\pilow$, $B$, and $L$ 
-\mt{calculate this and add to plot as a guide}. 
-Social learning evolves when the expected payoff of
-social learners exceeds the expected payoff of individual learners.
+Most importantly for understanding the benefit and evolution of social learning,
+we calculated by simulation the expected payoff to individual learners for
+each triplet ($\pilow$, $B$, $L$), which we denote $\langle \pi_I \rangle$
+and plot for reference in Figure~\ref{fig:meanNetPayoffs}. Note $\langle \pi_I
+\rangle$ is insensitive to $u$, which only affects the benefit of social
+learning.
 
-\mt{Use above framework to analyze results after plot guides added as
-promised}
-
+We observe across parameter settings that social learning outperforms
+individual learning when $u$ is small. In fact, when $u=0.0$, social learning 
+enables each new generation to know the optimal behavior and achieve the maximum
+expected payoff for their lifespan, $\langle \pi^*(L) \rangle$. 
+However, in some cases, even when $u$ is small, 
+the returns on social learning are truly marginal due to 
+relatively high, uniform expected payoffs whether or not agents identify the optimal
+behavior, especially when $\pilow = 0.8$. In intermediate cases, examining the decay
+of the benefit of social learning informs our understanding of social learning
+evolution analyzed above.  As our analysis of social learning evolution suggested,
+social learning is only beneficial up to a point. When $\pilow=0.1$, increasing $B$
+led both to larger differences between 
 
 \subsection{Evolutionary outcomes vary in their certainty} 
 

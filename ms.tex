@@ -57,6 +57,8 @@
 \newcommand{\pisub}[1]{\pi_{\mathrm{#1}}}
 \newcommand{\pilow}{\pisub{low}}
 \newcommand{\pihigh}{\pisub{high}}
+\newcommand{\piI}{\langle \pisub{I} \rangle}
+\newcommand{\piS}{\langle \pisub{S} \rangle}
 
 \newcommand{\meansl}{\langle s \rangle}
 
@@ -201,7 +203,9 @@ of the other behaviors, $\pisub{low}$;
 (3) the number of possible behaviors, $B$; and 
 (4) the lifespan, or time steps per generation, $M$. 
 
-We ran the simulation for $T=1000$ time steps. At
+We ran the simulation for a maximum of $T_{max}=20000$ time steps. If after a
+generation all agents are either social or individual learners then the
+simulation is stopped since there is no mutation. At
 the end of each generation agents reproduce and then die off. 
 Those selected to reproduce
 pass on their boolean social learning trait, $s$, without mutation,
@@ -483,15 +487,16 @@ engage in behavior selection and payoff accumulation described above.
 We manipulated environmental uncertainty parameters described above, $u$,
 $\pisub{low}$, $B$, and $M$, to examine their effects on our
 main outcome measure, the prevalence of social learning $s$. For each parameter setting
-in our analysis we calculated the average value of $s$ at the final time step
-of $T=1000$ across 100 runs for each combination of uncertainty parameter values.
+in our analysis we calculated the average value of $s$ at the final time step,
+either at the maximum $T_{\text{max}}=20000$ across 1000 trials 
+for each combination of uncertainty parameter values.
 
 To analyze the effect of various forms of uncertainty on social learning 
 prevalence in our Analysis, we initialized several model runs with
 different uncertainty parameters $u$, $\pisub{\mathrm{low}}$, $B$,
 and $M$. We varied $u \in \{0.0, 0.1, \ldots, 1.0\}$ for each combination of
 the following parameters:
-$\pisub{low} \in \{0.1, 0.5, 0.8\}$, $B \in \{2, 4, 10\}$, $M \in \{B/2, B, 2B\}$.
+$\pisub{low} \in \{0.1, 0.45, 0.8\}$, $B \in \{2, 4, 10\}$, $L \in \{1, B/2, B, 2B\}$.
 
 \subsubsection{Outcome variables}
 
@@ -604,9 +609,17 @@ chance.
 
 \subsection{Social learning capacity increases payoffs}
 
-For social learning to evolve, it must improve upon individual learning. 
-We found that different parameter settings indeed change how advantageous social learning
-is compared to individual learning (Figure~\ref{fig:meanNetPayoffs}). 
+For social learning to reliably evolve, it must be more beneficial
+(in terms of payoffs) than individual learning. Inversely, social learning
+should be suppressed when it misleads agents away from quickly identifying the
+optimal behavior through individual learning.
+We found that different parameter settings indeed change how 
+advantageous social learning
+is compared to individual learning (Figure~\ref{fig:meanNetPayoffs}).
+We find that the transition from $\meansl = 1$ to $\meansl = 0$ occurs when
+the mean net payoff among populations of all social learners is close to 
+that of the expected individual learner payoff, $\piI$.
+
 To analyze the effect of uncertainty on
 payoffs, it is useful to identify some constant reference values which we will
 use to evaluate the benefit of social learning. First, the optimal expected payoff
@@ -616,37 +629,51 @@ $\langle \pi_{\text{base}} \rangle = L \left[ (B - 1) \pilow + \pihigh \right]$,
 an agent would receive on average from performing purely random behaviors. 
 Most importantly for understanding the benefit and evolution of social learning,
 we calculated by simulation the expected payoff to individual learners for
-each triplet ($\pilow$, $B$, $L$), which we denote $\langle \pi_I \rangle$
-and plot for reference in Figure~\ref{fig:meanNetPayoffs}. Note $\langle \pi_I
-\rangle$ is insensitive to $u$, which only affects the benefit of social
+each triplet ($\pilow$, $B$, $L$), which we denote $\piI$
+and plot for reference in Figure~\ref{fig:meanNetPayoffs}. Note 
+$\piI$ is insensitive to $u$, which only affects the benefit of social
 learning.
 
 We observe across parameter settings that social learning outperforms
-individual learning when $u$ is small. In fact, when $u=0.0$, social learning 
-enables each new generation to know the optimal behavior and achieve the maximum
-expected payoff for their lifespan, $\langle \pi^*(L) \rangle$. 
-However, in some cases, even when $u$ is small, 
-the returns on social learning are truly marginal due to 
-relatively high, uniform expected payoffs whether or not agents identify the optimal
-behavior, especially when $\pilow = 0.8$. In intermediate cases, examining the decay
-of the benefit of social learning informs our understanding of social learning
-evolution analyzed above.  As our analysis of social learning evolution suggested,
-social learning is only beneficial up to a point. When $\pilow=0.1$, increasing $B$
-led both to larger differences between 
+individual learning when $u$ is small. In fact, when $u=0.0$, social learning
+enables each new generation to know the optimal behavior and achieve the
+maximum expected payoff for their lifespan, $\langle \pi^*(L) \rangle$.
+However, in some cases, even when $u$ is small, the returns on social learning
+are truly marginal due to relatively high, uniform expected payoffs whether or
+not agents identify the optimal behavior, especially when $\pilow = 0.8$. In
+intermediate cases, examining the decay of the benefit of social learning
+informs our understanding of social learning evolution analyzed above.  
 
-\subsection{Evolutionary outcomes vary in their certainty} 
+As our analysis of social learning evolution suggested, social learning is only
+beneficial up to a point. When $\pilow=0.1$, increased $B$ led both to larger
+differences between payoffs when social learning was more beneficial, and it
+led to $\piS > \piI$ across more values of $u$. This occurs because when there
+are fewer behaviors it is easier for non-social learners to identify the
+optimal behavior on their own. Even relatively small values of $u$ disrupt
+the fidelity of social learning to the point that it being misled is
+prohibitively costly compared to simply finding the optimal on one's own.
+A relatively short lifespan can also extend the utility of social learning
+across more values of $u$ since there are fewer opportunities for agents to
+independently identify and perform the optimal solution. 
 
-Finally, we found that the \emph{evolutionary uncertainty} of the system increases
-around the values of $u$ where $\meansl$ goes from 1 to 0. 
-In one sense
-To confirm and expand our analysis of this uncertainty, we 
-also measured environmental uncertainty in terms of the
-expected number of time steps to convergence, $\langle T \rangle$. Evolutionary
-uncertainty is an outcome measure---an emergent form of uncertainty due to
-weak selection pressures. When 
-$\meansl \approx 0.5$ this means that approximately equal numbers of trials
-ended with all agents as social learners as they ended with all agents 
-individual learners. We found that increased $\pilow$
+\subsection{Evolutionary outcome uncertainty} 
+
+Finally, we found that the \emph{evolutionary uncertainty} of the system
+increases around the values of $u$ where $\meansl$ goes from 1 to 0.  We know
+that outcomes are uncertain in this region because we know that $\meansl$
+is equivalent to the fraction of outcomes that ended with all agents being
+social learners. $1 - \meansl$ is the fraction of trials that ended with 
+all agents becoming individual learners. Therefore, when $\meansl \approx 0.5$,
+this means roughly half of the simulated trials fixated at $\meansl = 1.0$
+while the other half fixated at $\meansl = 0.0$.
+Only 44 of nearly 400k trials did not go to fixation ($\meansl = 1$ or $\meansl = 0$) 
+within 20k maximum iterations (Table~\ref{tab:convergence}); all that did not
+reach fixation had $B=10$. 
+
+We also measured environmental uncertainty more directly, in terms of the
+expected number of time steps to convergence, $\langle T \rangle$.
+Evolutionary uncertainty is thus an outcome measure---an emergent form of
+uncertainty due to weak selection pressures. We found that increased $\pilow$
 tended to increase the overall uncertainty in terms of $\langle T \rangle$.
 Increasing $B$ also increased the $u$ at which $\langle T \rangle$ peaked.
 This indicates the evolutionary system is significantly less certain of 
@@ -685,6 +712,7 @@ which behavior is optimal around critical uncertainty parameter ensembles.
 
 \begin{table}[h]
   \caption{Max. iterations = 5000.}
+  \label{tab:convergence}
   \centering
   \begin{tabular}{cccc} \toprule
     $B$ & \# not at fixation & \# total series & Pct. not fixated \\

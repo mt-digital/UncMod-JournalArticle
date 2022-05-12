@@ -1,19 +1,20 @@
 \begin{figure}
-  \caption{Dependence of average time to convergence ($\langle T \rangle$)  on
+  \caption{Dependence of average time to convergence normalized by
+    lifespan, $\frac{\meanT}{L}$, on
   environmental variability $u$ for several values of low payoff $\pilow$, number of
 behaviors $B$, and lifespan $L$. Note the y-axis range varies for each plot 
 to facilitate visualizing the peak in $\langle T \rangle$ and to make differences
 between uncertainty parameter settings more clear. Average over 1000 trials.} 
   \label{fig:steps}
-  \vspace{3em}
+  % \vspace{3em}
   % $\langle s \rangle$ decreases monotonically for $\pisub{low} = 0.1, 0.5$,
 % but noise dominates the results for $\pisub{low}=0.8$. When $\pisub{low} = 0.5$, 
 % the sigmoid is not as sharp as for $\pisub{low}=0.1$, meaning that social learning
 % is reduced for smaller $u$ and increased for larger $u$.}
   \centering
   \begin{subfigure}[t]{0.08\textwidth}
-    \vspace{-2em}
-    \hspace{-4em}
+    % \vspace{-2em}
+    % \hspace{-4em}
     % \centering
     \begin{tikzpicture}
       \draw[->,thick] (-.1,0)--(1,0) node[above]
@@ -32,12 +33,9 @@ between uncertainty parameter settings more clear. Average over 1000 trials.}
       {\parbox{4cm}{
           \centering
           \vspace{-3.5em}{\large $ \pilow = 0.1$} \\
-          {\begin{rotate}{-90}{\large $\langle T \rangle$}\end{rotate}}
+          {\begin{rotate}{-90}{\large $\frac{\meanT}{L}$}\end{rotate}}
       }}
     \end{rotate}%
-    % \begin{rotate}{90}
-    %   Social learning $\langle T \rangle$
-    % \end{rotate}%
     \includegraphics[width=1.1\textwidth]{
       {Figures/step_over_u_lowpayoff=0.1_nbehaviors=2.pdf}
     }
@@ -46,13 +44,9 @@ between uncertainty parameter settings more clear. Average over 1000 trials.}
       {\parbox{4cm}{
           \centering
           \vspace{-3.5em} {\large$ \pilow = 0.45$} \\
-          {\begin{rotate}{-90}{\large $\langle T \rangle$}\hspace{1em}\end{rotate}}
+          {\begin{rotate}{-90}{\large $\frac{\meanT}{L}$}\hspace{1em}\end{rotate}}
       }}
     \end{rotate}%
-    % \hspace{1.5em}%
-    % \begin{rotate}{90}
-    %   Social learning $\langle T \rangle$
-    % \end{rotate}%
     \includegraphics[width=1.1\textwidth]{
       {Figures/step_over_u_lowpayoff=0.45_nbehaviors=2.pdf}
     }
@@ -60,7 +54,7 @@ between uncertainty parameter settings more clear. Average over 1000 trials.}
       {\parbox{4cm}{
           \centering
           \vspace{-3.5em} {\large $ \pilow = 0.8$} \\
-          {\begin{rotate}{-90}{\large $\langle T \rangle$}\end{rotate}}
+          {\begin{rotate}{-90}{\large $\frac{\meanT}{L}$}\end{rotate}}
       }}
     \end{rotate}%
     \includegraphics[width=1.1\textwidth]{
@@ -68,7 +62,7 @@ between uncertainty parameter settings more clear. Average over 1000 trials.}
     }\\[-.5em]
     {\large $\quad u$}
   \end{subfigure}%
-  \begin{subfigure}[t]{0.3\textwidth}
+    \begin{subfigure}[t]{0.3\textwidth}
     {\large $B = 4$}
     \includegraphics[width=1.1\textwidth]{
       {Figures/step_over_u_lowpayoff=0.1_nbehaviors=4.pdf}

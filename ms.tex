@@ -87,17 +87,19 @@ these forms of uncertainty can select against social learning.
 \section{Introduction}
 
 \subsection{The history of "copy when uncertain"}
-It has become a near truism that "theory predicts that it is adaptive to learn when uncertain." This claim has been motivated by empirical work (such as Asch conformism studies) & theoretical models (Boyd Richerson 85, 88) that often do not mention the word uncertainty at all. However, they do show related effects of social learning increasing when individual learning is difficult (i.e., ambiguous lines in Asch), and intermediate levels of temporal uncertainty favoring social learning (i.e., too stable and you get genetic canalization of a trait, too much temporal variation and there's selection for individual learning to ensure the most up to date information).   
+It has become a near truism that "theory predicts that it is adaptive to learn when uncertain."
+This claim has been motivated by empirical work (such as Asch conformism studies) \& theoretical models (Boyd Richerson 85, 88) that often do not mention the word uncertainty at all. However, they do show related effects of social learning increasing when individual learning is difficult (i.e., ambiguous lines in Asch), and intermediate levels of temporal uncertainty favoring social learning (i.e., too stable and you get genetic canalization of a trait, too much temporal variation and there's selection for individual learning to ensure the most up to date information).   
 
-{Galef 2009} https://www.sciencedirect.com/science/article/pii/S006534540939004X#bb0059
-cites {B & R 85/88 & Laland 2004} https://link.springer.com/content/pdf/10.3758/BF03196002.pdf
-Laland 2004 cites {B& R 88} https://books.google.com/books?hl=en&lr=&id=mqFcAgAAQBAJ&oi=fnd&pg=PA29&dq=Boyd+and+Richerson%E2%80%99s+(1988&ots=IfIbB_kx_a&sig=g8CYH5bVfwfXhTRGot0q761f9mw#v=onepage&q&f=false
+{Galef 2009} https://www.sciencedirect.com/science/article/pii/S006534540939004X\#bb0059
+cites {B \& R 85/88 \& Laland 2004} https://link.springer.com/content/pdf/10.3758/BF03196002.pdf
+Laland 2004 cites {B\& R 88}
+\url{https://books.google.com/books?hl=en&lr=&id=mqFcAgAAQBAJ&oi=fnd&pg=PA29&dq=Boyd+and+Richerson\%E2\%80\%99s+(1988&ots=IfIbB_kx_a&sig=g8CYH5bVfwfXhTRGot0q761f9mw\#v=onepage&q&f=false}
 
 
 Other examples of empirical work: https://www.sciencedirect.com/science/article/pii/S0022096516300625
 
-Henrich & Boyd 88 do have something like B that is the difficulty of getting right answer (or rho probability of doing so)
-https://www.sciencedirect.com/science/article/pii/S109051389800018X#FIG5
+Henrich \& Boyd 88 do have something like B that is the difficulty of getting right answer (or rho probability of doing so)
+https://www.sciencedirect.com/science/article/pii/S109051389800018X\#FIG5
 
 Lifespan not modelled 
 
@@ -486,7 +488,6 @@ engage in behavior selection and payoff accumulation described above.
 \subsection{Computational analyses and outcome measures}
 
 We manipulated environmental uncertainty parameters described above, $u$,
-<<<<<<< HEAD
 $\pisub{low}$, $B$, and $L$, to examine their effects on our
 main outcome measure, the mean prevalence of social learning $\meansl$, 
 and supplemental outcome measures $\meanpi / L$ and $\meanT / L$. $\meanpi / L$ is the
@@ -502,30 +503,6 @@ and $L$. We varied $u \in \{0.0, 0.1, \ldots, 1.0\}$ for each combination of
 the following parameters:
 $\pisub{low} \in \{0.1, 0.5, 0.8\}$, $B \in \{2, 4, 10\}$, and
 $L \in \{1, B, 2B, 4B\}$ for $B=2$ and $L \in \{1, B/2, B, 2B\}$ for $B=4,10$.
-=======
-$\pisub{low}$, $B$, and $M$, to examine their effects on our
-main outcome measure, the prevalence of social learning $s$. For each parameter setting
-in our analysis we calculated the average value of $s$ at the final time step,
-either at the maximum $T_{\text{max}}=20000$ across 1000 trials 
-for each combination of uncertainty parameter values.
-
-To analyze the effect of various forms of uncertainty on social learning 
-prevalence in our Analysis, we initialized several model runs with
-different uncertainty parameters $u$, $\pisub{\mathrm{low}}$, $B$,
-and $M$. We varied $u \in \{0.0, 0.1, \ldots, 1.0\}$ for each combination of
-the following parameters:
-$\pisub{low} \in \{0.1, 0.45, 0.8\}$, $B \in \{2, 4, 10\}$, $L \in \{1, B/2, B, 2B\}$.
-
-\subsubsection{Outcome variables}
-
-Our primary outcome variable is the mean prevalence of the social learning
-trait over $N=100$ agents over 1000 trials at the final time step of each trial,
-denoted $\meansl$.
-Typically at the final time step all agents either have the social learning
-trait or do not (see Supplement for a presentation of time series collections
-and histograms of outcomes for
-a representative sampling of variables \mt{TODO}).
->>>>>>> 642146dabe76f30add3b2bafcd00edb4ef355867
 
 \begin{table}[h]
     \caption{Outcome variables}
@@ -586,7 +563,6 @@ where evolutionary uncertainty is measured by the
 average steps to model convergence, $\meanvar{T}$ (Figure~\ref{fig:steps}).
 
 \subsection{Evolution of social learning under uncertainty}
-<<<<<<< HEAD
 
 We observed that different uncertainty contexts lead to different patterns in
 the evolution and suppression of social learning. To understand the evolution
@@ -686,148 +662,6 @@ did not reach fixation, less than 0.001\% of all trials.
 \input{meanNetPayoffs.tex}
 
 \input{stepResultsPlots.tex}
-=======
-The shape of the decrease from all agents
-always becoming social learners ($\meansl = 1.0$) to 
-all agents always becoming individual learners ($\meansl = 0.0$)
-is heterogeneous. We identified patterns in this heterogeneity that inform our
-understanding of when and how social learning is advantageous, and when 
-and why individual learning is advantageous. 
-Changes in the uncertainty parameters ($\pilow$, $B$, $L$) 
-result in the following changes in the shape of the transition from $\meansl = 1.0$ 
-to $\meansl = 0.0$: (1) the transition
-occurs at different critical values of $u$; and (2) the transition occurs
-with greater or lesser rapidity over $u$. 
-For instance, when $B=2$, $\pilow = 0.1$, and $L=8$, $\meansl$ goes from 1 to 
-0 starting at $u=0.1$ and reaches 0 at $u=0.3$ (Figure~\ref{fig:evolutionOfSL},
-top left). When we increased $B=4$ (Figure~\ref{fig:evolutionOfSL}, top center), the
-transition from $\meansl = 1$ to 0 begins at $u=0.3$. When $B=4$, $\pilow=0.1$,
-and $L=1$ the transition from $\meansl=1$ to 0 begins at $u=0.3$ but does not
-reach 0 until $u \approx 0.9$ (again Figure~\ref{fig:evolutionOfSL}, top center).
-
-We can draw some conclusions about the evolution of social learning by analyzing the
-location and shape of the suppression of social learning as $u$ was increased.
-First, let us observe some general trends. Increased $\pilow$ generally
-flattened the suppression of social learning as $u$ increased.  
-Increased $B$ tended to increase the critical value of $u$ at which the 
-system transitions from favoring social learning to favor individual learning.  
-Increased $L$ generally sharpened the suppression of social learning.
-Within each of these broad trends over the uncertainty parameters are several
-details that depend on context as defined by the values of the other uncertainty
-parameters.
-
-When $\pilow$ was increased, the suppression of social learning was, in
-general, less rapid as $u$ increased. This effect is particularly acute when
-$\pilow = 0.8$, which is very nearly equal to the expected value of the optimal
-payoff, $\pihigh = 0.9$. When $\pilow = 0.8$ $\meansl$ never actually reaches 
-1 or 0 for any parameter settings. The suppression of social learning in this
-case is approximately linear, if there is selection at all. When $\pilow = 0.8$
-and $L = 1$ there is little to no selection across $B$, 
-so populations evolve randomly towards $\meansl = 1$ or $\meansl = 0$. 
-
-Increased $B$ generally led to increased critical $u$ at which social learning
-starts to be suppresed. When payoffs are not ambiguous ($\pilow = 0.1$), the the
-suppression of social learning starts at $u \approx 0.1$ for $B=2$; at $u \approx
-0.3$ when $B=4$; and at $u \approx 0.5$ when $B=10$.  When payoffs are more
-ambiguous ($\pilow = 0.45,0.8$), increased $B$ also led to a flattening of the
-suppression of social learning when $L=1$. 
-
-The general effect of $L$ is to increase the rapidity of the suppression of social
-learning via the strengthening of selection pressure since longer-lived agents
-build up stronger priors over their lifetimes. If it is advantageous to
-learn socially, this will be reliably detected. Inversely, decreased $L$
-can weaken selection pressure since agents cannot amass useful information when
-$L$ is small. This is most extreme when $\pilow = 0.8$ and there is little to
-no selection for or against social learning when $L=1$. However, decreased $L$ can
-also delay the suppression of social learning as $u$ increases, since social
-learning provdes agents with the possibility of learning what the optimal behavior
-might be.  Even when $u$ was large, agents with a lifespan of 1 more often evolved
-to be social learners because social learning was to be preferred over random
-chance.
-
-
-\subsection{Social learning capacity increases payoffs}
-
-For social learning to reliably evolve, it must be more beneficial
-(in terms of payoffs) than individual learning. Inversely, social learning
-should be suppressed when it misleads agents away from quickly identifying the
-optimal behavior through individual learning.
-We found that different parameter settings indeed change how 
-advantageous social learning
-is compared to individual learning (Figure~\ref{fig:meanNetPayoffs}).
-We find that the transition from $\meansl = 1$ to $\meansl = 0$ occurs when
-the mean net payoff among populations of all social learners is close to 
-that of the expected individual learner payoff, $\piI$.
-
-To analyze the effect of uncertainty on
-payoffs, it is useful to identify some constant reference values which we will
-use to evaluate the benefit of social learning. First, the optimal expected payoff
-is the optimal behavior payoff times the lifespan, which we can denote
-$\langle \pi^*(L) \rangle = L\cdot\pihigh$. The expected base payoff by chance is 
-$\langle \pi_{\text{base}} \rangle = L \left[ (B - 1) \pilow + \pihigh \right]$, which
-an agent would receive on average from performing purely random behaviors. 
-Most importantly for understanding the benefit and evolution of social learning,
-we calculated by simulation the expected payoff to individual learners for
-each triplet ($\pilow$, $B$, $L$), which we denote $\piI$
-and plot for reference in Figure~\ref{fig:meanNetPayoffs}. Note 
-$\piI$ is insensitive to $u$, which only affects the benefit of social
-learning.
-
-We observe across parameter settings that social learning outperforms
-individual learning when $u$ is small. In fact, when $u=0.0$, social learning
-enables each new generation to know the optimal behavior and achieve the
-maximum expected payoff for their lifespan, $\langle \pi^*(L) \rangle$.
-However, in some cases, even when $u$ is small, the returns on social learning
-are truly marginal due to relatively high, uniform expected payoffs whether or
-not agents identify the optimal behavior, especially when $\pilow = 0.8$. In
-intermediate cases, examining the decay of the benefit of social learning
-informs our understanding of social learning evolution analyzed above.  
-
-As our analysis of social learning evolution suggested, social learning is only
-beneficial up to a point. When $\pilow=0.1$, increased $B$ led both to larger
-differences between payoffs when social learning was more beneficial, and it
-led to $\piS > \piI$ across more values of $u$. This occurs because when there
-are fewer behaviors it is easier for non-social learners to identify the
-optimal behavior on their own. Even relatively small values of $u$ disrupt
-the fidelity of social learning to the point that it being misled is
-prohibitively costly compared to simply finding the optimal on one's own.
-A relatively short lifespan can also extend the utility of social learning
-across more values of $u$ since there are fewer opportunities for agents to
-independently identify and perform the optimal solution. 
-
-\subsection{Evolutionary outcome uncertainty} 
-
-Finally, we found that the \emph{evolutionary uncertainty} of the system
-increases around the values of $u$ where $\meansl$ goes from 1 to 0.  We know
-that outcomes are uncertain in this region because we know that $\meansl$
-is equivalent to the fraction of outcomes that ended with all agents being
-social learners. $1 - \meansl$ is the fraction of trials that ended with 
-all agents becoming individual learners. Therefore, when $\meansl \approx 0.5$,
-this means roughly half of the simulated trials fixated at $\meansl = 1.0$
-while the other half fixated at $\meansl = 0.0$.
-Only 44 of nearly 400k trials did not go to fixation ($\meansl = 1$ or $\meansl = 0$) 
-within 20k maximum iterations (Table~\ref{tab:convergence}); all that did not
-reach fixation had $B=10$. 
-
-We also measured environmental uncertainty more directly, in terms of the
-expected number of time steps to convergence, $\langle T \rangle$.
-Evolutionary uncertainty is thus an outcome measure---an emergent form of
-uncertainty due to weak selection pressures. We found that increased $\pilow$
-tended to increase the overall uncertainty in terms of $\langle T \rangle$.
-Increasing $B$ also increased the $u$ at which $\langle T \rangle$ peaked.
-This indicates the evolutionary system is significantly less certain of 
-which behavior is optimal around critical uncertainty parameter ensembles.
-
-\mt{interpret this further}
-
-
-
-\include{mainResultsPlots.tex}
-
-\include{meanNetPayoffs.tex}
-
-\include{stepResultsPlots.tex}
->>>>>>> 642146dabe76f30add3b2bafcd00edb4ef355867
 
 
 \section{Discussion}
@@ -1323,8 +1157,8 @@ which behavior is optimal around critical uncertainty parameter ensembles.
 \setlength{\bibleftmargin}{.125in}
 \setlength{\bibindent}{-\bibleftmargin}
 
-% \bibliography{/Users/mt/workspace/Writing/library.bib}
-\bibliography{this.bib}
+\bibliography{/Users/mt/workspace/Writing/library.bib}
+% \bibliography{this.bib}
 
 
 \appendix

@@ -47,7 +47,7 @@
 
 \usepackage{graphicx}
 
-\title{Uncertainty in the evolution of social learning}
+\title{Uncertainty in social learning evolution}
 
 \author{{}}
 
@@ -324,19 +324,20 @@ have become all social or all asocial learners, or when $20k$ time steps have
 elapsed. 
 
 \begin{figure}
-  \caption{Model dynamics are composed of two major parts: first, agents perform
-  behaviors for $L$ time steps in a single generation. Then agents reproduce
-  randomly, with more successful agents being more likely to reproduce. Newly
-  ``born'' social learner agents use success bias to select and learn from a chosen
-  teacher. Then, all agents from the previous generation die off, all new agents
-  begin a new generation, and the process continues until 1000 total time steps
-  have elapsed. Agents are initialized as ``blank slates''. \mt{Can compress this
-  into triptych. $M \rightarrow L$. Lighten grey background, remove outlines
-around most or all components. Replace text in picture with A, B, C, and 
-explain in caption.}}
+  \caption{\textbf{Model dynamics.} 
+    The first generation of agents are initialized with empty ledgers, 
+    then perform behaviors on each subsequent time step (A). At the end
+    of each generation, after all agents have performed $L$ behaviors
+    chosen using softmax selection, the intergenerational tramsission stage
+    begins (B). During this stage agents reproduce, passing on their social
+    learning trait without mutation (B1). Child agents learn from
+    the previous generation if they are social learners (B2), or are initialized
+    with blank ledgers if they are individual learners. All agents from the previous
+    generation die off, and new child agents begin within-generation dynamics anew.}
   \label{fig:IntraInterGenerationalDynamics}
-  \centering
-    \includegraphics[width=0.9\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
+\hspace{-2em}
+  % \centering 
+    \includegraphics[width=1.1\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
 \end{figure}
 
 

@@ -14,10 +14,10 @@
 % \usepackage[margin=0.50in]{geometry}
 \usepackage[margin=1.00in]{geometry}
 
-\usepackage{caption}
 \usepackage{booktabs}
 \usepackage{pslatex}
 \usepackage{apacite}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{pgfplots}
 \usepackage{wrapfig}
@@ -657,6 +657,13 @@ spiking or elevated average time to convergence, $\meanT$, around when theoretic
 $\meansoc$ and observed $\meanpi$ approach $\meanasoc$. Recall that models are run
 until they reach fixation or until they reach 20k time steps. Only 44 out of 396k
 did not reach fixation, less than 0.001\% of all trials.
+
+\begin{figure}
+  \caption{Dependence of Social Learning ($\meansl$) on environmental
+  variability $u$ for several values of low payoff $\pilow$, number of
+  behaviors $B$, and lifespan $L$. Average over 1000 trials.} 
+  \label{fig:evolutionOfSL}
+  \includegraphics[width=\textwidth]{mainResultsPlots.pdf}
 
 \input{mainResultsPlots.tex}
 

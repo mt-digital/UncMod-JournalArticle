@@ -1,0 +1,106 @@
+% \documentclass[11pt,letterpaper]{article}
+\documentclass[letterpaper,11.5pt]{scrartcl}
+% \documentclass[11pt]{report}
+% \documentclass{report}
+% \documentclass{book}
+\usepackage[bookmarks, hidelinks]{hyperref}
+\usepackage[chatter]{rotating}
+\usepackage{amssymb,amsmath}
+\usepackage[title]{appendix}
+% \usepackage{fullpage}
+\usepackage{tabulary}
+\usepackage{tabularx}
+\usepackage{float}
+% \usepackage[margin=0.50in]{geometry}
+\usepackage[margin=1.00in]{geometry}
+
+\usepackage{booktabs}
+\usepackage{pslatex}
+\usepackage{apacite}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\usepackage{wrapfig}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{setspace}
+\doublespace
+% \usepackage{url}
+\usepackage{bigfoot}
+\usepackage[export]{adjustbox}
+\setlength\intextsep{0pt}
+
+% Colored comments 
+\usepackage{color}
+\definecolor{myorange}{RGB}{240, 96, 0}
+\newcommand{\mt}[1]{{\textcolor{myorange} {({\tiny MT:} #1)}}}
+
+\definecolor{myblue}{RGB}{30,144,255}
+\newcommand{\jhj}[1]{{\textcolor{myblue} {({\tiny JHJ:} #1)}}}
+
+\definecolor{mypurple}{RGB}{148,0,211}
+\newcommand{\cm}[1]{{\textcolor{mypurple} {({\tiny CM:} #1)}}}
+
+\definecolor{mygreen}{RGB}{26, 153, 51}
+\newcommand{\ps}[1]{{\textcolor{mygreen} {({\tiny PS:} #1)}}}
+
+
+\usepackage{graphicx}
+
+\title{Uncertainty in social learning evolution}
+
+\author{{}}
+
+\begin{document}
+\maketitle
+
+\newcommand{\pisub}[1]{\pi_{\mathrm{#1}}}
+\newcommand{\pilow}{\pisub{low}}
+\newcommand{\pihigh}{\pisub{high}}
+\newcommand{\piI}{\langle \pisub{I} \rangle}
+\newcommand{\piS}{\langle \pisub{S} \rangle}
+
+\newcommand{\meanvar}[1]{\langle #1 \rangle}
+\newcommand{\meansl}{\meanvar{s}}
+\newcommand{\meanpi}{\meanvar{\pi}}
+\newcommand{\meansoc}{\meanvar{\pi_\mathrm{S}}}
+\newcommand{\meanasoc}{\meanvar{\pi_\mathrm{A}}}
+\newcommand{\meanT}{\meanvar{T}}
+
+\begin{abstract}
+
+Social learning is essential to survival. It is likely to evolve when it is more
+efficient than asocial, trial-and-error learning. Theoretically, some uncertainty is
+necessary for social learning to be necessary, however too much uncertainty makes
+social information useless as information becomes outdated. This fact is empirically
+supported across biology and human sciences. However, we lack a theoretical
+framework predict the effects of specific classes and types of uncertainty on social
+learning. Furthermore, existing models and experimental operationalizations of
+uncertainty are ambiguously related, and models of uncertainty and social learning
+tend to only consider a small number of sources of uncertainty and behavioral
+choices.  Here we use evolutionary agent-based modeling to improve on these
+shortcomings. We model a time-varying environment with a varying number
+of possible behaviors agents could perform to acquire payoffs.
+We show that ambiguous payoffs, larger possible decision sets, and shorter agent
+lifespans interact to affect social learning in complex ways that make evolutionary
+selection more or less certain about the optimal strategy. Our work consolidates
+models of uncertainty and social learning and models the evolution of social
+learning that could be used to guide human, non-human, and artificial life
+towards optimal responses to existential threats and new opportunities.
+\end{abstract}
+
+
+Social learning is essential to human and other species' everyday life and survival.
+It allows individuals to solve problems when acquiring information from others is
+more efficient than learning on one's own~\cite{Laland2004}. Theory predicts that
+social learning should be favored in contexts with greater
+uncertainty~\cite{BoydRicherson1985,Henrich1998}, and this prediction has received
+some empirical support across species~\cite{McElreath2005,Kendal2018,Allen2019}.
+However, the meaning of the term \emph{uncertainty} is not always clear, and often
+conflates environmental variability, spatial heterogeneity, ambiguity or
+uncertainty about payoff structure, and other possible interpretations of
+\emph{uncertainty}.  Moreover, most models of the do not account for
+individual-level cognition~\cite{Heyes2016}. 
+
+
+\end{document}

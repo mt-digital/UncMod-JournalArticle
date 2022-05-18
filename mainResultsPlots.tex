@@ -1,8 +1,32 @@
+\documentclass[]{standalone}
+
+\usepackage{color,xcolor}
+\usepackage{tikz}
+\usepackage[chatter]{rotating}
+\usepackage{amssymb,amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+
+\newcommand{\pisub}[1]{\pi_{\mathrm{#1}}}
+\newcommand{\pilow}{\pisub{low}}
+\newcommand{\pihigh}{\pisub{high}}
+\newcommand{\piI}{\langle \pisub{I} \rangle}
+\newcommand{\piS}{\langle \pisub{S} \rangle}
+
+\newcommand{\meanvar}[1]{\langle #1 \rangle}
+\newcommand{\meansl}{\meanvar{s}}
+\newcommand{\meanpi}{\meanvar{\pi}}
+\newcommand{\meansoc}{\meanvar{\pi_\mathrm{S}}}
+\newcommand{\meanasoc}{\meanvar{\pi_\mathrm{A}}}
+\newcommand{\meanT}{\meanvar{T}}
+
+\begin{document}
+
 \begin{figure}
-  \caption{Dependence of Social Learning ($\meansl$) on environmental
-  variability $u$ for several values of low payoff $\pilow$, number of
-  behaviors $B$, and lifespan $L$. Average over 1000 trials.} 
-  \label{fig:evolutionOfSL}
   % \vspace{3em}
   % $\langle s \rangle$ decreases monotonically for $\pisub{low} = 0.1, 0.5$,
 % but noise dominates the results for $\pisub{low}=0.8$. When $\pisub{low} = 0.5$, 
@@ -99,3 +123,5 @@
   
   
 \end{figure}
+
+\end{document}

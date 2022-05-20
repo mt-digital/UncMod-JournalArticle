@@ -62,6 +62,7 @@
 \newcommand{\pihigh}{\pisub{high}}
 \newcommand{\piI}{\langle \pisub{I} \rangle}
 \newcommand{\piS}{\langle \pisub{S} \rangle}
+\newcommand{\ledger}{\bar\pi_{ib}}
 
 \newcommand{\meanvar}[1]{\langle #1 \rangle}
 \newcommand{\meansl}{\meanvar{s}}
@@ -69,6 +70,8 @@
 \newcommand{\meansoc}{\meanvar{\pi_\mathrm{S}}}
 \newcommand{\meanasoc}{\meanvar{\pi_\mathrm{A}}}
 \newcommand{\meanT}{\meanvar{T}}
+
+\newcommand{\bandit}{\text{Bandit}_b(0, 1)}
 
 \begin{abstract}
 
@@ -88,11 +91,11 @@ of possible behaviors agents could perform to acquire payoffs.
 We show that environmental variability, ambiguous payoffs, 
 larger decision sets, and shorter agent lifespans interact to 
 affect social learning evolution in complex ways that 
-sometimes confuse evolution about which is the optimal strategy, i.e., 
-emergent evolutionary uncertainty. 
+sometimes caused evolution to be highly uncertain about whether social learning was
+the optimal strategy. 
 Our work strengthens social evolution theory that could help 
-guide human, non-human, and artificial life towards optimal responses to existential
-threats and new opportunities.\footnote{This document contains
+guide human, non-human, and artificial intelligence towards optimal responses 
+to existential threats and new opportunities.\footnote{This document contains
 \total{citnum} references.}  
 \end{abstract}
 
@@ -122,10 +125,13 @@ rapidly changing world, both to mitigate existential
 threats~\cite{Moya2020,Jones2021}, and to captialize on new opportunities such as
 transitioning to clean energy use and
 production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
+We will answer this question about how uncertainty drives evolution, including
+identifying regimes where evolution itself is highly uncertain and often 
+leads populations into suboptimal learning strategies~\cite{Rogers1988}.
 
 To gain a more systematic understanding of uncertainty and social learning evoluiton,
-we identified a set of common ecological
-uncertainty classes (``eigenvectors'' of uncertainty) used as factors
+we identified four common classes of ecological
+uncertainty (``principal components'' of uncertainty) used as factors
 in social learning evolution models: (1) environmental variability; (2) payoff
 ambiguity (difference between best behavior choice and others); (3) 
 selection set size (number of ecologically possible behaviors); and 
@@ -134,7 +140,7 @@ study designs across taxa tend use one or more of these uncertainty dimensions.
 Environmental variability is sometimes modeled as catastrophic and 
 happens only once in an individual's lifetime~\cite{Rogers1988}, or may be
 modeled as occurring with a fixed or variable
-probability~\cite{Feldman1996,McElreath2005}---in all these examples environments
+probability~\cite{Feldman1996,McElreath2005}---in these examples environments
 can only be in one of two states. Payoff ambiguity is sometimes in the form
 of differences in expected payoffs arising from different
 behaviors or strategies~\cite{Enquist2007,Rendell2010}
@@ -149,7 +155,7 @@ or three possible behaviors~\cite{McElreath2005,Toyokawa2019}; m
 odeling studies have used either two 
 behaviors~\cite{Feldman1996,Rendell2010} or four behaviors~\cite{Enquist2007} 
 in understanding the role of uncertainty. The age or lifespan of individuals was
-found to have an effect on social learning in both \emph{parus
+found to affect on social learning in both \emph{parus
 major}~\cite{Aplin2017} and \emph{poecilia reticulata} 
 (guppies)~\cite{Leris2016} \mt{Need better connection between lifespan and 
 age, or better references to support use of lifespan}.
@@ -176,6 +182,9 @@ seemingly \emph{ad hoc} ways
   \item
     Review non-human studies~\cite{Leris2016,Aplin2017,Avargues-Weber2018,Baracchi2018}
   \item
+    One sentence on how dual-inheritance theory enables us to gloss over whether
+    social learning is genetically or culturally evolved.
+  \item
     More things from which we selected the operation of our model
 \end{itemize}
 
@@ -184,29 +193,135 @@ We need to support our claim that these four classes of uncertainty really
 count as forms of uncertainty and show how it is consistent across ecology and
 cognitive and social science.
 
+\paragraph{Evolutionary ABMs for theory development} (PAUL, MATT)
+
 \paragraph{Research overview}
 
 \section{Model}
 
-\paragraph{Model overview (introduce uncertainty variables)}
+To answer our research questions
+we developed an agent-based model of social learning evolution in which a society of
+$N$ individuals each must decide which of $B$ behaviors to perform at each time step
+within a generation of $L$ time steps. After each generation agents are selected
+with replacement from the population to reproduce another $N$ agents. Agents who
+inherit the social learning trait then learn about behavioral payoffs from the
+previous generation, while asocial learners begin life with no \emph{a priori}
+knowledge of the world.  Each behavior is a ``bandit'', a common modelling and
+experimental approach for representing behaviors with probabilistic
+payoffs~\cite{SuttonBartoBook,McElreath2005,Rendell2010,Schulz2019}.  Each behavior
+$b$ yields Bernoulli payoffs: payoff of 1 with probability $\pi_b$ and zero payoff
+with probability $1 - \pi_b$; $\pi_b$ is therefore also the expected payoff of
+behavior $b$. One behavior in each generation is optimal and pays off $\pihigh$,
+while the rest pay off $\pilow < \pihigh$.  Model agents must decide which behavior to
+perform at each time step.  To do this, agents use an explore-exploit strategy to
+sometimes try the most profitable behavior they know about, and other times try
+alternatives that may pay off more reliably.  We developed a series of computational
+analyses by systematically varying uncertainty parameters and observing the
+frequency that model populations evolve to be social learners, the average payoffs
+accrued by agents in each setting, and the time it takes for model populations to
+reach fixation (agents all social or all asocial learners).
 
-We developed an agent-based model of a society of $N$ individuals who each must decide
-which of $B$ behaviors to perform at each time step. Each behavior is a ``bandit'',
-a common modelling and experimental approach for representing behaviors with
-probabilistic payoffs~\cite{SuttonBartoBook,McElreath2005,Rendell2010,Schulz2019}. 
-Each behavior $b$ yields Bernoulli payoffs: payoff of 1 with probability $\pi_b$ and 
-zero payoff with probability $1 - \pi_b$; 
-$\pi_b$ is therefore also the expected payoff of behavior $b$. Agents must
-decide which behavior to perform at each time step. To do this, agents 
-use an explore-exploit strategy to sometimes try the most profitable behavior
-they know about, and other times try alternatives that may pay off more reliably. 
+We identified four ``principal components'' of uncertainty that affect the
+ability of agents to find and choose the optimal behavior: 
+\emph{environmental variability}; \emph{payoff ambiguity}; \emph{selection set size}
+(number of behaviors environment affords); and the \emph{effective lifespan}.
+Environmental variability, denoted $u$, is the probability that the behavior
+yielding the optimal payoff, $\pihigh$, changes from one generation to the next.
+We operationalized payoff ambiguity by setting $\pihigh = 0.9$ for all analyses
+and varying $\pilow \in \{0.1, 0.45, 0.8\}$. The selection set size is the
+total number of possible behaviors agents choose from, denoted $B$. The 
+effective life span is the number of time steps agents live for, which is
+also the number of behaviors each agent performs each generation.
 
+To guide behavior selection, agent $i$ counts how many times it
+performed each behavior $b$, denoted $c_{ib}$. Agents use this count to 
+update the mean payoff they have obtained from behavior $b$, denoted $\ledger$.
+$\ledger$ is initialized to 0 for all $b$ at model initialization for
+all agents and after each generation for individual learner agents. Social
+learning agents' $\ledger$ is initialized as that of its teacher selected
+through performance-biased oblique learning. Agent $i$'s accumulated payoffs
+from performing several behaviors over their lifetime of $L$ time steps is
+denoted $\pi_{i}$. If an agent $i$ is a social learner, then we write $s_i = 1$,
+otherwise the agent is an asocial learner and $s_i = 0$.
 
-\paragraph{Agents}
+At the beginning of each simulation model dynamics begin with 
+one of the behaviors selected to 
+yield expected payoff $\pihigh$, with the other $B-1$ behavior yielding
+expected payoffs $\pilow$. At each time step, agents perform behavior $b$ 
+with softmax-weighted probability
+\begin{equation}
+  \Pr(\text{Agent $i$ performs behavior $b$}) = 
+    \frac{e^{\beta \ledger}}{\sum_{b=1}^B e^{\beta \ledger}},
+\end{equation}
+\noindent
+where $\beta$ is a parameter that adjusts how frequently agents perform 
+behaviors with high expected payoffs (larger $\beta$) versus how frequently
+agents explore alternative behaviors (smaller $\beta$). 
+Agents probabilistically recieve a payoff of 0 or 1 depending on whether the
+bandit paid off, equivalent to a draw from a Bernoulli distribution with 
+mean $\pi_b$. For concreteness we denote this probabilistic payoff
+$\bandit$. On performing behavior $b$, agent $i$ updates the
+corresponding behavior count by 1, $c_{ib} \leftarrow c_{ib} + 1$, and then
+the expected payoffs calculated for that behavior are updated with
+exponentially-weighted averaging
+\begin{equation}
+  \ledger \leftarrow \ledger + \frac{\bandit - \ledger}{c_{ib}}.
+\end{equation}
+\noindent
+This procedure continues for $L$ time steps within each generation.
 
-\paragraph{Dynamics: initialization, behaviors and payoffs, evolution}
+In between generations agents first reproduce (asexual haploid reproduction); 
+then new child agents learn from the
+previous generation if they are social learners; and finally all agents from the
+previous generation then die off. $N$ reproducers are selected with replacement, 
+biased by performance:
+\begin{equation}
+  \Pr(\text{Agent $i$ is chosen to reproduce}) = \frac{\pi_i}{\sum_{i=1}^N \pi_i}.
+\end{equation}
+\noindent
+Child agents inherit their parents social learning trait $s_i$ without mutation.
+Child agents with $s_i = 1$ then learn from one teacher from their parent's
+generation, including possibly their parent. Child social learners select
+their teacher first by selecting $N_T$ prospective teachers from the 
+population completely at random, then selecting the one with highest
+net payoffs $\pi_i$ for as their teacher, with ties broken randomly 
+($N_T = 5$ in the main text;
+\mt{Other values will be tested in the supplement}). While it is somewhat
+arbitrary to first subset $N_T$, this is a conservative choice that
+represnts the fact that access to the entire population is not generally
+guaranteed. Social learners adopt their chosen teacher's ledger of 
+expected payoffs $\ledger$, and set
+all $c_{ib} = 1$ so expected payoffs remain within $[0, 1]$. 
+Asocial learners ($s_i = 0$) are initialized with all $c_{ib} = 0$ and
+$\ledger = 0$. The newly initialized population then begins behavior selection
+and payoff accumulation for another $L$ time steps and the evolutionary process
+continues until $\sum_i s_i = 1$ or $\sum_i s_i = 0$ \mt{I believe
+all trials will eventually end like this, so in the next set of model runs I will
+not allow early termination before one of these conditions are met}.
 
-\paragraph{Computational analyses and outcome measures}
+To analyze the effect of the four principal uncertainty factors, we systematically
+varied their values and observed three key outcome variables aggregated across 1000
+trial simulations, and across all agents. Specifically we varied $u \in \{0.0,
+0.1, \ldots, 1.0\}$; $\pilow \in \{0.1, 0.45, 0.8\}$; $B \in \{2, 4, 10\}$; and $L
+\in \{1,2,4,8\}$ for $B=2$ and $L \in \{1,B/2,B,2B\}$ for $B=4,10$.  We observed
+three outcome measures: (1) $\meansl$, the average value of $s_i$ over all agents
+and trials; (2) $\meanpi / L$, the average net payoffs within agent lifetimes over
+trials, normalized by their lifespan; and (3) $\meanT / L$, or the mean number
+of time steps to fixation normalized by lifespan\footnote{Equivalent to the mean
+number of generations to fixation} 
+(fixation means $\sum_i s_i = 0 \text{ or } 1$). \mt{Make sure to qualitatively
+introduce these and their evolutionary importance in the intro.}
+We inspect the outcomes through visualization environmental
+variation is on the x-axis since it is the best understood: we expect that as $u$
+increases, social learning prevalence $\meansl \to 0$. We expected and observed
+that the other three uncertainty factors shift at which $u$ $\meansl$ starts to
+decrease, and how rapidly $\meansl$ decreases as $u$ increases. Note the
+hypothesis-testing concept of significance is meaningless here because we could
+make any small outcome difference significant by running more simulation trials.
+The important outcomes for this study are the patterns of our outcome 
+variables over the systematic variation of the uncertainty factors.
+
+\section{Analysis}
 
 \paragraph{Analysis 1: patterns in social learning evolution over $u$}
 

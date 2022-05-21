@@ -1,96 +1,75 @@
-\begin{figure}
-  \caption{Dependence of average time to convergence normalized by
-    lifespan, $\frac{\meanT}{L}$, on
-  environmental variability $u$ for several values of low payoff $\pilow$, number of
-behaviors $B$, and lifespan $L$. Note the y-axis range varies for each plot 
-to facilitate visualizing the peak in $\langle T \rangle$ and to make differences
-between uncertainty parameter settings more clear. Average over 1000 trials.} 
-  \label{fig:steps}
-  % \vspace{3em}
-  % $\langle s \rangle$ decreases monotonically for $\pisub{low} = 0.1, 0.5$,
-% but noise dominates the results for $\pisub{low}=0.8$. When $\pisub{low} = 0.5$, 
-% the sigmoid is not as sharp as for $\pisub{low}=0.1$, meaning that social learning
-% is reduced for smaller $u$ and increased for larger $u$.}
-  \centering
-  \begin{subfigure}[t]{0.08\textwidth}
-    % \vspace{-2em}
-    % \hspace{-4em}
-    % \centering
-    \begin{tikzpicture}
-      \draw[->,thick] (-.1,0)--(1,0) node[above]
-        {$B$};
-        % {Number of behaviors $B$};
-      \draw[->,thick] (0,.1)--(0,-1) node[below]
-        {$\pilow$};
-        % {Low payoff frequency $\pilow$};
-    \end{tikzpicture}
+\documentclass[varwidth=true,crop=false]{standalone}
+\usepackage[chatter]{rotating}
+\usepackage{amssymb,amsmath}
+\usepackage{pgfplots}
 
-  \end{subfigure}%
-  \begin{subfigure}[t]{0.3\textwidth}
-    \centering
-    {\large $B = 2$} 
+\usepackage{geometry}
+\geometry{
+paperwidth=8in,
+paperheight=6.25in,
+margin=0.25in
+}
+
+\newcommand{\pisub}[1]{\pi_{\mathrm{#1}}}
+\newcommand{\pilow}{\pisub{low}}
+\newcommand{\pihigh}{\pisub{high}}
+\newcommand{\piI}{\langle \pisub{I} \rangle}
+\newcommand{\piS}{\langle \pisub{S} \rangle}
+\newcommand{\ledger}{\bar\pi_{ib}}
+
+\newcommand{\meanvar}[1]{\langle #1 \rangle}
+\newcommand{\meansl}{\meanvar{s}}
+\newcommand{\meanpi}{\meanvar{\pi}}
+\newcommand{\meansoc}{\meanvar{\pi_\mathrm{S}}}
+\newcommand{\meanasoc}{\meanvar{\pi_\mathrm{A}}}
+\newcommand{\meanT}{\meanvar{T}}
+
+\newcommand{\bandit}{\text{Bandit}_b(0, 1)}
+
+\begin{document}
+
+    \begin{minipage}{3.75in}
+      \centering
+      {\hspace{5.25em}\huge $B = 4$}
+    \end{minipage}%
+    \begin{minipage}{3.75in}
+      \centering
+      {\hspace{2.0em}\huge $B = 10$}
+    \end{minipage}~\\
+
+    \begin{minipage}{3.75in}
     \begin{rotate}{90}
-      {\parbox{4cm}{
+      {\parbox{2.5in}{
           \centering
-          \vspace{-3.5em}{\large $ \pilow = 0.1$} \\
-          {\begin{rotate}{-90}{\large $\frac{\meanT}{L}$}\end{rotate}}
+          \vspace{-2.5em} {\huge$ \pilow = 0.1$} \\
+          {\begin{rotate}{-90}{\huge $\frac{\meanT}{L}$}\hspace{3em}\end{rotate}}
       }}
     \end{rotate}%
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.1_nbehaviors=2.pdf}
-    }
-    \centering
+    \hspace{2em}
+      \includegraphics[width=\textwidth]{Figures/step_over_u_lowpayoff=0.1_nbehaviors=4.pdf}
+    \end{minipage}\noindent\begin{minipage}{3.75in}%
+      \includegraphics[width=\textwidth]{Figures/step_over_u_lowpayoff=0.1_nbehaviors=10.pdf}
+    \end{minipage}~\\[0.5em]
+
+    \begin{minipage}{3.75in}
     \begin{rotate}{90}
-      {\parbox{4cm}{
+      {\parbox{2.5in}{
           \centering
-          \vspace{-3.5em} {\large$ \pilow = 0.45$} \\
-          {\begin{rotate}{-90}{\large $\frac{\meanT}{L}$}\hspace{1em}\end{rotate}}
+          \vspace{-2.5em} {\huge$ \pilow = 0.45$} \\
+          {\begin{rotate}{-90}{\huge $\frac{\meanT}{L}$}\hspace{3em}\end{rotate}}
       }}
     \end{rotate}%
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.45_nbehaviors=2.pdf}
-    }
-    \begin{rotate}{90}
-      {\parbox{4cm}{
-          \centering
-          \vspace{-3.5em} {\large $ \pilow = 0.8$} \\
-          {\begin{rotate}{-90}{\large $\frac{\meanT}{L}$}\end{rotate}}
-      }}
-    \end{rotate}%
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.8_nbehaviors=2.pdf}
-    }\\[-.5em]
-    {\large $\quad u$}
-  \end{subfigure}%
-    \begin{subfigure}[t]{0.3\textwidth}
-    {\large $B = 4$}
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.1_nbehaviors=4.pdf}
-    } \\
-    \centering
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.45_nbehaviors=4.pdf}
-    } \\
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.8_nbehaviors=4.pdf}
-    }\\[-.5em]
-    {\large{$\quad u$}}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.3\textwidth}
-    \centering
-    {\large $B = 10$}
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.1_nbehaviors=10.pdf}
-    } \\
-    \centering
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.45_nbehaviors=10.pdf}
-    } \\
-    \includegraphics[width=1.1\textwidth]{
-      {Figures/step_over_u_lowpayoff=0.8_nbehaviors=10.pdf}
-    } \\[-.5em]
-    {\large $\quad u$}
-  \end{subfigure}
-  
-  
-\end{figure}
+    \hspace{2em}
+      \includegraphics[width=\textwidth]{Figures/step_over_u_lowpayoff=0.45_nbehaviors=4.pdf}
+        \\[-2.75em]
+        \begin{center}
+          {\hspace{3.25em} \huge $\quad u$}
+      \end{center}
+        \end{minipage}\noindent\begin{minipage}{3.75in}%
+      \includegraphics[width=\textwidth]{Figures/step_over_u_lowpayoff=0.45_nbehaviors=10.pdf}
+      \\[-2.75em]
+      \begin{center}
+        {\huge $\quad u$}
+      \end{center}
+    \end{minipage}
+\end{document}

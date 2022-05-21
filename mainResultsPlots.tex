@@ -1,37 +1,9 @@
-\documentclass[]{standalone}
-
-\usepackage{color,xcolor}
-\usepackage{tikz}
-\usepackage[chatter]{rotating}
-\usepackage{amssymb,amsmath}
-\usepackage{float}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{pgfplots}
-\usepackage{wrapfig}
-\usepackage{graphicx}
-
-\newcommand{\pisub}[1]{\pi_{\mathrm{#1}}}
-\newcommand{\pilow}{\pisub{low}}
-\newcommand{\pihigh}{\pisub{high}}
-\newcommand{\piI}{\langle \pisub{I} \rangle}
-\newcommand{\piS}{\langle \pisub{S} \rangle}
-
-\newcommand{\meanvar}[1]{\langle #1 \rangle}
-\newcommand{\meansl}{\meanvar{s}}
-\newcommand{\meanpi}{\meanvar{\pi}}
-\newcommand{\meansoc}{\meanvar{\pi_\mathrm{S}}}
-\newcommand{\meanasoc}{\meanvar{\pi_\mathrm{A}}}
-\newcommand{\meanT}{\meanvar{T}}
-
-\begin{document}
-
-\begin{figure}
+\begin{figure}[H]
   % \vspace{3em}
-  % $\langle s \rangle$ decreases monotonically for $\pisub{low} = 0.1, 0.5$,
-% but noise dominates the results for $\pisub{low}=0.8$. When $\pisub{low} = 0.5$, 
-% the sigmoid is not as sharp as for $\pisub{low}=0.1$, meaning that social learning
-% is reduced for smaller $u$ and increased for larger $u$.}
+  \caption{$\langle s \rangle$ decreases monotonically for $\pisub{low} = 0.1, 0.5$,
+but noise dominates the results for $\pisub{low}=0.8$. When $\pisub{low} = 0.5$, 
+the sigmoid is not as sharp as for $\pisub{low}=0.1$, meaning that social learning
+is reduced for smaller $u$ and increased for larger $u$.}
   \centering
   % \addtocounter{figure}{-1}  % Hack to get figure numbering correct with subfigure.
   \begin{subfigure}[t]{0.08\textwidth}
@@ -120,8 +92,5 @@
     } \\[-.5em]
     {\large $\quad u$}
   \end{subfigure}
-  
-  
-\end{figure}
 
-\end{document}
+\end{figure}

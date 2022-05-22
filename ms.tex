@@ -123,7 +123,8 @@ rapidly changing world, both to mitigate existential
 threats~\cite{Moya2020,Jones2021}, and to captialize on new opportunities such as
 transitioning to clean energy use and
 production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
-We will answer this question about how uncertainty drives evolution, including
+We will answer this question about how uncertainty drives social learning 
+evolution, including
 identifying regimes where evolution itself is highly uncertain and often 
 leads populations into suboptimal learning strategies~\cite{Rogers1988}.
 
@@ -201,27 +202,42 @@ cognitive and social science.
 
 \section{Model}
 
-To answer our research questions
-we developed an agent-based model of social learning evolution in which a society of
-$N$ individuals each must decide which of $B$ behaviors to perform at each time step
-within a generation of $L$ time steps. At the end of each generation, agents are selected
-with replacement from the population to reproduce another $N$ agents. Agents who
-inherit the social learning trait then learn about behavioral payoffs from the
-previous generation, while asocial learners begin life with no \emph{a priori}
-knowledge of the world.  Each behavior is a ``bandit'', a common modeling and
-experimental approach for representing behaviors with probabilistic
+To answer our research questions we developed an agent-based model of social
+learning evolution in which a society of $N$ individuals each must decide which of
+$B$ behaviors to perform at each time step within a generation of $L$ time steps. At
+the end of each generation, agents are selected with replacement from the population
+to reproduce another $N$ agents. Agents who inherit the social learning trait then
+learn about behavioral payoffs from the previous generation, while asocial learners
+begin life with no \emph{a priori} knowledge of the world.  Each behavior is a
+``bandit'', a common modeling and experimental approach for representing behaviors
+with probabilistic
 payoffs~\cite{SuttonBartoBook,McElreath2005,Rendell2010,Schulz2019}.  Each behavior
 $b$ yields Bernoulli payoffs: payoff of 1 with probability $\pi_b$ and zero payoff
 with probability $1 - \pi_b$; $\pi_b$ is therefore also the expected payoff of
 behavior $b$. One behavior in each generation is optimal and pays off $\pihigh$,
-while the rest pay off $\pilow < \pihigh$.  Model agents must decide which behavior to
-perform at each time step.  To do this, agents use an explore-exploit strategy to
+while the rest pay off $\pilow < \pihigh$.  Model agents must decide which behavior
+to perform at each time step.  To do this, agents use an explore-exploit strategy to
 sometimes try the most profitable behavior they know about, and other times try
 alternatives that may pay off more reliably.  We developed a series of computational
 analyses by systematically varying uncertainty parameters and observing the
 frequency that model populations evolve to be social learners, the average payoffs
 accrued by agents in each setting, and the time it takes for model populations to
-reach fixation (agents all social or all asocial learners).
+reach fixation (agents all social or all asocial learners). Model dynamics are
+illustrated in Figure~\ref{fig:schematic}.
+
+\begin{figure}
+  \caption{Agents are initialized as randomly social learners or not, with their
+  payoff observations all initialized to zero (A). Then agents begin selecting
+and performing behaviors and accumulating payoffs (1), which goes on for $L$
+timesteps (B). After $L$ time steps (2), agents are selected to reproduce,
+social learner children learn from a member of their parent's generation, and
+the previous generation dies off (C). Stop the simulation if children are all
+social or asocial learners, otherwise repeat another generation and evolution (3).}
+  \label{fig:schematic}
+  \centering
+    \includegraphics[width=\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
+\end{figure}
+
 
 We identified four ``principal components'' of uncertainty that affect the
 ability of agents to find and choose the optimal behavior: 
@@ -313,19 +329,46 @@ of time steps to fixation normalized by lifespan\footnote{Equivalent to the mean
 number of generations to fixation} 
 (fixation means $\sum_i s_i = 0 \text{ or } 1$). \mt{Make sure to qualitatively
 introduce these and their evolutionary importance in the intro.}
-We inspect the outcomes through visualization environmental
-variation is on the x-axis since it is the best understood: we expect that as $u$
-increases, social learning prevalence $\meansl \to 0$. We expected and observed
+We inspect the outcomes through by plotting $\meansl$ on the y-axis and environmental
+variation is on x-axis, since it is the best understood: we expect that as $u$
+increases, $\meansl$ starts at 1 and goes to 0. We expected and observed
 that the other three uncertainty factors shift at which $u$ $\meansl$ starts to
-decrease, and how rapidly $\meansl$ decreases as $u$ increases. Note the
+decrease, and how rapidly $\meansl$ decreases as $u$ increases. Note that the
 hypothesis-testing concept of significance is meaningless here because we could
 make any small outcome difference significant by running more simulation trials.
 The important outcomes for this study are the patterns of our outcome 
-variables over the systematic variation of the uncertainty factors.
+variables over the systematic variation of the uncertainty factors. 
+Our model was implemented in the Julia programming language~\cite{Bezanson2017} 
+using the Agents.jl agent-based modeling library~\cite{Datseris2022} and run
+on the Sherlock supercomputing cluster at Stanford University. Model code and
+data are publicly available on GitHub\footnote{\url{https://github.com/mt-digital/UncMod}} 
+and OSF.io\footnote{\mt{TODO}}.
 
 
 \section{Analysis}
 
+We observed several patterns in the suppression of social learning as environmental
+variability, $u$, increased across different uncertainty contexts defined by the
+payoff ambiguity, selection set size, and effective lifespan
+(Figure~\ref{fig:mainResults}). When payoff ambiguity and selection set size
+were both small ($\pilow = 0.1$ and $B=2$) social learning only evolved when
+$u$ is small since individual learning is relatively efficient in this case
+(Figure~\ref{fig:mainResults} upper left). As $\pilow$ increased the suppression of
+$\meansl$ flattened over $u$, which was more pronounced for smaller $L$ (rows of
+Figure~\ref{fig:mainResults}). 
+When $L$ is smaller, agents have fewer opportunities to learn through trial and
+error, and so it is more difficult for them to discern which strategy, social
+or asocial, is optimal. Increased selection set size led to both a shift in 
+the critical value of $u$ when $\meansl$ begins to decrease, and flattening of
+this social learning suppression. The start of $\meansl$ suppression shifts
+to higher $u$ since misleading social information is less consequential due to
+(1) larger $B$ being a more difficult problem for trial-and-error learning and
+(2) less probability mass of a misidentified optimal behavior relative to
+smaller $B$, meaning agents are more likely to explore behaviors identified
+as non-optimal (columns of Figure~\ref{fig:mainResults}). 
+Increased $B$ led to more pronounced flattening of social learning
+suppression when $L$ was small, apparently again because of the limited data
+available to evolution and more difficult problem caused more drift.
 
 \begin{figure}
   \caption{Social learning prevalence (y-axes) monotonically decreases as 
@@ -338,11 +381,11 @@ variables over the systematic variation of the uncertainty factors.
     \includegraphics[width=\textwidth]{Figures/mainResultsPlots.pdf}
 \end{figure}
 
-
-\paragraph{Analysis 2: evolutionary uncertainty when $\meansoc \approx \meanasoc$}
+\paragraph{Analysis 2: how payoffs and generations to convergence support our
+explanations}
 
 \begin{figure}
-  \caption{Mean payoff normalized for lifespan (y-axes, solid line with circles)
+  \caption{Mean payoff normalized for lifespan (y-axes, solid lines with circles)
     generally track either expected all-social-learners payoff ($\meansoc$, dash-dot
     line with diamonds) or expected all-asocial payoff ($\meanasoc$, long dash
     horizontal lines) as $u$ increases (x-axes). When $\meansl$ goes from 1 to

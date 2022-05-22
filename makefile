@@ -1,5 +1,5 @@
 
-bibtex: ms.tex ~/workspace/Writing/library.bib
+bibms: ms ms.tex ~/workspace/Writing/library.bib
 	bibtex ms && bibexport -o this.bib ms && rm this.bib-save-*
 
 figures: mainResultsPlots.tex meanNetPayoffs.tex stepResultsPlots.tex 
@@ -7,8 +7,11 @@ figures: mainResultsPlots.tex meanNetPayoffs.tex stepResultsPlots.tex
 	pdflatex -output-directory=Figures meanNetPayoffs.tex && \
 	pdflatex -output-directory=Figures stepResultsPlots.tex
 
-ms: bibtex figures
+ms: bibms figures
 	pdflatex ms.tex
 
-oms: ms
+oms: bibms
 	open ms.pdf
+
+clean: 
+	rm ms.{aux,log,out,bbl,blg}

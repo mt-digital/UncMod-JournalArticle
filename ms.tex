@@ -204,11 +204,11 @@ cognitive and social science.
 To answer our research questions
 we developed an agent-based model of social learning evolution in which a society of
 $N$ individuals each must decide which of $B$ behaviors to perform at each time step
-within a generation of $L$ time steps. After each generation agents are selected
+within a generation of $L$ time steps. At the end of each generation, agents are selected
 with replacement from the population to reproduce another $N$ agents. Agents who
 inherit the social learning trait then learn about behavioral payoffs from the
 previous generation, while asocial learners begin life with no \emph{a priori}
-knowledge of the world.  Each behavior is a ``bandit'', a common modelling and
+knowledge of the world.  Each behavior is a ``bandit'', a common modeling and
 experimental approach for representing behaviors with probabilistic
 payoffs~\cite{SuttonBartoBook,McElreath2005,Rendell2010,Schulz2019}.  Each behavior
 $b$ yields Bernoulli payoffs: payoff of 1 with probability $\pi_b$ and zero payoff
@@ -323,11 +323,48 @@ make any small outcome difference significant by running more simulation trials.
 The important outcomes for this study are the patterns of our outcome 
 variables over the systematic variation of the uncertainty factors.
 
+
 \section{Analysis}
 
-\paragraph{Analysis 1: patterns in social learning evolution over $u$}
+
+\begin{figure}
+  \caption{Social learning prevalence (y-axes) monotonically decreases as 
+  environmental variabilty, $u$, increases (x-axes) in most uncertainty contexts. 
+  Other uncertainty values $\pilow$ (rows), $B$ (columns), and $L$ (keys)
+  shift and flatten the decrease from all-social-learner populations to all-asocial 
+  populations.}
+  \label{fig:mainResults}
+  \centering
+    \includegraphics[width=\textwidth]{Figures/mainResultsPlots.pdf}
+\end{figure}
+
 
 \paragraph{Analysis 2: evolutionary uncertainty when $\meansoc \approx \meanasoc$}
+
+\begin{figure}
+  \caption{Mean payoff normalized for lifespan (y-axes, solid line with circles)
+    generally track either expected all-social-learners payoff ($\meansoc$, dash-dot
+    line with diamonds) or expected all-asocial payoff ($\meanasoc$, long dash
+    horizontal lines) as $u$ increases (x-axes). When $\meansl$ goes from 1 to
+  0 is when social learning payoffs approach individual learning payoffs due to
+increased environmental variability.} 
+  \label{fig:netPayoffs}
+\centering
+    \includegraphics[width=0.75\textwidth]{Figures/meanNetPayoffs.pdf}
+\end{figure}
+
+
+\begin{figure}
+  \caption{Average number of generations ($\meanT/L$, y-axes) for populations to fixate
+  where agents either all become social or all become asocial learners. As
+  $u$ increases (x-axes) models take longer to fixate due to drift, up to a point,
+but then fixation accelerates as individual learning becomes more obviously 
+superior. Increased $\pilow$ increases time to fixate; both $\pilow$ and $B$
+shift peak time to fixation over $u$.} 
+  \label{fig:steps}
+\centering
+    \includegraphics[width=0.75\textwidth]{Figures/stepResultsPlots.pdf}
+\end{figure}
 
 \section{Discussion}
 

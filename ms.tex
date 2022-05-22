@@ -228,11 +228,12 @@ illustrated in Figure~\ref{fig:schematic}.
 \begin{figure}
   \caption{Agents are initialized as randomly social learners or not, with their
   payoff observations all initialized to zero (A). Then agents begin selecting
-and performing behaviors and accumulating payoffs (1), which goes on for $L$
-timesteps (B). After $L$ time steps (2), agents are selected to reproduce,
+and performing behaviors and accumulating payoffs, which goes on for $L$
+timesteps (B). After $L$ time steps, agents are selected to reproduce,
 social learner children learn from a member of their parent's generation, and
-the previous generation dies off (C). Stop the simulation if children are all
-social or asocial learners, otherwise repeat another generation and evolution (3).}
+the previous generation dies off (C). The simulation stops if children are all
+social or asocial learners (i.e.\ the system reaches fixation), 
+otherwise repeat another generation and evolution (3).}
   \label{fig:schematic}
   \centering
     \includegraphics[width=\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
@@ -297,7 +298,7 @@ biased by performance:
   \Pr(\text{Agent $i$ is chosen to reproduce}) = \frac{\pi_i}{\sum_{i=1}^N \pi_i}.
 \end{equation}
 \noindent
-Child agents inherit their parents social learning trait $s_i$ without mutation.
+Child agents inherit their parent's social learning trait $s_i$ without mutation.
 Child agents with $s_i = 1$ then learn from one teacher from their parent's
 generation, including possibly their parent. Child social learners select
 their teacher first by selecting $N_T$ prospective teachers from the 
@@ -368,7 +369,8 @@ smaller $B$, meaning agents are more likely to explore behaviors identified
 as non-optimal (columns of Figure~\ref{fig:mainResults}). 
 Increased $B$ led to more pronounced flattening of social learning
 suppression when $L$ was small, apparently again because of the limited data
-available to evolution and more difficult problem caused more drift.
+available to evolution and more difficult problem caused more drift and individual
+outcomes were more path dependent.
 
 \begin{figure}
   \caption{Social learning prevalence (y-axes) monotonically decreases as 
@@ -381,8 +383,29 @@ available to evolution and more difficult problem caused more drift.
     \includegraphics[width=\textwidth]{Figures/mainResultsPlots.pdf}
 \end{figure}
 
-\paragraph{Analysis 2: how payoffs and generations to convergence support our
-explanations}
+We observed that the evolution of social learning was correlated with
+population-level payoffs for social versus asocial learning. Furthermore, we
+found that mean payoffs realized by our simulated agents track either the
+expected social learning payoffs, $\meansoc$, or the expected asocial learning
+payoffs, $\meanasoc$. $\meanasoc$ and $\meansoc$ were calculated
+across uncertainty contexts by initializing the model to be all social or all
+individual learners then running the model for 100 generations for social learning
+and across 1000 one-generation trials for individual learning. 
+Observed mean payoffs across agents and trials, $\meanpi$, are initially higher than
+expected asocial learning, $\meanasoc$, and comparable to expected social learning,
+$\meansoc$ (Figure~\ref{fig:payoffs}). But as social learning becomes less
+beneficial due to increased environmental variability, $\meansoc$ and $\meanpi$
+approach $\meanasoc$. It appears agents tend to be conservative as expected
+social and asocial learning payoffs approach each other---the transition to 
+$\meansl = 0$ often completes in cases where social learning is theoretically
+better. When $L=1$, $\meanpi$ can be greater than $\meansoc$
+because asocial learners at the beginning of the simulation help to not pass
+on misleading information, so that the cultural information passed on by 
+eventual all-social learner populations have more noise that will further reduce the
+weighting of the previous generation's observed optimal payoff if it changes
+between generations enabling agents to more efficiently explore alternatives
+before focusing on a misidentified optimal behavior \mt{I think we can do a
+real calculation of this if it would be valuable}. 
 
 \begin{figure}
   \caption{Mean payoff normalized for lifespan (y-axes, solid lines with circles)
@@ -391,10 +414,30 @@ explanations}
     horizontal lines) as $u$ increases (x-axes). When $\meansl$ goes from 1 to
   0 is when social learning payoffs approach individual learning payoffs due to
 increased environmental variability.} 
-  \label{fig:netPayoffs}
+  \label{fig:payoffs}
 \centering
     \includegraphics[width=0.75\textwidth]{Figures/meanNetPayoffs.pdf}
 \end{figure}
+
+We also observed that the number of generations it took to reach fixation increased
+when expected social learning payoffs approached expected asocial payoff, which is also
+when $\meansl$ decreased from 1 to 0 (Figure~\ref{fig:steps}). Recall a fixated
+state is when $\sum_i s_i = 0 \text{ or } 0$.  This supports our explanation that
+the supression of social learning begins when individual simulation outcomes are
+more path dependent and susceptible to end in a non-optimal state since simulations
+in these conditions also take longer to reach fixation.  For example, when
+$\pilow=0.1$ and $B=4$, we see a sharp increase in $\meanT$ when social learning
+suppression begins and $L=8$; when $L=1$, social learning suppression is flatter
+than for $L=8$, and  correspondingly its $\meanT$ is not as strongly peaked, but is
+elevated across the $u$ (Figure~\ref{fig:steps} upper left).  In some cases $L=1$
+reaches fixation faster than $L=8$ or $L=20$; larger $L$ had larger peak $\meanT/L$
+than smaller $L$, for example, both for the cases shown in Figure~\ref{fig:steps}
+and across all settings tested but not shown. However, we also see situations where
+$L=1$ and fixation takes longer than $L=8$.  This is especially pronounced for
+$\pilow = 0.45$ where social learning suppression is much flatter for $L=1$
+(Figure~\ref{fig:steps}, bottom row). In general, then, a sharper peak in $\meanT$
+indicates a sharper suppression of social learning over $u$ and a flatter peak
+elevated over more values of $u$ indicates greater path dependence and drift.
 
 
 \begin{figure}

@@ -48,7 +48,8 @@
 
 \usepackage{graphicx}
 
-\title{Uncertainty in social learning evolution}
+
+\title{The form of uncertainty affects selection for social learning}
 
 \author{{}}
 
@@ -98,47 +99,44 @@ to existential threats and new opportunities.\footnote{This document contains
 
 \section{Introduction}
 
-Social learning is essential to human and other species' everyday life and survival.
-Social learning enhances problem solving when acquiring information from others is
-more efficient than learning on one's own~\cite{Laland2004}. Theory predicts that
-social learning should be favored in uncertain
-environments~\cite{BoydRicherson1985,Henrich1998}, up to a
-point~\cite{Rogers1988,Feldman1996}; this prediction has received some empirical
-support across species~\cite{McElreath2005,Kendal2018,Allen2019}.  However, the
-meaning of the term \emph{uncertainty} often conflates environmental variability,
-spatial heterogeneity, ambiguity in behavioral payoff structure, and other
-variability that could plausibly be interpreted as \emph{uncertainty}.  Furthermore,
-many models of social learning evolution do not account for individual-level
+\cm{Uncertainty -> social learning widespread belief. But variously operationalized or not real uncertainty. Selling points of this paper 1) real uncertainty, 2) 4 kinds uncertainty, 3) cognition (soft-max temperature varies how much explores).}
+
+Social learning enhances problem solving when acquiring information from others is more efficient than learning on one's own~\cite{Laland2004}. However, social learning can also lead individuals astray if, for example, they are copying outdated information. Theoretical models have helped clarify the circumstances under which social learning should be evolutionarily favored. For example, environments that change across time favor learning from others (as opposed to having a genetically fixed behavior) ~\cite{BoydRicherson1985,Henrich1998}, so long as they are not so variable that the social information reflects outdated and maladaptive behavior
+
+point~\cite{Rogers1988,Feldman1996}. \cm{check that the citations still accurate}. This theoretical work has motivated much empirical research and helped predict behavior in several species ~\cite{McElreath2005,Kendal2018,Allen2019}. 
+
+From this literature, the idea that \emph{uncertainty} supports social learning has proliferated, but the term often conflates several features of the environment, including temporal variability,
+spatial heterogeneity, ambiguity in behavioral payoff structure, and difficulty of the task.  In translating mathematical models to verbal predictions, the formal meaning of terms like \emph{uncertainty} is often lost, facilitating such conflation. Furthermore, as the number of formal models of social learning have expanded, an ever increasing number
+of modeling choices ~\cite[Figure 1]{Kendal2018} and formalizations of \emph{uncertainty} has made it difficult to compare across models and consolidate our understanding of the contexts in which why social learning is adaptive.  
+
+To address these concerns we developed an empirically-motivated, evolutionary agent-based model that operationalizes four principal components of uncertainty. We use this integrated model to generate predictions about the kinds of uncertainty that favor social learning and to clarify the logic of why this would be the case. Answering this question is critical for understanding human behavior adapting to a rapidly changing world, both to mitigate existential threats~\cite{Moya2020,Jones2021}, and to capitalize on new opportunities such as transitioning to clean energy use and production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
+
+ \cm{I moved this for now: \emph{"Furthermore, many models of social learning evolution do not account for individual-level
 cognition~\cite{Heyes2016}, though humans clearly have evolved cognitive mechanisms
-for dealing with uncertainty generally~\cite{Vul2014,Gershman2019,Schulz2019}.
-Social learning evolution theory tends to be organized around an increasing number
-of modeling choices~\cite[Figure 1]{Kendal2018} instead of around questions of when
-and why social learning is adaptive, in which contexts.  Therefore, we developed
-an evolutionary, empirically-motivated, agent-based model that operationalized
-four principal uncertainty components to generate predictions of when 
-social learning would evolve in which circumstances, and why. Answering this
-question is critical for understanding human behavior adapting to a rapidly changing
-world, both to mitigate existential threats~\cite{Moya2020,Jones2021}, and to
-captialize on new opportunities such as transitioning to clean energy use and
-production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
+for dealing with uncertainty generally~\cite{Gershman2019,Schulz2019}."} because I think it interrupted the flow and didn't seem directly linked to the goal of understanding aspects of uncertainty. However, if this is one of the main features of the model that we want to highlight as an improvement over previous work, then we probably have to say something more about it. Perhaps I just wasn't seeing the connection though, and the more accurate cognitive model DOES add to our ability to study the consequences of uncertainty. If that's the case, the argument should be sharpened. If not, maybe we put this info when the cognitive model is introduced.}\mt{Agreed. I put a first draft of a better version of this paragraph closer to/at the end of the Intro.}
+
 
 \mt{This paragraph is a first try to introduce the four uncertainty dimensions
 with examples to illustrate the problem we are answering.
 I outlined the next paragraph to get into more details of social learning:
 how cultural evolution works; conformity, success-biased, etc. Cristina, please
 edit this.} 
-To gain a more systematic understanding of uncertainty and social learning
-evoluiton, we identified four common classes of ecological
-uncertainty (``principal components'' of uncertainty) used as factors
-in social learning evolution models: (1) environmental variability; (2) payoff
+To systematically study features of uncertainty and its consequences for social learning, we identified four common classes of ecological uncertainty (``principal components'' of uncertainty) used in evolutionary models: (1) temporal environmental variability; (2) payoff
 ambiguity (difference between best behavior choice and others); (3) 
 selection set size (number of ecologically possible behaviors); and 
-(4) the lifespan of agents. These were chosen because modeling and empirical 
-study designs across taxa tend use one or more of these uncertainty dimensions.
-Environmental variability is sometimes modeled as catastrophic and 
-happens only once in an individual's lifetime~\cite{Rogers1988}, or may be
+(4) the lifespan of agents (number of individual learning opportunities).
+These were chosen because modeling and empirical 
+studies across taxa tend use one or more of these uncertainty dimensions [Figure 1].
+
+\cm{Other choices: softmax: existing models underestimate the power of learning from experience can improve both individual and helps social learners recover from outdated / misleading social info , no conformism: but that's ok because we're giving social learning the best chance of success 
+no horizontal transmission, no spatial variation}
+
+
+Temporal environmental variability is usually modeled as an independent probability of the environment changing its state each generation ~\cite{Feldman1996,McElreath2005}. The probabilities of environmental change are usually fixed ~\cite{BoydRicherson1985, Kendal2009}, but they have also been modeled as deterministic cycles ~\cite{Feldman1996} or as variable rates \cm{who does this?}. Furthermore, the consequences of environmental change can range from mild to  catastrophic. In the latter case a change of environment corresponds to no one having the adaptive behavior for the environment ~\cite{Rogers1988}. 
+
+or may be
 modeled as occurring with a fixed or variable
-probability~\cite{Feldman1996,McElreath2005}---in these examples environments
+probability---in these examples environments
 can only be in one of two states. Payoff ambiguity sometimes takes the form
 of differences in expected payoffs arising from different
 behaviors or strategies~\cite{Enquist2007,Rendell2010}
@@ -186,7 +184,9 @@ seemingly \emph{ad hoc} ways
     More things from which we selected the operation of our model
 \end{itemize}
 
-\paragraph{Meaning of uncertainty in ecology and cognitive and social sciences } (JAMIE)
+Social learning is the adaptive icing on the cake of intelligent adaptations to ecological uncertainty. To deal with uncertainty as individuals, human experiment participants have been observed to update their tendency for exploring alternative behaviors based on how much uncertainty there is globally. Furthermore, correlations in uncertainty between potential behaviors, humans tend to adopt directed exploration strategies that favor testing behaviors with greater observed payoff variance \cite{Wilson2014,Gershman2019}. Many models of social learning assume little to nothing about the cognitive capabilities of their agents (Cristina unpack this in another paragraph, using the uncertainty studies spreadsheet?). We do not do this because \emph{blackboxing}, or ignoring, cognitive mechanisms is “bad” \cite[p. 658]{Heyes2016, Kendal2018}, but because it is theoretically meaningful. In order to understand how social learning evolves as an adaptation to uncertainty, the model is strengthened by assuming a more biologically plausible, and evolutionarily accurate, model of cognition capable of maximizing payoffs under uncertainty for an individual. In our model we do not impose any structure in randomness between behaviors, so our cognitive model is only sensitive to total randomness. Specifically, we will adopt the softmax distribution for function for selecting a behavior based on its observed payoffs–greater payoff variance means any one behavior is more likely to be selected.
+
+\paragraph{Meaning of uncertainty in ecology (and cognitive and social sciences?) } (JAMIE, PAUL?)
 We need to support our claim that these four classes of uncertainty really 
 count as forms of uncertainty and show how it is consistent across ecology,
 and maybe connect to uncertainty in cognitive and social sciences more broadly.
@@ -445,10 +445,10 @@ which strategy, social or asocial, is optimal. Increased selection set size led 
 both a shift in the critical value of $u$ when $\meansl$ begins to decrease, and
 flattened social learning suppression. This is because possibly misleading 
 social information is less consequential due
-to (1) larger $B$ is a more difficult problem for trial-and-error learning and
+to (1) larger $B$ is a more difficult problem for trial-and-error learning, and
 (2) a misidentified optimal behavior is weighted less relative to smaller
 $B$, meaning agents are more likely to explore behaviors identified as non-optimal
-when $B$ is larger (columns of Figure~\ref{fig:mainResults}).  
+when $B$ is larger (columns of Figure~\ref{fig:mainResults}).  \mt{Support this by calculating the difference between weights when B=2 and B=10 and a social learner learns outdated information}
 Increased $B$ led to more pronounced flattening of social learning suppression when
 $L$ was small, apparently again because of the limited data available to evolution,
 making individual outcomes more path dependent.

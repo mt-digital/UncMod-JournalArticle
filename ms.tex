@@ -74,7 +74,7 @@
 
 \begin{abstract}
 
-Social learning is essential to survival. It is likely to evolve when it is more
+Social learning is essential to human survival. It is likely to evolve when it is more
 efficient than asocial, trial-and-error learning. Theoretically, social learning
 is adaptive for some uncertainty, but too much uncertainty makes
 social information unreliable. This fact is empirically
@@ -99,15 +99,13 @@ to existential threats and new opportunities.\footnote{This document contains
 
 \section{Introduction}
 
-\cm{Uncertainty -> social learning widespread belief. But variously operationalized or not real uncertainty. Selling points of this paper 1) real uncertainty, 2) 4 kinds uncertainty, 3) cognition (soft-max temperature varies how much explores).}
+\cm{Notes on our June 2 discussion (USPs): "Uncertainty favors social learning" is a widespread belief. But it is operationalized in different ways, and oftentimes it does not reflect REAL uncertainty. Selling points of this paper 1) real uncertainty, 2) 4 kinds uncertainty, 3) cognition (soft-max temperature varies how much explores).}
 
-Social learning enhances problem solving when acquiring information from others is more efficient than learning on one's own~\cite{Laland2004}. However, social learning can also lead individuals astray if, for example, they are copying outdated information. Theoretical models have helped clarify the circumstances under which social learning should be evolutionarily favored. For example, environments that change across time favor learning from others (as opposed to having a genetically fixed behavior) ~\cite{BoydRicherson1985,Henrich1998}, so long as they are not so variable that the social information reflects outdated and maladaptive behavior
-
-point~\cite{Rogers1988,Feldman1996}. \cm{check that the citations still accurate}. This theoretical work has motivated much empirical research and helped predict behavior in several species ~\cite{McElreath2005,Kendal2018,Allen2019}. 
+Social learning enhances problem solving when acquiring information from others is more efficient than learning on one's own~\cite{Laland2004}. However, social learning can also lead individuals astray if, for example, they are copying outdated information. Theoretical models have helped clarify the circumstances under which social learning should be evolutionarily favored. For example, environments that change across time favor learning from others (as opposed to having a genetically fixed behavior) ~\cite{BoydRicherson1985,Henrich1998}, so long as they are not so variable that the social information reflects outdated and maladaptive behavior point~\cite{Rogers1988,Feldman1996}. \cm{check that the citations still accurate}. This theoretical work has motivated much empirical research and helped predict behavior in several species ~\cite{McElreath2005,Kendal2018,Allen2019}. 
 
 From this literature, the idea that \emph{uncertainty} supports social learning has proliferated, but the term often conflates several features of the environment, including temporal variability,
-spatial heterogeneity, ambiguity in behavioral payoff structure, and difficulty of the task.  In translating mathematical models to verbal predictions, the formal meaning of terms like \emph{uncertainty} is often lost, facilitating such conflation. Furthermore, as the number of formal models of social learning have expanded, an ever increasing number
-of modeling choices ~\cite[Figure 1]{Kendal2018} and formalizations of \emph{uncertainty} has made it difficult to compare across models and consolidate our understanding of the contexts in which why social learning is adaptive.  
+spatial heterogeneity, ambiguity in behavioral payoff structure, and difficulty of learning the task.  In translating mathematical models to verbal predictions, the formal meaning of terms like \emph{uncertainty} is often lost, facilitating such conflation. Furthermore, as the number of formal models of social learning have expanded, an ever increasing number
+of modeling choices ~\cite[Figure 1]{Kendal2018} and formalizations of \emph{uncertainty} has made it difficult to compare across models and consolidate our understanding of the contexts in which social learning is adaptive.  
 
 To address these concerns we developed an empirically-motivated, evolutionary agent-based model that operationalizes four principal components of uncertainty. We use this integrated model to generate predictions about the kinds of uncertainty that favor social learning and to clarify the logic of why this would be the case. Answering this question is critical for understanding human behavior adapting to a rapidly changing world, both to mitigate existential threats~\cite{Moya2020,Jones2021}, and to capitalize on new opportunities such as transitioning to clean energy use and production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
 
@@ -121,26 +119,14 @@ with examples to illustrate the problem we are answering.
 I outlined the next paragraph to get into more details of social learning:
 how cultural evolution works; conformity, success-biased, etc. Cristina, please
 edit this.} 
-To systematically study features of uncertainty and its consequences for social learning, we identified four common classes of ecological uncertainty (``principal components'' of uncertainty) used in evolutionary models: (1) temporal environmental variability; (2) payoff
-ambiguity (difference between best behavior choice and others); (3) 
-selection set size (number of ecologically possible behaviors); and 
-(4) the lifespan of agents (number of individual learning opportunities).
+To systematically study features of uncertainty and its consequences for social learning, we identified four common classes of ecological uncertainty used in evolutionary models: (1) temporal environmental variability; (2) selection set size (number of possible behaviors); (3) payoff
+ambiguity (difference in the reward between adopting the best behavior and alternatives); and (4) the lifespan of agents (number of individual learning opportunities).
 These were chosen because modeling and empirical 
-studies across taxa tend use one or more of these uncertainty dimensions [Figure 1].
-
-\cm{Other choices: softmax: existing models underestimate the power of learning from experience can improve both individual and helps social learners recover from outdated / misleading social info , no conformism: but that's ok because we're giving social learning the best chance of success 
-no horizontal transmission, no spatial variation}
+studies across taxa tend use one or more of these uncertainty dimensions (Figure \ref{fig:schematic}).
 
 
-Temporal environmental variability is usually modeled as an independent probability of the environment changing its state each generation ~\cite{Feldman1996,McElreath2005}. The probabilities of environmental change are usually fixed ~\cite{BoydRicherson1985, Kendal2009}, but they have also been modeled as deterministic cycles ~\cite{Feldman1996} or as variable rates \cm{who does this?}. Furthermore, the consequences of environmental change can range from mild to  catastrophic. In the latter case a change of environment corresponds to no one having the adaptive behavior for the environment ~\cite{Rogers1988}. 
+Temporal environmental variability is fundamental to most models of social learning, yet even this is implemented in several ways. This is usually modeled as an independent probability of the environment changing its state each generation ~\cite{Feldman1996,McElreath2005}. The probabilities of environmental change are usually fixed ~\cite{BoydRicherson1985, Kendal2009}, but they have also been modeled as deterministic cycles ~\cite{Feldman1996} or as variable rates \cm{who does this?}. Furthermore, the consequences of environmental change can range from mild to  catastrophic. In the latter case a change of environment results in no one having the adaptive behavior for the environment ~\cite{Rogers1988}. Such catastrophic environmental changes present a large adaptive challenge as individuals cannot bank on accumulated information from previous generations. Other models of environmental change introduce less uncertainty as they fluctuate between two environmental states with corresponding adaptive behaviors. This means that all individuals with previously maladaptive behaviors then have adaptive behaviors upon the environment changing ~\cite{Perreault2012}.
 
-or may be
-modeled as occurring with a fixed or variable
-probability---in these examples environments
-can only be in one of two states. Payoff ambiguity sometimes takes the form
-of differences in expected payoffs arising from different
-behaviors or strategies~\cite{Enquist2007,Rendell2010}
-or by varying the standard deviation of payoffs~\cite{McElreath2005}. 
 Selection set size often takes only one value: 
 for example, in empirical studies of \emph{bombus terresteris} (bumble
 bee)~\cite{Baracchi2018} and \emph{parus major} (great tit)~\cite{Aplin2017},
@@ -150,6 +136,12 @@ payoffs depending on experimental treatment. Human studies have used two
 or three possible behaviors~\cite{McElreath2005,Toyokawa2019}.
 Modeling studies have used two 
 behaviors~\cite{Feldman1996,Rendell2010} and four behaviors~\cite{Enquist2007}. 
+
+Payoff ambiguity differs from selection set size in that it not only affects uncertainty, it also directly influences the strength of selection. This parameter sometimes takes the form
+of differences in expected payoffs arising from different
+behaviors or strategies~\cite{Enquist2007,Rendell2010}
+or by varying the standard deviation of payoffs~\cite{McElreath2005}. 
+
 The age or lifespan of individuals was
 found to affect on social learning in both \emph{parus
 major}~\cite{Aplin2017} and \emph{poecilia reticulata} 
@@ -163,7 +155,8 @@ agent-based model that incorporates all four of
 these uncertainty variables. We systematically vary these parameters
 to understand and predict their effects on social learning evolution.
 
-\paragraph{Social learning evolution} (CRISTINA)
+\paragraph{Social learning evolution} (CRISTINA) 
+\cm{I think a lot of this may be too much detail. I'm still editing and focusing the above on the main forms of uncertainty we are modeling and reviewing the relevant literature as we go. Yes we've made choices about things like horizontal vs vertical, but i think we can just justify that when we introduce the model }
 To add to confusion about how to integrate diverse models of social learning
 evolution, different models select different social learning components in
 seemingly \emph{ad hoc} ways 
@@ -196,6 +189,8 @@ and maybe connect to uncertainty in cognitive and social sciences more broadly.
 
 \section{Model}
 
+\cm{Other choices we made that might need to be justified: 1) softmax: existing models underestimate the power of learning from experience by not having a rich cognition. This rich cognition can improve both individual learning and help social learners recover from outdated / misleading social info. 2) no conformism: but that's ok because we're giving social learning the best chance of success. 3) no horizontal transmission, no spatial variation}
+
 \begin{table}[h]
     \caption{Dynamic agent-level variables. Each has an implicit time dependence.}
     \label{tab:modelParameters}
@@ -222,7 +217,7 @@ and maybe connect to uncertainty in cognitive and social sciences more broadly.
 \end{table}
 
 To answer our research questions we developed an agent-based model of social
-learning evolution in which a society of $N$ individuals each must decide which of
+learning evolution in which a society of $N$ individuals \cm{do we ever define N used?} each must decide which of
 $B$ behaviors to perform at each time step within a generation of $L$ time steps. At
 the end of each generation, agents are selected with replacement from the population
 to reproduce another $N$ agents. Agents who inherit the social learning trait then

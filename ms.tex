@@ -17,7 +17,7 @@
 \usepackage{pslatex}
 \usepackage{apacite}
 \usepackage{caption}
-% \usepackage{subcaption}
+\usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage[english]{babel}
 \usepackage{lmodern}
@@ -589,5 +589,97 @@ translated evolutionary algorithm may take to converge.
     \bottomrule
   \end{tabular} 
 \end{table}
+
+
+\newpage
+
+\subsection{Softmax parameter sensitivity analysis}
+\vspace{-3em}
+\begin{figure}
+  \centering
+  \caption{Sensitivity analysis of the main results 
+		   for the softmax parameter $\beta = 100$ and $\beta=1$. Recall the main
+		   results were obtained with $\beta = 10$.}
+  \label{fig:softmaxSensitivity}
+  \vspace{2em}
+  \begin{subfigure}{\textwidth}
+	\caption{$\beta = 100$}
+	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+\newpage
+\begin{figure}
+  \ContinuedFloat
+  \begin{subfigure}{\textwidth}
+	\caption{$\beta = 1$}
+	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+
+
+\subsection{Number of prospective teachers sensitivty analysis}
+
+\vspace{-3em}
+\begin{figure}
+  \centering
+  \caption{Number of prospective teachers sensitivity analysis for $N_T=2,10,20$. Recall
+  $N_T=5$ was used to generate main text results.}
+  \label{fig:softmaxSensitivity}
+  \vspace{2em}
+  \begin{subfigure}{\textwidth}
+	\caption{$N_T = 2$}
+	% \includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+\newpage
+\begin{figure}
+  \ContinuedFloat
+  \begin{subfigure}{\textwidth}
+	\caption{$N_T = 10$}
+	% \includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+\newpage
+\begin{figure}
+  \ContinuedFloat
+  \begin{subfigure}{\textwidth}
+	\caption{$N_T = 20$}
+	% \includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+
+
+\subsection{Population size sensitivty analysis}
+
+\begin{figure}
+  \centering
+  \caption{
+	Sensitivity analysis of the main results for different population
+	sizes, $N=50,200,1000$. Recall $N=100$ was used to generate main 
+	text results.
+  }
+  \label{fig:populationSensitivity}
+  \begin{subfigure}{\textwidth}
+	\caption{$N=50$}
+	% \includegraphics[width=\textwidth]{Figures/supplement/sensitivity_N=50/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+	
+\begin{figure}
+  \ContinuedFloat
+	\begin{subfigure}{\textwidth}
+	  \caption{$N=200$}
+	  % \includegraphics[width=\textwidth]{Figures/supplement/sensitivity_N=200/mainResultsPlots.pdf}
+	\end{subfigure}
+\end{figure}
+
+\begin{figure}
+  \ContinuedFloat
+	\begin{subfigure}{\textwidth}
+	  \caption{$N=1000$}
+	  % \includegraphics[width=\textwidth]{Figures/supplement/sensitivity_N=1000/mainResultsPlots.pdf}
+	\end{subfigure}
+\end{figure}
+
 
 \end{document}

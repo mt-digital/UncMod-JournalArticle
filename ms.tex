@@ -12,6 +12,8 @@
 \usepackage{float}
 % \usepackage[margin=0.50in]{geometry}
 \usepackage[margin=1.00in]{geometry}
+\usepackage[modulo]{lineno}
+\linenumbers
 
 \usepackage{booktabs}
 \usepackage{pslatex}
@@ -74,26 +76,30 @@
 \newcommand{\bandit}{\text{Bandit}_b(0, 1)}
 
 \begin{abstract}
-
-Social learning is essential to human survival. It is likely to evolve when it is more
-efficient than asocial, trial-and-error learning. Theoretically, social learning
-is adaptive for some uncertainty, but too much uncertainty makes
-social information unreliable. This fact is empirically
-supported across biology and human sciences. However, it is unclear how
-specific classes and types of uncertainty affect social
-learning evolution. Furthermore, existing models and experimental operationalizations of
-uncertainty are ambiguously related, and 
-tend to only consider a small number of behavioral
-choices.  Here we use evolutionary agent-based modeling to consolidate
-models of uncertainty in social learning evolution to address these issues.
-We model societies of agents who perform one of a number
-of possible behaviors to acquire payoffs in a time-varying environment.
-We identified complex patterns in social learning evolution depending on contextual
-uncertainty variables: environmental variability, ambiguous payoffs, 
-decision sets size, and effective lifespans. 
-Our work advances social learning evolution theory in a way that could help 
-guide human, non-human, and artificial intelligence towards optimal responses 
-to existential threats and new opportunities.\footnote{This document contains
+Social learning is essential to human survival---it is a critical adaptation for dealing with uncertainty. However, uncertainty takes many forms. We identified four theoretically important types of uncertainty: temporal environmental variability, ambiguous payoffs, decision set size, and effective lifespans. We used this framework to study conditions for the evolution of social learning in populations with cognitively realistic individual learning capacities.
+We used evolutionary agent-based modeling to track how often social learning evolved. Agents performed one of several behaviors to acquire payoffs. Individual learning used the softmax algorithm. Social learning occurs between generations  through vertical and oblique transmission.
+Different types of uncertainty had different effects. Temporal environmental variability suppressed social learning. Larger decision set sizes promoted social learning. Payoff ambiguity and lifespan had more complex effects on social learning, dependent on other uncertainty parameters.
+This shows the importance of clearly operationalizing uncertainty in theories of social learning evolution.
+% Social learning is essential to human survival. It is likely to evolve when it is more
+% efficient than asocial, trial-and-error learning. Theoretically, social learning
+% is adaptive for some uncertainty, but too much uncertainty makes
+% social information unreliable. This fact is empirically
+% supported across biology and human sciences. However, it is unclear how
+% specific classes and types of uncertainty affect social
+% learning evolution. Furthermore, existing models and experimental operationalizations of
+% uncertainty are ambiguously related, and 
+% tend to only consider a small number of behavioral
+% choices.  Here we use evolutionary agent-based modeling to consolidate
+% models of uncertainty in social learning evolution to address these issues.
+% We model societies of agents who perform one of a number
+% of possible behaviors to acquire payoffs in a time-varying environment.
+% We identified complex patterns in social learning evolution depending on contextual
+% uncertainty variables: environmental variability, ambiguous payoffs, 
+% decision sets size, and effective lifespans. 
+% Our work advances social learning evolution theory in a way that could help 
+% guide human, non-human, and artificial intelligence towards optimal responses 
+% to existential threats and new opportunities.
+\footnote{This document contains
 \total{citnum} references.}  
 \end{abstract}
 

@@ -250,19 +250,8 @@ learn about behavioral payoffs from the previous generation, while asocial learn
 begin life with no \emph{a priori} knowledge of the world.  Each behavior is a
 ``bandit'', a common modeling and experimental approach for representing behaviors
 with probabilistic
-payoffs~\cite{SuttonBartoBook,McElreath2005,Steyvers2009,Rendell2010,Schulz2019}.  Each behavior
-$b$ yields Bernoulli payoffs: payoff of 1 with probability $\pi_b$ and zero payoff
-with probability $1 - \pi_b$; $\pi_b$ is therefore also the expected payoff of
-behavior $b$. One behavior in each generation is optimal and pays off $\pihigh$,
-while the rest pay off $\pilow < \pihigh$.  Model agents must decide which behavior
-to perform at each time step.  To do this, agents use an explore-exploit strategy to
-sometimes try the most profitable behavior they know about, and other times try
-alternatives that may pay off more reliably.  We developed a series of computational
-analyses by systematically varying uncertainty parameters and observing the
-frequency that model populations evolve to be social learners, the average payoffs
-accrued by agents in each setting, and the time it takes for model populations to
-reach fixation (agents all social or all asocial learners). Model dynamics are
-illustrated in Figure~\ref{fig:schematic}.
+payoffs~\cite{SuttonBartoBook,McElreath2005,Steyvers2009,Rendell2010,Schulz2019}. 
+
 
 \begin{figure}
   \caption{Agents are randomly initialized as social learners or not, with their
@@ -313,9 +302,9 @@ also the number of behaviors each agent performs each generation.
         $\pilow$ & Probability one of $B - 1$ non-optimal behaviors pays off 1 
                  & 0.1, 0.45, 0.8 \\ 
 
-        $\tau$ & Softmax temp.; $\uparrow=$more exploration, $\downarrow=$more
-                    exploitation 
-               & 0.01, \textbf{0.1}, 1.0 \\
+        $\beta$ & Softmax greediness; $\uparrow=$more exploitation, $\downarrow=$more
+                    exploration 
+               & 100, \textbf{10}, 1 \\
         
         $u$    & Probability optimal behavior changes between generations 
                & 0.0, 0.1, \ldots, 1.0 \\
@@ -332,18 +321,18 @@ also the number of behaviors each agent performs each generation.
 \end{table}
 
 
-To guide behavior selection, agent $i$ counts how many times it
-performed each behavior $b$, denoted $c_{ib}$. Agents use this count to 
-update the mean payoff they have obtained from behavior $b$, denoted $\ledger$.
-$\ledger$ is initialized to 0 for all $b$ at model start for
-all agents (Figure~\ref{fig:schematic}A), and at 
-generation start for asocial learners. Social
-learning agents' $\ledger$ is initialized as that of its teacher, who is selected
-through performance-biased oblique learning; $c_ib$ is set to 1 for all social
-learners $i$ and behaviors $b$ (Figure~\ref{fig:schematic}C). Agent $i$'s
-accumulated payoffs from performing several behaviors over their lifetime of $L$
-time steps is denoted $\pi_{i}$. If an agent $i$ is a social learner, then we write
-$s_i = 1$, otherwise the agent is an asocial learner and $s_i = 0$.
+\subsection{Agents and learning}
+
+All agents perform individual, trial-and-error learning over their lifespan.
+This learning is guided based on undirected, softmax search which drives
+agents to explore all behavioral options in the selection set when 
+the agent is more uncertain which is optimal, and to exploit the most profitable
+behaviors when the agent is more certain which are most beneficial.
+
+
+\subsection{Dynamics}
+
+\subsubsection{Initialization}
 
 At generation start, one of the behaviors is set to 
 yield expected payoff $\pihigh$, with the other $B-1$ behaviors yielding
@@ -358,10 +347,11 @@ where $\beta$ is a parameter that adjusts how frequently agents perform
 behaviors with high expected payoffs (larger $\beta$) versus how frequently
 agents explore alternative behaviors (smaller $\beta$)~\cite{McElreath2005}. 
 Agents probabilistically recieve a payoff of 0 or 1 depending on whether the
-bandit paid off, equivalent to a draw from a Bernoulli distribution with 
-mean $\pi_b$. For concreteness we denote this probabilistic payoff
+bandit paid off. Behavior payoffs are represented as a draw from a 
+Bernoulli distribution with mean $\pi_b$, so $\pi_b$ is also the mean payoff from
+behavior $b$.  For concreteness we denote this probabilistic payoff
 $\bandit$. On performing behavior $b$, agent $i$ updates the
-corresponding behavior count by 1, $c_{ib} \leftarrow c_{ib} + 1$, and then
+corresponding \emph{behavior count} by 1, $c_{ib} \leftarrow c_{ib} + 1$, and then
 the expected payoffs calculated for that behavior are updated with
 exponentially-weighted averaging
 \begin{equation}
@@ -370,6 +360,25 @@ exponentially-weighted averaging
 \noindent
 This procedure continues for $L$ time steps within each generation
 (Figure~\ref{fig:schematic}B).
+
+
+\subsubsection{Intragenerational dynamics}
+
+To guide behavior selection, agent $i$ counts how many times it
+performed each behavior $b$, denoted $c_{ib}$. Agents use this count to 
+update the mean payoff they have obtained from behavior $b$, denoted $\ledger$.
+$\ledger$ is initialized to 0 for all $b$ at model start for
+all agents (Figure~\ref{fig:schematic}A), and at 
+generation start for asocial learners. Social
+learning agents' $\ledger$ is initialized as that of its teacher, who is selected
+through performance-biased oblique learning; $c_ib$ is set to 1 for all social
+learners $i$ and behaviors $b$ (Figure~\ref{fig:schematic}C). Agent $i$'s
+accumulated payoffs from performing several behaviors over their lifetime of $L$
+time steps is denoted $\pi_{i}$. If an agent $i$ is a social learner, then we write
+$s_i = 1$, otherwise the agent is an asocial learner and $s_i = 0$.
+
+
+\subsubsection{Intergenerational dynamics}
 
 In between generations agents first reproduce via asexual haploid reproduction; 
 then new child agents learn from the
@@ -399,6 +408,16 @@ for another $L$ time steps. The evolutionary process continues until $\sum_i s_i
 = 1$ or $\sum_i s_i = 0$ \mt{I believe all trials will eventually end like this, so
 in the next set of model runs I will not allow early termination before one of these
 conditions are met}.
+
+
+\subsection{Computational analyses}
+
+We developed a series of computational
+analyses by systematically varying uncertainty parameters and observing the
+frequency that model populations evolve to be social learners, the average payoffs
+accrued by agents in each setting, and the time it takes for model populations to
+reach fixation (agents all social or all asocial learners). Model dynamics are
+illustrated in Figure~\ref{fig:schematic}. 
 
 \begin{table}[h]
     \caption{Outcome variables.}
@@ -442,11 +461,13 @@ hypothesis-testing concept of significance is meaningless here because we could
 make any small outcome difference ``significant'' by running more simulation trials.
 We instead study the patterns of outcome 
 variables over systematically varied uncertainty factor values. 
+
+
+\subsubsection{Implementation}
 Our model was implemented in the Julia programming language~\cite{Bezanson2017} 
 using the Agents.jl agent-based modeling library~\cite{Datseris2022} and run
 on the Sherlock supercomputing cluster at Stanford University. Model code and
-data are publicly available on GitHub\footnote{\url{https://github.com/mt-digital/UncMod}} 
-and OSF.io\footnote{\mt{TODO}}.
+data are publicly available on GitHub\footnote{\url{https://github.com/mt-digital/UncMod}}.
 
 
 \section{Analysis}

@@ -1,6 +1,6 @@
 
 bibms: ms ms.tex ~/workspace/Writing/library.bib
-	bibtex ms && bibexport -o this.bib ms && rm this.bib-save-*
+	bibtex ms 
 
 figures: nagents_supplement_figures nteachers_supplement_figures tau_supplement_figures mainResultsPlots.tex meanNetPayoffs.tex stepResultsPlots.tex 
 	pdflatex -output-directory=Figures mainResultsPlots.tex && \
@@ -28,6 +28,9 @@ ms: bibms figures
 
 oms: bibms
 	open ms.pdf
+
+bibsync:
+	bibexport -o this.bib ms && rm this.bib-save-*
 
 clean: 
 	rm ms.{aux,log,out,bbl,blg}

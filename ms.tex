@@ -296,7 +296,7 @@ payoffs in different contexts among populations that are initialized to all have
 $s_i = 1$ or to all have $s_i = 0$. These outcome measures will be used to predict
 the evolutionarily-favored strategy (to learn socially or not), the number of
 generations it will take for a population to evolve the optimal strategy, and the
-expected payoffs in populations performing the optimal strategy, in several specific
+expected payoffs in populations performing the optimal strategy, across several specific
 uncertainty contexts. To understand how different varieties of uncertainty interact
 to affect the evolution of social learning, we systematically created an array of
 simulated environments by systematically varying the uncertainty parameters. 
@@ -388,16 +388,20 @@ otherwise repeat another generation and evolution (3).}
 \subsection{Agents and learning}
 
 All agents perform individual, trial-and-error learning over their lifespan.
-This learning is guided based on undirected, softmax search which drives
+This learning is guided based on the softmax search algorithm which drives
 agents to explore all behavioral options in the selection set when 
 the agent is more uncertain which is optimal, and to exploit the most profitable
-behaviors when the agent is more certain which are most beneficial. Selection
-for or against social learners occurs when agents are chosen to reproduce 
-with replacement, with probability
-of reproduction biased by net payoffs in each generation. 
-
-Several agent-level variables are required to operationalize individual and social
-learning
+behaviors more frequently when the agent is more certain which are most beneficial. 
+To do softmax searching, agents track payoffs acquired from each behavior.
+(introduce agent attributes)
+When agents are initialized at the start of the model, all agents are initialized
+with all $\pi_{ib} = 0$. At the start of generations other than the first, 
+$\pi_i$ will be initialized with all $\pi_{ib} = 0$ for asocial learners ($s_i = 0$)
+or with a teacher's $\pi_{ib}$. 
+Agents are thus endowed with dynamic attributes to track payoffs and calculate the
+softmax weights, and with an instruction of whether child agents learn socially
+or not. Details of how these attributes are updated over time is explained below
+with the rest of the model dynamics.
 
 \begin{table}[h]
   \caption{Agent-level variables. The first four ($\protect s_i$, $\protect
@@ -440,7 +444,6 @@ $\protect N_T$, are constant throughout each simulation.}
 \subsection{Dynamics}
 
 \paragraph{Initialization}
-
 At generation start, one of the behaviors is set to 
 yield expected payoff $\pihigh$, with the other $B-1$ behaviors yielding
 expected payoffs $\pilow$. At each time step, agents perform behavior $b$ 
@@ -469,8 +472,7 @@ This procedure continues for $L$ time steps within each generation
 (Figure~\ref{fig:schematic}B).
 
 
-\subsubsection{Intragenerational dynamics}
-
+\paragraph{Intragenerational dynamics}
 To guide behavior selection, agent $i$ counts how many times it
 performed each behavior $b$, denoted $c_{ib}$. Agents use this count to 
 update the mean payoff they have obtained from behavior $b$, denoted $\ledger$.
@@ -485,8 +487,7 @@ time steps is denoted $\pi_{i}$. If an agent $i$ is a social learner, then we wr
 $s_i = 1$, otherwise the agent is an asocial learner and $s_i = 0$.
 
 
-\subsubsection{Intergenerational dynamics}
-
+\paragraph{Intergenerational dynamics}
 In between generations agents first reproduce via asexual haploid reproduction; 
 then new child agents learn from the
 previous generation if they are social learners; and finally all agents from the
@@ -511,8 +512,12 @@ and set all $c_{ib} = 1$ so expected payoffs remain within $[0, 1]$.  Asocial
 learners ($s_i = 0$) are initialized with all $c_{ib} = 0$ and $\ledger = 0$ 
 (Figure~\ref{fig:schematic}C). The
 newly initialized population then begins behavior selection and payoff accumulation
-for another $L$ time steps. The evolutionary process continues until $\sum_i s_i
-= 1$ or $\sum_i s_i = 0$ \mt{I believe all trials will eventually end like this, so
+for another $L$ time steps. 
+
+\paragraph{Stopping conditions} The evolutionary process continues until $\sum_i s_i
+= 1$ or $\sum_i s_i = 0$.
+
+\mt{I believe all trials will eventually end like this, so
 in the next set of model runs I will not allow early termination before one of these
 conditions are met}.
 

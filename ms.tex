@@ -590,6 +590,31 @@ data are publicly available on GitHub\footnote{\url{https://github.com/mt-digita
 
 \section{Analysis}
 
+To understand how different forms of uncertainty interact to affect the evolution
+of social learning, we measured simulated social learning prevalence across a 
+suite of simulations over uncertainty parameters. We analyze simulation outcomes
+by plotting the mean observed social learning frequency, $\meansl$ across all agents 
+and 1000 simulation trials for each uncertainty parameter setting. We do not calculate
+significance measures since these can be inflated by simply adding more trials.
+Instead, we visualize and inspect plots with $\meansl$ on the y-axis and
+environmental variability, $u$ on the x-axis. This is convenient because we are
+most certain about how $\meansl$ depends on $u$: we expect $\meansl$ to decrease
+as $u$ increases since environmental variability is well understood to cause
+socially-transmitted information to become outdated. When the other forms of
+uncertainty are varied, this causes changes to when and how quickly social learning
+is suppressed as $u$ increases. To inspect these changes, we show nine plots
+of $\meansl$ over $u$ in a 3x3 plot array (Figure~\ref{fig:mainResults}). 
+Plot array columns correspond to different selection set sizes, $B$; rows
+correspond to different non-optimal payoff values, $\pilow$ (recall optimal
+payoff $\pihigh=0.9$ for all analyses); plot line and marker colors correspond
+to different effective lifespan, $L$, values. 
+We support our conclusions regarding the evolution of
+social learning by analyzing the time to model 
+fixation and by comparing the average net payoffs in our simulations to the
+expected payoffs for individuals in both populations of all social learners
+and in populations of all individual learners. We thus use our analysis 
+to understand changes to how $\meansl$ changes over $u$ for different uncertainty parameter settings.
+
 Several patterns emerged in changes to the shape of social learning suppression over
 environmental variability, $u$, across different uncertainty contexts defined by the
 payoff ambiguity, selection set size, and effective lifespan
@@ -620,7 +645,7 @@ making individual outcomes more path dependent.
   populations.}
   \label{fig:mainResults}
   \centering
-    \includegraphics[width=\textwidth]{Figures/mainResultsPlots.pdf}
+    \includegraphics[width=\textwidth]{{Figures/supplement/nagents=1000/mainResultsPlots.pdf}}
 \end{figure}
 
 Social learning evolution was correlated with differences in population-level

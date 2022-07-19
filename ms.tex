@@ -158,7 +158,8 @@ influences both uncertainty \emph{and} the strength of selection. %This paramete
 
 \textbf{Effective lifespan.}
 \mt{Restructure: lead with ``It stands to reason'' sentence or similar that gets
-to the point of this par more quickly, that lifespan affects uncertainty.}
+to the point of this par more quickly, that lifespan affects uncertainty. Also this Effective
+Lifespan section seems too long.}
 Learning can be viewed as a process by which an individual reduces or otherwise manages their uncertainty \cite{jacobs2011bayesian,clark2013whatever}. It is an iterative process by which one repeatedly acquires information, forms representations and predictions, and tests and refines those representations and predictions. It therefore stands to reason that the more opportunities one has for learning, the more one can in principle reduce one's uncertainty, assuming the environment has not changed in the meantime. Similarly, a reduction in the number of opportunities to learn will increase the uncertainty about whether one has accurately learned about the available behavioral options and their associated payoffs. We refer to the number of learning opportunities as an individual's effective lifespan to imply that it is the number of opportunities to learn throughout the individual's lifespan that matters here, not necessarily how long they live in the absence of relevant learning opportunities.  
 
 Empirically, the number of learning opportunities can be manipulated in the lab, but will also correspond with an individual's age the real world. In multi-round studies of information use in novel tasks, US participants' use of social information declined precipitously across rounds ~\cite{McElreath2005}, suggesting they were more likely to use social information when they were most uncertain about the task early on. In a more naturalistic context, Aplin et al. (2017) \nocite{Aplin2017} found that younger great tits more readily used social information compared with older individuals, possibly because they had accrued less information via individual learning, and also possibly because younger individuals have the most to gain (given their expected remaining lifespan) by switching to superior behavioral options. 
@@ -240,8 +241,8 @@ uncertainty are \emph{environmental variability}; \emph{payoff ambiguity};
 variability is the probability that the behavior yielding the optimal payoff changes
 from one generation to the next. We do not consider cases where the optimal behavior
 varies within a generation. This is empirically justified since cultural evolution
-occurs when meta-cognitive strategies and information are transferred or not via
-learning and social influence, instead of truly by physical reproduction and death
+occurs when meta-cognitive strategies and information are transferred via
+learning and social influence, instead of by physical reproduction and death
 as in genetic evolution.  The selection set size is the total number of possible
 behaviors agents choose from, assumed to be constant within a simulation.  We
 operationalized payoff ambiguity by manipulating the payoff difference between optimal
@@ -256,7 +257,7 @@ e.g., if it was assumed to be equally easy for bumblebees to fly to alternative
 flower ``species''~\cite{Baracchi2018} or for great tits to fly to different food
 sources~\cite{Aplin2017}.  Each simulated environment provides a distinct challenge
 to the agents, which will lead agents to differently evolve to become social
-learners or not depending on which of those two strategies optimizes net payoffs.
+learners or not, depending on which strategy optimizes net payoffs.
 
 \emph{Agents} here are autonomous, intelligent, simulated problem solvers. Each
 agent evaluates its environment and chooses how to act within that environment based
@@ -269,6 +270,8 @@ to sometimes explore alternatives~\cite{Schulz2019,Collins2013,Daw2006,Yechiam20
 Such individual-level intelligence is a critical adaptation that has apparently
 co-evolved with the capacity for social learning, and has a marked influence on the
 cultural evolution of social learning as we will demonstrate in our Analysis.
+We will see that individual-level intelligence allows agents to recover from
+the receipt of outdated information due to temporal environmental variability.
 
 In \emph{evolutionary} agent-based models like ours, agent life cycles are
 programmed to cause agents to reproduce and die off, where reproducers pass on
@@ -319,10 +322,12 @@ Bernoulli-distributed payoffs of 1 with probability $\pi_b$ and 0 with
 probability $1 - \pi_b$. $\pi_b$ is equivalently the expected
 payoff of behavior/bandit $b$. The model environment affords $B$ behaviors, where
 $B$ is the \emph{selection set size} uncertainty parameter, which
-is constant throughout the course of a given simulation. 
+is constant throughout the course of a given simulation, but varied systematically
+across simulations. 
 
 The model environment is dynamic: which behavior is optimal changes between
 generations with probability equal to the \emph{environmental variability}, $u$.
+The optimal behavior does not change within generations.
 At the beginning of each generation, one bandit is optimal and yields expected
 payoff $\pihigh$; the other $B-1$ behaviors yield a lower payoff, $\pilow$. 
 The \emph{payoff ambiguity} here between optimal and non-optimal behavior
@@ -428,10 +433,10 @@ In this model, being a social learner is beneficial when it is more likely
 on average to provide greater net payoffs than being an individual learner,
 since evolution here acts as an optimization routine. 
 Note that, unlike some models in the literature, it is not catastrophic for an 
-individual to receive outdated information\cite[, e.g]{Rogers1988}. Instead,
-agents can explore alternatives and greedily perform the observed optimal behavior
-if they learned outdated information due to environmental variability. We rely
-on this mechanism in the Analysis to explain patterns we observe where
+individual to receive outdated information~\cite[e.g.]{Rogers1988}. Instead,
+agents can explore alternatives and greedily perform a different observed optimal behavior
+than an outdated optimal behavior they learned about socially. We rely
+on this mechanism in the Analysis to explain the patterns we observe where
 social learning evolves when $u > 0.5$, meaning that the
 optimal behavior will switch between generations more often than not. If 
 agents could not adjust to changing conditions like this, it seems like 
@@ -534,7 +539,7 @@ exponentially-weighted averaging
 
 
 \paragraph{Intergenerational dynamics}
-In between generations agents first reproduce via asexual haploid reproduction; 
+Between generations, agents first reproduce via asexual haploid reproduction; 
 then new child agents learn from the
 previous generation if they are social learners; and finally all agents from the
 previous generation then die off (Figure~\ref{fig:schematic}C). 
@@ -560,8 +565,9 @@ newly initialized population then begins behavior selection and payoff accumulat
 for another $L$ time steps. 
 
 After reproduction and die-off, the optimal behavior changes with probability
-$u$. If a random number draw indicates the behavior should change, the new
-behavior is chosen from all behaviors but the current optimal behavior.
+$u$. If a random draw dictates the behavior should change, the new
+behavior is chosen from all other behaviors with the current optimal behavior
+excluded.
 
 \paragraph{Stopping conditions} The evolutionary process continues until the
 population reaches evolutionary fixation with repsect to social learning, where
@@ -727,7 +733,7 @@ which indicates more drift (bottom row of Figure~\ref{fig:mainResults}).
 Initially this results in less frequent evolution
 of social learning for the same values of $u$ and $B$. But after 
 the $u$ value where $\meansl \approx 0.5$, social learning evolves more frequently than
-for the same $u$ and $B$. When $\pilow \to \pihigh$, agents do better and better
+for the same $u$, $B$, and $L$. When $\pilow \to \pihigh$, agents do better and better
 whether they are social learners or not. We see that this leads to less penalty
 for trying social information before possibly having to correct course due to
 outdated social information.
@@ -759,6 +765,9 @@ $\meansl \to 0$ for other lifespans, the $L=1$ case has non-zero $\meansl$.
 \end{figure}
 
 \subsection{Supplemental measures of social learning}
+
+\mt{This subsec needs revision and associated figures need to be updated with 
+$N=1000$ data}
 
 Social learning evolution was correlated with differences in population-level
 expected payoffs for social versus asocial learning. Furthermore, we found that mean
@@ -833,6 +842,7 @@ shift peak time to fixation over $u$.}
 
 \section{Discussion}
 
+\mt{Need to make this section more specific in reviewing the findings.}
 By systematizing four common uncertainty dimensions we developed a model of
 the evolution of social learning that
 predicts how different forms of uncertainty might interact to foster or suppress
@@ -859,14 +869,17 @@ Our model necessarily made some simplifying assumptions that, while
 empirically justified in many cases, may not always hold.
 \mt{Review the ones mentioned in model section: non-spatial, no within-generation
 environmental variability; no horizontal learning}.
-Furthermore, we only considered
-success-biased learning, although conformity is theoretically important as
-well~\cite{Muthukrishna2016a,Smaldino2018b}. Another implicit assumption
+We only considered
+success-biased learning, although conformity is sometimes the dominant mechanism 
+for social influence of behavior well~\cite{Muthukrishna2016a,Smaldino2018b}. 
+Another implicit assumption
 in our model was that the number of behaviors was constant, as was the relationship
 between their payoffs---one was always optimal, and the rest were equally
 suboptimal. However, this fails to account for evolutionary feedback which creates
 new behavioral affordances as time progresses, e.g.\ via niche 
-construction~\cite{Smaldino2012,Heras-Escribano2020}.
+construction~\cite{Smaldino2012,Heras-Escribano2020}. Adjusting any of these
+assumptions and running new computational analyses could yield further
+understanding of the evolution of social learning across diverse contexts.
 
 As a final note, we believe 
 our modeling approach may have applications to developing social artificial
@@ -893,24 +906,26 @@ energy or time that may be required to transmit information between agents.
 
 \subsection{Conclusion}
 
-Social learning is an immensely complex phenomenon. In just our simple model, we
-found that its evolution is similarly complex, dependent on several interrelated
-factors. By systematically identifying common theoretical assumptions about
-uncertainty in the environments and contexts in which social learning evolves,
-we were able to develop a more systematic understanding of which uncertainty
-factors. This work informs most directly our current understanding of the
-evolution of social learning, but
-has broader importance for the behavioral science of problem solving in uncertain
-conditions, and for the design of artificial social intelligent systems.
-Our model and its software implementation were designed to be modular and 
-therefore extensible.  Indeed, we plan to extend this model to further develop 
-a more detailed theoretical understanding of the evolution of social learning, 
-and we hope others do, too.
+We found that the evolution of social learning, under some modest
+assumptions, is a complex phenomenon, dependent on several interrelated factors. By systematically
+identifying common theoretical assumptions about uncertainty in the environments and contexts
+in which social learning evolves, we were able to develop a more systematic understanding of
+which uncertainty factors interact to determine whether social learning evolves. By
+explicitly modeling a key factor of human intelligence, namely the ability to sense and
+adjust to uncertainty and new information, we saw that social learning could be
+valuable even if social learning provides outdated information. This work
+informs most directly our current understanding of the evolution of social learning, but has
+broader significance for the behavioral science of problem solving in uncertain conditions, and
+for the design of artificial social intelligent systems in uncertain environments.  Our model
+and its software implementation were designed to be modular and extensible.  Indeed,
+we plan to extend this model to further develop a more detailed theoretical understanding of
+the evolution of social learning; perhaps others will, too.
 
 
 \bibliographystyle{apacite}
 % \bibliography{/Users/mt/workspace/Writing/library.bib}
 \bibliography{this.bib}
+
 
 \appendix
 
@@ -919,32 +934,18 @@ and we hope others do, too.
 
 \subsection{Convergence information}
 
-\begin{table}[h]
-  \caption{Max. iterations = 20000.}
-  \label{tab:convergence}
-  \centering
-  \begin{tabular}{cccc} \toprule
-    $B$ & \# not at fixation & \# total series & Pct. not fixated \\
-    \midrule  
-    2  & 0  & 132000 & 0.0 \% \\
-    4  & 0  & 132000 & 0.0 \% \\
-    10 & 44 & 132000 & 0.00033  \% \\
-    \bottomrule
-  \end{tabular} 
-\end{table}
+\begin{table}[h] \caption{Max. iterations = 20000.} \label{tab:convergence} \centering
+  \begin{tabular}{cccc} \toprule $B$ & \# not at fixation & \# total series & Pct. not fixated
+    \\ \midrule  2  & 0  & 132000 & 0.0 \% \\ 4  & 0  & 132000 & 0.0 \% \\ 10 & 44 & 132000 &
+    0.00033  \% \\ \bottomrule \end{tabular} \end{table}
 
 
 \newpage
 
-\subsection{Softmax parameter sensitivity analysis}
-\vspace{-3em}
-\begin{figure}
-  \centering
-  \caption{Sensitivity analysis of the main results 
-		   for the softmax parameter $\beta = 100$ and $\beta=1$. Recall the main
-		   results were obtained with $\beta = 10$.}
-  \label{fig:softmaxSensitivity}
-  \vspace{2em}
+\subsection{Softmax parameter sensitivity analysis} \vspace{-3em} \begin{figure} \centering
+  \caption{Sensitivity analysis of the main results for the softmax parameter $\beta = 100$ and
+  $\beta=1$. Recall the main results were obtained with $\beta = 10$.}
+  \label{fig:softmaxSensitivity} \vspace{2em}
   \begin{subfigure}{\textwidth}
 	\caption{$\beta = 100$}
 	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}

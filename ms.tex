@@ -308,8 +308,6 @@ to affect the evolution of social learning, we systematically created an array o
 simulated environments by systematically varying the uncertainty parameters. 
 
 
-
-
 \subsection{Model environment and uncertainty}
 
 The model environment provides behaviors for agents to perform. The structure
@@ -422,6 +420,22 @@ Social learner children select a teacher from
 the previous generation by first selecting $N_T$ prospective teachers fully
 at random, then by sampling from the $N_T$ with each prospective teacher weighted
 by their net payoffs relative to the other $N_T - 1$.
+
+
+\subsubsection{Social learning as a scaffold for individual learning}
+
+In this model, being a social learner is beneficial when it is more likely
+on average to provide greater net payoffs than being an individual learner,
+since evolution here acts as an optimization routine. 
+Note that, unlike some models in the literature, it is not catastrophic for an 
+individual to receive outdated information\cite[, e.g]{Rogers1988}. Instead,
+agents can explore alternatives and greedily perform the observed optimal behavior
+if they learned outdated information due to environmental variability. We rely
+on this mechanism in the Analysis to explain patterns we observe where
+social learning evolves when $u > 0.5$, meaning that the
+optimal behavior will switch between generations more often than not. If 
+agents could not adjust to changing conditions like this, it seems like 
+social learning would not evolve when $u > 0.5$.
 
 
 \begin{table}[h]
@@ -702,7 +716,21 @@ Increased $B$ led to more pronounced flattening of social learning suppression w
 $L$ was small, apparently again because of the limited data available to evolution,
 making individual outcomes more path dependent.
 
-???$\pilow$ paragraph???
+Payoff ambiguity had a modest effect when $\pilow = 0.1$ increased to $\pilow = 0.45$,
+causing social learning to be favored across more values of $u$, across all
+selection set sizes and lifespans (first two rows of Figure~\ref{fig:mainResults}). 
+This indicates that increased payoff ambiguity significantly increases the 
+difficulty of discerning which behavior is optimal since agents evolve to 
+risk social learning at greater values of $u$.
+When $\pilow = 0.8$ the largest effect is smoothing and flattening of the $\meansl$ curves,
+which indicates more drift (bottom row of Figure~\ref{fig:mainResults}). 
+Initially this results in less frequent evolution
+of social learning for the same values of $u$ and $B$. But after 
+the $u$ value where $\meansl \approx 0.5$, social learning evolves more frequently than
+for the same $u$ and $B$. When $\pilow \to \pihigh$, agents do better and better
+whether they are social learners or not. We see that this leads to less penalty
+for trying social information before possibly having to correct course due to
+outdated social information.
 
 When $L$ is smaller, agents have fewer opportunities
 to learn through trial and error, and so it is more difficult for them to discern

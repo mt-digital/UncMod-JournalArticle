@@ -702,37 +702,37 @@ $\ledger = (0.4, 0.0, \ldots, 0.0)$; the probability
 the agent explores one of the nine alternative behaviors increases to 0.14.
 If the agent again tries behavior 1, the probability of exploring alternatives
 with $B=2$ is 0.21, but with $B=10$ the probability of exploring alternatives
-greatly increases to 0.71.
-% Larger $B$ caused more drift when
-% $L$ was small, apparently due to the limited data available to evolution.
+greatly increases to 0.71. This explanation does not apply when $L=1$, where
+social learning is increasingly beneficial as $B$ increases because it is more 
+valuable to be possibly misled by outdated information than it is for agents
+to blindly guess which is optimal.
 
 Payoff ambiguity had a modest effect when $\pilow = 0.1$ increased to $\pilow =
 0.45$, causing social learning to be favored across more values of $u$, and across
 all selection set sizes and lifespans (first two rows of
-Figure~\ref{fig:mainResults}).  This indicates that increased payoff ambiguity
-increases the difficulty of discerning which behavior is optimal since agents evolve
-to risk social learning at greater values of $u$.  When $\pilow = 0.8$ the largest
-effect is smoothing and flattening of the $\meansl$ curves, which indicates more
-drift (bottom row of Figure~\ref{fig:mainResults}).  Initially this results in less
+Figure~\ref{fig:mainResults}).  This is because increased payoff ambiguity increases
+the difficulty, and reduces the overall benefit, of discerning which behavior is
+optimal; it is worth the risk for agents to possibly learn outdated information.
+When $\pilow = 0.8$ the largest effect is the smoothing and flattening of the
+$\meansl$ curves, which indicates more drift (bottom row of
+Figure~\ref{fig:mainResults}).  For smaller values of $u$, this results in less
 frequent evolution of social learning for the same values of $u$ and $B$. But after
-the $u$ value where $\meansl \approx 0.5$, social learning evolves more frequently
-than for the same $u$, $B$, and $L$. When $\pilow \to \pihigh$, agents do better and
-better whether they are social learners or not. We see that this leads to less
-penalty for trying social information before possibly having to correct course due
-to outdated social information.
+the value of $u$ at which $\meansl \approx 0.5$, social learning evolves more
+frequently than for the same $u$, $B$, and $L$. When $\pilow \to \pihigh$, agents 
+accumulate increasingly more payoffs, whether they are social learners or not. 
+Greater payoff ambiguity means lower risk to try possibly outdated social
+information, search for the true optimal if the learned one fails. 
 
 When $L$ is smaller, agents have fewer opportunities to learn through trial and
-error, and so it is more difficult for them to discern which strategy, social or
-asocial, is optimal. We thus saw two distinct trends emerge in the evolution of
-social learning in response to changes in $L$.  First, when $\pilow$ was
-sufficiently small ($\pilow=0.1, 0.45$), we observed that shorter lifespan made
-social learning more beneficial (and increased $\meansl$) across some values of $u$.
-When $\pilow=0.8$, shorter lifespans decreased $\meansl$ in some cases and increased
-$\meansl$ in other cases. It seems that shorter lifespans in this case led to more
-evolutionary drift. This can be seen in two observations. First, $\meansl$ is
-reduced when $L=1$ compared to other lifespans for small values of $u$ when other
-lifespans lead to $\meansl \approx 1$. At larger $u$, when $\meansl \to 0$ for other
-lifespans, the $L=1$ case has non-zero $\meansl$.
+error, so it is more difficult for them to discern which strategy is optimal, social
+or asocial. We observed two distinct trends in the evolution of social learning as
+$L$ was varied.  First, when $\pilow$ was sufficiently small ($\pilow=0.1, 0.45$),
+we observed that shorter lifespan selected for social learning for some values of
+$u$.  When $\pilow=0.8$, shorter lifespans decreased $\meansl$ in some cases and
+increased $\meansl$ in other cases due to greater evolutionary drift.  In the first
+case, $\meansl$ was reduced for $L=1$ for small values of $u$, when other $L > 1$
+led to $\meansl \approx 1$. At larger $u$ , the $L=1$ case yields non-zero
+$\meansl$, while for the other $L > 1$, $\meansl \approx 0$. 
 
 
 \begin{figure}
@@ -822,30 +822,32 @@ shift peak time to fixation over $u$.}
     \includegraphics[width=0.75\textwidth]{Figures/stepResultsPlots.pdf}
 \end{figure}
 
+
 \section{Discussion}
 
-\mt{Need to make this section more specific in reviewing the findings.}
-By systematizing four common uncertainty dimensions we developed a model of
-the evolution of social learning that
-predicts how different forms of uncertainty might interact to foster or suppress
-social learning.  The model reproduced classic predictions that social learning can
-yield higher payoffs than individual learning when uncertainty is sufficiently
-limited.  By disambiguating and organizing various operationalizations of
-uncertainty, we developed a more nuanced theoretical understanding of which forms
-of uncertainty interact in which ways to make social learning more or less
-beneficial compared to asocial learning.
-Our model did not make any \emph{a priori} assumptions about whether it was
-more costly for agents to be social or asocial learners, as some studies have
-assumed or imposed~\cite{Rogers1988,Feldman1996,Morgan2012}. 
-Instead, the uncertainty structure determined whether
-or not social learning was beneficial or not, and evolution directed successive
-generations towards the optimal strategy.
-Such detailed theoretical models of uncertainty
-are critical for understanding how humans adapt to an uncertain and
-rapidly changing world, both to mitigate existential
-threats~\cite{Moya2020,Jones2021}, and to capitalize on new opportunities such as
-transitioning to clean energy use and
+\mt{Need to make this section more specific in reviewing the findings.} By
+systematizing four common uncertainty dimensions we developed a model of the
+evolution of social learning that predicts how different forms of uncertainty might
+interact to foster or suppress social learning.  The model reproduced classic
+predictions that social learning can yield higher payoffs than individual learning
+when uncertainty is sufficiently limited.  
+% By disambiguating and organizing various
+% operationalizations of uncertainty, we developed a more nuanced theoretical
+% understanding of which forms of uncertainty interact in which ways to make social
+% learning more or less beneficial compared to asocial learning. 
+Detailed theoretical
+models and predictions of cultural evolution under uncertainty are critical for
+understanding how humans adapt to an uncertain and rapidly changing world, both to
+mitigate existential threats~\cite{Moya2020,Jones2021}, and to capitalize on new
+opportunities such as transitioning to clean energy use and
 production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
+
+% Our model did not make any \emph{a priori} assumptions about whether it was
+% more costly for agents to be social or asocial learners, as some studies have
+% assumed or imposed~\cite{Rogers1988,Feldman1996,Morgan2012}. 
+% Instead, the uncertainty structure determined whether
+% or not social learning was beneficial or not, and evolution directed successive
+% generations towards the optimal strategy.
 
 Our model necessarily made some simplifying assumptions that, while
 empirically justified in many cases, may not always hold.
@@ -859,9 +861,11 @@ in our model was that the number of behaviors was constant, as was the relations
 between their payoffs---one was always optimal, and the rest were equally
 suboptimal. However, this fails to account for evolutionary feedback which creates
 new behavioral affordances as time progresses, e.g.\ via niche 
-construction~\cite{Smaldino2012,Heras-Escribano2020}. Adjusting any of these
-assumptions and running new computational analyses could yield further
-understanding of the evolution of social learning across diverse contexts.
+construction~\cite{Smaldino2012,Heras-Escribano2020} or cumulative cultural
+evolution and dynamic network structure~\cite{Smolla2019,Derex2020}. 
+Adjusting any of these assumptions and running new computational analyses could
+yield further understanding of the evolution of social learning across diverse
+contexts.
 
 As a final note, we believe 
 our modeling approach may have applications to developing social artificial

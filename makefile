@@ -2,7 +2,7 @@
 bibms: ms ms.tex ~/workspace/Writing/library.bib
 	bibtex ms 
 
-figures: nagents_supplement_figures nteachers_supplement_figures tau_supplement_figures mainResultsPlots.tex meanNetPayoffs.tex stepResultsPlots.tex 
+figures: nagents_supplement_figures nteachers_supplement_figures tau_supplement_figures full_mean_payoff_supplement_figure mainResultsPlots.tex meanNetPayoffs.tex stepResultsPlots.tex 
 	pdflatex -output-directory=Figures mainResultsPlots.tex && \
 	pdflatex -output-directory=Figures meanNetPayoffs.tex && \
 	pdflatex -output-directory=Figures stepResultsPlots.tex 
@@ -20,6 +20,9 @@ nteachers_supplement_figures:
 	pdflatex -output-directory=Figures/supplement/nteachers=2 Figures/supplement/nteachers=2/mainResultsPlots.tex && \
 	pdflatex -output-directory=Figures/supplement/nteachers=10 Figures/supplement/nteachers=10/mainResultsPlots.tex  
 	pdflatex -output-directory=Figures/supplement/nteachers=20 Figures/supplement/nteachers=20/mainResultsPlots.tex  
+
+full_mean_payoff_supplement_figure:
+	pdflatex -output-directory=Figures/supplement Figures/supplement/fullMeanPrevNetPayoffs.tex 
 
 ms: bibms figures
 

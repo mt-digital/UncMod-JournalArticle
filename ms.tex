@@ -376,7 +376,7 @@ between potential behaviors, humans tend to adopt directed exploration strategie
 that favor testing behaviors with greater observed payoff variance
 \cite{Wilson2014,Gershman2019}.
 
-Many models of social learning assume little, or nothing, cognitive capabilities
+Many models of social learning assume little to no cognitive capabilities
 of their agents. For example, a common modelling strategy compare the payoffs of
 agents with different pure learning strategies (some will always engage in social
 learning, and others in individual learning) while revealing nothing about the
@@ -782,8 +782,8 @@ observed three outcome measures, with $\meansl$ as the primary measure:
 the average value of $s_i$ over all agents and trials. To support our conclusions
 based on $\meansl$, we also measured $\meanpi / L$, the average net 
 payoffs at simulation end across agents and trials, normalized by lifespan; 
-and $\meanT / L$, or the mean
-number of time steps to fixation normalized by lifespan. We analyze outcomes by
+and $\meanG$, the mean
+number of generations to fixation. We analyze outcomes by
 plotting $\meansl$ on the y-axis and environmental variation is on x-axis since we
 theoretically expect that $\meansl$ will decrease monotonically from 1 to 0 as $u$
 increases. Note that the hypothesis-testing concept of significance is meaningless
@@ -807,7 +807,7 @@ systematically varied uncertainty factor values.
         $\meanpi / L$ & Mean payoffs accumulated in a generation normalized by
         lifespan & $\in [0.0, 1.0]$ \\
 
-        $\meanT / L$ & Mean number of generations to convergence & 20k / 8 max. \\
+        $\meanG$ & Mean number of generations to convergence & 20k / 8 max. \\
         \bottomrule
     \end{tabular}
 \end{table}

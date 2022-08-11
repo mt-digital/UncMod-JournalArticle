@@ -900,10 +900,11 @@ If $B=2$, then at the next within-generation time step, $\ledger = (0.4, 0.0)$. 
 the agent explores behavior 2 is now 0.02. However, if $B=10$ the agent has
 $\ledger = (0.4, 0.0, \ldots, 0.0)$; the probability
 the agent explores one of the nine alternative behaviors increases to 0.14.
-If the agent again tries behavior 1, the probability of exploring alternatives
+If the agent again tries behavior 1 and it pays 0, the probability of exploring alternatives
 with $B=2$ is 0.21, but with $B=10$ the probability of exploring alternatives
-greatly increases to 0.71. This explanation does not apply when $L=1$, where
-individual learning does not occur. %social learning is the only possible form of learning.
+greatly increases to 0.71. \mt{I double checked these calculations, but would appreciate if
+someone triple checked it}. This explanation does not apply when $L=1$, where
+individual learning does not occur. 
 
 Payoff ambiguity had a modest effect when $\pilow = 0.1$ increased to $\pilow =
 0.45$, causing social learning to be favored across more values of $u$ (first two rows of
@@ -1049,28 +1050,26 @@ communities~\cite{McNamara2020}, and to capitalize on new behavioral opportuniti
 transitioning to clean energy use and
 production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
 
-Our modeling choices were judiciously made to address the main question of how
-uncertainty affects the evolution of social learning among populations of intelligent
-autonomous problem solvers.  Our model necessarily made simplifying assumptions that,
-while empirically justified across taxa, may not always hold in more
-specific situations. First, note that we only
-considered success-biased learning, although conformity is sometimes the dominant
-social learning mechanism~\cite{Muthukrishna2016a,Smaldino2018b}.
-Conformity may lead to more drift overall, since success-biased teacher selection, which
-we assumed, maximizes the potential benefit to social learners. We assumed that the
-number of behaviors and their payoffs were constant, but this fails to account for
-evolutionary feedback which creates new behavioral opportunities as time progresses, e.g.\
-via niche construction~\cite{Smaldino2012a,Heras-Escribano2020} or cumulative cultural
-evolution supported by dynamic network structure~\cite{Smolla2019,Derex2020}. 
-Group structure and processes such as homophily
-and outgroup aversion could inhibit the evolution of social learning since 
-successful outgroup teachers
-could be cut off from ingroup learners~\cite{Jackson2012}. Finally, our individual
-learning mechanism, softmax search, is underpowered compared to human individual learning; 
-more powerful individual learning could further support social learning, and
-this might be essential to accurate modeling of human behavior~\cite{Schulz2020a,Wu2022}.
-These considerations reveal new opportunities to further develop a more nuanced 
-theory of social learning by adjusting or extending the present model for other contexts. 
+Our modeling choices were judiciously made to address the main question of how uncertainty
+affects the evolution of social learning in general; however there exist alternative
+empirically-valid choices that could help further develop a more nuanced theory of social
+learning.  Our model necessarily made simplifying assumptions that may not always hold in more
+specific situations, though they are empirically justified to be general across taxa. First,
+note that we only considered success-biased learning, although conformity is sometimes the
+dominant social learning mechanism~\cite{Muthukrishna2016a,Smaldino2018b}.  Conformity may lead
+to more drift overall, since success-biased teacher selection, which we assumed, maximizes the
+potential benefit to social learners. We assumed that the number of behaviors and their payoffs
+were constant, but this fails to account for evolutionary feedback which creates new behavioral
+opportunities as time progresses, e.g.\ via niche
+construction~\cite{Smaldino2012a,Heras-Escribano2020} or cumulative cultural evolution
+supported by dynamic network structure~\cite{Smolla2019,Derex2020}.  Group structure and
+processes such as homophily and in-group bias/out-group aversion could inhibit the evolution of
+social learning since successful outgroup teachers could be cut off from in-group
+learners~\cite{Jackson2012}. We assumed agents choose behaviors via softmax search, but this is
+an underpowered algorithm compared to human individual learning~\cite{Schulz2020a,Wu2022}.
+More powerful individual learning could further support social learning.  These considerations
+reveal new opportunities to further by adjusting or extending the present model for other
+contexts. 
 
 
 \subsection{Conclusion}

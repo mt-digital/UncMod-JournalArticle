@@ -83,13 +83,13 @@
   environmental variability, ambiguous payoffs, decision set size, and effective
   lifespans. We used this framework to study conditions for the evolution of
   social learning in populations with cognitively realistic individual learning
-  capacities.  We used evolutionary agent-based modeling to track how often social
+  capacities.  We used evolutionary agent-based modeling to track how often social, rather than individual,
   learning evolved. Agents performed one of several behaviors to acquire payoffs.
   Individual learning used the softmax algorithm. Social learning occurs between
   generations  through vertical and oblique transmission.  Different types of
   uncertainty had different effects. Temporal environmental variability suppressed
   social learning. Larger decision set sizes promoted social learning even
-  when environmental change was more likely than not. Payoff
+  when the environment changed frequently. Payoff
   ambiguity and lifespan had more complex effects on social learning, dependent on
   other uncertainty parameters.  This shows the importance of clearly
   operationalizing uncertainty in theories of social learning evolution.
@@ -144,22 +144,22 @@ understanding of the contexts in which social learning is adaptive.
 % Finally, while risk and uncertainty are often used interchangeably to refer to
 % non-deterministic outcomes, 
 
-Other (asocial) forms of learning may also be adaptations to uncertainty that could be
-accounted for, but are typically glossed over.  In general, learning is an iterative
+Other (asocial) forms of learning are also likely adaptations to uncertainty that should be
+accounted for, but are typically glossed over in models.  In general, learning is an iterative
 process by which one repeatedly acquires information, forms representations and
 predictions, and tests and refines those representations and predictions to manage
 uncertainty~\cite{jacobs2011bayesian,clark2013whatever}.  Because cultural evolutionary
 models are more often used to explain social learning mechanisms, they tend to use a
-single, weak individual-learning mechanism for comparison. Abstracting away asocial forms
-of learning may lead us to underestimate the extent to which individual learning provides
-quality information for social learning and for the individual to adapt to the challenges
+single, weak individual-learning mechanism for comparison. Such modelling choices may lead us to underestimate the extent to which individual learning provides
+quality information, both for asocially adapting to uncertainty and for social learners to take advantage of.
+%and for the individual to adapt to the challenges
 assumed to be solved by social learning. 
 % underestimate the quality of information
 % available for social learning. 
 
 To address these concerns we developed an evolutionary agent-based model that
-simultaneously operationalizes several different forms of uncertainty and endows agents
-with a relatively powerful learning mechanism. We have chosen to model four kinds of
+simultaneously operationalizes several forms of uncertainty and endows agents
+with a relatively powerful learning mechanism. We model four kinds of
 uncertainty that are common in cultural evolution models and the related empirical
 literature:  (1) temporal environmental variability; (2) selection set size (the number of
 possible behaviors); (3) payoff ambiguity (the difference in the expected rewards for
@@ -173,8 +173,9 @@ the individually and socially learned data.
 In this work, social learners learn from the previous generation, and 
 asocial learners do not. All agents engage in individual-level learning within
 their lifespans whether they are social learners or not.
-We use this integrated model to ask what kinds of uncertainty are likely to
-favor social learning, and to clarify the logic of why this would be the case.  
+We use this integrated model to ask which kinds of uncertainty are likely to
+favor social learning and to clarify the logic underlying the results.
+%of why this would be the case.  
 
 In the remainder of this introduction we describe previous research on the forms of uncertainty and the learning mechanism we include in our model. We then present how our evolutionary agent-based model works. Finally, we explain the logic underlying the result that different forms of uncertainty can either suppress or encourage the evolution of social learning. 
 
@@ -192,10 +193,10 @@ In the remainder of this introduction we describe previous research on the forms
 
 Uncertainty involves a reduced ability to predict what will happen in the future or to assess which actions are likely to yield particular outcomes. Uncertainty can manifest in many ways. We focus on the following four sources of uncertainty for the evolution of social learning: (1) temporal environmental variability, (2) selection set size, (3) payoff ambiguity, and (4) effective lifespan.
 
-\textbf{Temporal environmental variability.} When external or internal shocks
-(e.g., climatic events, migration, technological paradigm shifts) occur,
+\textbf{Temporal environmental variability.} When environments change
+(e.g., climatic events, migration, technological paradigm shifts),
 strategies that were previously adaptive may no longer be optimal. The difficulty
-in predicting either when such shocks will occur or what behaviors will be
+in predicting either when such shocks will occur or which behaviors will be
 adaptive in the resulting environments leads to uncertainty. 
 
 Temporal environmental variability is fundamental to most evolutionary models of

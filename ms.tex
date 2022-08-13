@@ -1025,25 +1025,27 @@ pairs. Only extremal tested values of $L$ shown for clarity.}
 
 \section{Discussion}
 
-By disambiguating and organizing various operationalizations of
-uncertainty, we developed a more nuanced theoretical understanding of which forms of
-uncertainty interact to affect social learning.  We reviewed and distilled the several empirical and
-theoretical models in the literature along four uncertainty dimensions: temporal
-environmental uncertainty, selection set size, ambiguous payoffs, and effective lifespan.
-The model reproduced classic predictions that social learning can yield higher payoffs
-than individual learning when uncertainty is sufficiently limited. Our model also
-demonstrated a new insight into social learning as a scaffold for individual learning,
-enabled by endowing agents with an evolutionarily- and biologically-plausible individual
-learning mechanism, softmax search. Specifically, we found that agents could recover from
-receiving outdated information, so social learning could evolve even though social
-information was outdated more often than not. We found increased payoff ambiguity and
-lifespan led to greater drift, which is essentially evolutionary uncertainty in a
-finite-size population. Detailed theoretical models and
-predictions of cultural evolution under uncertainty are critical for understanding how
-humans adapt to an uncertain and rapidly changing world, both to mitigate existential
-threats~\cite{Moya2020,Jones2021}, especially in the most vulnerable
-communities~\cite{McNamara2020}, and to capitalize on new behavioral opportunities such as
-transitioning to clean energy use and
+By disambiguating and organizing various operationalizations of uncertainty
+into a single computational model, we developed a more nuanced theoretical
+understanding of how different forms of uncertainty interact to affect the
+evolution of social learning.  We reviewed and distilled several empirical
+and theoretical models in the literature along four uncertainty dimensions:
+temporal environmental uncertainty, selection set size, ambiguous payoffs, and
+effective lifespan.  The model reproduced classic predictions that social
+learning can yield higher payoffs than individual learning when uncertainty is
+sufficiently limited. Our model also demonstrated a new insight into social
+learning as a scaffold for individual learning, enabled by endowing agents
+with an evolutionarily- and biologically-plausible individual learning
+mechanism, softmax search. Specifically, we found that agents could recover
+from receiving outdated information, so social learning could evolve even
+though social information was outdated more often than not. We found increased
+payoff ambiguity and lifespan led to greater drift, which is essentially
+evolutionary uncertainty in a finite-size population. Detailed theoretical
+models and predictions of cultural evolution under uncertainty are critical
+for understanding how humans adapt to an uncertain and rapidly changing world,
+both to mitigate existential threats~\cite{Moya2020,Jones2021}, especially in
+the most vulnerable communities~\cite{McNamara2020}, and to capitalize on new
+behavioral opportunities such as transitioning to clean energy use and
 production~\cite{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}.
 
 Our modeling choices were judiciously made to address the main question of how uncertainty
@@ -1094,24 +1096,18 @@ we hope others will, too.
 \appendix
 
 
-\section{Appendix}
+\section{Additional main figure: Full net payoff comparison for all nine uncertainty conditions} 
 
-\mt{TODO: Write supporting material explaining supplemental results}
-
-\subsection{Convergence information}
-
-\begin{table}[h] \caption{Max. iterations = 20000.} \label{tab:convergence} \centering
-  \begin{tabular}{cccc} 
-    \toprule $B$ & \# not at fixation (out of 132k) & \% not fixated \\ 
-    \midrule  2  & 192  & 0.1 \% \\ 
-              4  & 274  & 0.2 \% \\ 
-              10 & 2935 & 2.0 \% \\ 
-    \bottomrule \end{tabular} 
-\end{table}
-
-\newpage
-
-\subsection{Full net payoff comparison for all nine uncertainty conditions} 
+In the main text we showed a $2\times2$ array of plots comparing the observed
+mean net payoffs obtained by agents in our simulations, and in two auxiliary
+sets of simulations that set all agents to either have the social learning
+trait or not, which remained the case for the entire simulation since there
+are no mutations in this model (Figure~\ref{fig:payoffs}). Here we show the full $3\times3$ array of
+all $(\pilow, B)$ combinations shown for the main results. We see that
+populations of all social learners especially underperform initially mixed
+populations that evolve to be social learners 
+(Figure~\ref{fig:fullMeanPrevNetPayoffs}, bottom row). This highlights the
+importance of diversity for behavioral optimization, even if it is transient.
 
 \begin{figure}
   \caption{Comparison of expected payoffs from our computational anaysis (solid
@@ -1128,65 +1124,52 @@ we hope others will, too.
     \includegraphics[width=\textwidth]{Figures/supplement/fullMeanPrevNetPayoffs.pdf}
 \end{figure}
 
-
-
-\subsection{Softmax parameter sensitivity analysis} 
-
-We tested two additional settings of the softmax behavior selection greediness parameter,
-$\beta=1,100$, which reproduced qualitative patterns in the evolution of social learning. In
-the main text we used $\beta=10$.  Softmax greediness is achieved formally by increasing the
-probability mass for selecting behaviors that have paid off more frequently over that agent's
-life history. In other words, greater $\beta$ increases the probabilty that the optimal
-observed behavior is chosen over all the rest. If $\beta$ is too small, agents will fail to
-fully exploit their knowledge about which behavior is optimal because they too frequently
-explore less profitable alternatives.  If $\beta$ is too great the agents could more regularly
-settle on a sub-optimal behavior because it paid off first.  In a fuller evolutionary
-exploration of model parameters it would make sense for $\beta$ to co-evolve with the social
-learner trait.  However, our sensitivity analysis demonstrates that our main conclusions of how
-social learning evolves under uncertainty remain unchanged for different $\beta$ over three
-orders of magnitude.
-
-When $\beta=1$, most general trends are preserved, but in many cases the evolution
-of social learning is suppressed or drift dominates due to 
-due to the overall poor quality of information acquired through softmax search-based
-individual learning. 
-
-When $\beta=100$, there 
-  
-Other smaller details can also be observed between tested $\beta$. 
-First, there is generally more drift when $\beta=1$, 
-which can be seen in certain $(\pilow, B)$ pairs
-(entries in plot matrices in Figure~\ref{fig:softmaxSensitivity}a). 
-For example, when $\pilow = 0.1$ and $B=10$, there are a few more 
-data points with greater drift, i.e., where $\meansl \approx 0.5$. 
-The variation in our results when we set $\beta=100$
-(Figure~\ref{fig:softmaxSensitivity}b), changed from the
-main text where $\beta=10$, are more varied and subtle compared
-to setting $\beta=1$. In some cases, such as $(\pilow=0.1, B=10)$ 
-and $(\pilow=0.45, B=2)$,
-there appears to be more drift across all $L$ around the transition
-point when $\meansl = 1$ goes to 0 as $u$ increases. However it appears
-that there is more drift at the transition for $\beta=10$ for
-$(\pilow=0.45, B=10)$. 
-
-\vspace{-3em} \begin{figure} %\addtocounter{figure}{-1} 
-  \centering
-  \caption{Sensitivity analysis of the main results for the softmax parameter $\beta = 100$ and
-  $\beta=1$. Recall the main results were obtained with $\beta = 10$.}
-  \label{fig:softmaxSensitivity} \vspace{2em}
-  \begin{subfigure}{\textwidth}
-	\caption{$\beta = 1$}
-	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
-  \end{subfigure}
-\end{figure}
 \newpage
-\begin{figure}
-  \ContinuedFloat
-  \begin{subfigure}{\textwidth}
-	\caption{$\beta = 100$}
-	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}
-  \end{subfigure}
-\end{figure}
+
+
+\section{Supplemental supporting information}
+
+In this Supplement we support our model conclusions with auxiliary data
+showing, first, sufficient model convergence and, second, that our model
+outcomes are stable over various settings of the three free auxiliary model
+parameters: the number of agents ($N$), the number of
+prospective teachers pooled by social learner children for social learning
+($N_T$), and the softmax behavior selection greediness parameter ($\beta$).
+The main source of minor deviations from the main results was greater drift
+due to (1) finite population size effects, with greater drift for smaller $N$;
+(2) lower quality of socially-learned information agents can access with fewer
+prospective teachers; and (3) lower quality social information when $\beta$
+was small since teacher agents would have explored non-optimal behaviors more
+frequently, so their observed payoffs would have less probability weight in
+the optimal payoffs on average. We give details below of model convergence, and
+outcomes as we varied the three auxiliary parameters $N$, $N_T$, and $\beta$.
+
+
+\subsection{Convergence information}
+
+Model populations reached fixation between few to 140 generations on
+average (Figure~\ref{fig:steps}).
+Note 140 generations is equivalent to 2800 time steps. We set the maximum 
+number of iterations globally to $20~000$, which is 1000 generations when
+$L=20$. Although we can be relatively sure that this maximum number of 
+generations is rarely reached based on our main text analysis of $\meanG$,
+we additionally tabulated the number of simulations that did not converge to
+fixation
+within this step limit. We found that 0.1\% of simulations did not converge
+when $B=2$, 0.2\% did not converge when $B=4$, and 2.0\% did not converge
+when $B=10$ (Table~\ref{tab:convergence}). When a trial did not converge we
+still included that trial's $\meansl$ value in the average across trials,
+but for these $0 < \meansl < 1$.
+
+\begin{table}[h] \caption{Maximum number of iterations = 20000.} \label{tab:convergence} \centering
+  \begin{tabular}{cccc} 
+    \toprule $B$ & \# not at fixation (out of 132k) & \% not fixated \\ 
+    \midrule  2  & 192  & 0.1 \% \\ 
+              4  & 274  & 0.2 \% \\ 
+              10 & 2935 & 2.0 \% \\ 
+    \bottomrule \end{tabular} 
+\end{table}
+
 
 
 \newpage
@@ -1264,6 +1247,66 @@ but mostly just reproduces results for main text setting $N_T = 5$.
 	\includegraphics[width=\textwidth]{Figures/supplement/nteachers=20/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
+
+
+\subsection{Softmax parameter sensitivity analysis} 
+
+We tested two additional settings of the softmax behavior selection greediness parameter,
+$\beta=1,100$, which reproduced qualitative patterns in the evolution of social learning. In
+the main text we used $\beta=10$.  Softmax greediness is achieved formally by increasing the
+probability mass for selecting behaviors that have paid off more frequently over that agent's
+life history. In other words, greater $\beta$ increases the probabilty that the optimal
+observed behavior is chosen over all the rest. If $\beta$ is too small, agents will fail to
+fully exploit their knowledge about which behavior is optimal because they too frequently
+explore less profitable alternatives.  If $\beta$ is too great the agents could more regularly
+settle on a sub-optimal behavior because it paid off first.  In a fuller evolutionary
+exploration of model parameters it would make sense for $\beta$ to co-evolve with the social
+learner trait.  However, our sensitivity analysis demonstrates that our main conclusions of how
+social learning evolves under uncertainty remain unchanged for different $\beta$ over three
+orders of magnitude.
+
+When $\beta=1$, most general trends are preserved, but in many cases the evolution
+of social learning is suppressed or drift dominates due to 
+due to the overall poor quality of information acquired through softmax search-based
+individual learning. 
+
+When $\beta=100$, there 
+  
+Other smaller details can also be observed between tested $\beta$. 
+First, there is generally more drift when $\beta=1$, 
+which can be seen in certain $(\pilow, B)$ pairs
+(entries in plot matrices in Figure~\ref{fig:softmaxSensitivity}a). 
+For example, when $\pilow = 0.1$ and $B=10$, there are a few more 
+data points with greater drift, i.e., where $\meansl \approx 0.5$. 
+The variation in our results when we set $\beta=100$
+(Figure~\ref{fig:softmaxSensitivity}b), changed from the
+main text where $\beta=10$, are more varied and subtle compared
+to setting $\beta=1$. In some cases, such as $(\pilow=0.1, B=10)$ 
+and $(\pilow=0.45, B=2)$,
+there appears to be more drift across all $L$ around the transition
+point when $\meansl = 1$ goes to 0 as $u$ increases. However it appears
+that there is more drift at the transition for $\beta=10$ for
+$(\pilow=0.45, B=10)$. 
+
+\vspace{-3em} \begin{figure} %\addtocounter{figure}{-1} 
+  \centering
+  \caption{Sensitivity analysis of the main results for the softmax parameter $\beta = 100$ and
+  $\beta=1$. Recall the main results were obtained with $\beta = 10$.}
+  \label{fig:softmaxSensitivity} \vspace{2em}
+  \begin{subfigure}{\textwidth}
+	\caption{$\beta = 1$}
+	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+\newpage
+\begin{figure}
+  \ContinuedFloat
+  \begin{subfigure}{\textwidth}
+	\caption{$\beta = 100$}
+	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}
+  \end{subfigure}
+\end{figure}
+
 
 
 \end{document}

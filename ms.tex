@@ -1134,7 +1134,22 @@ we hope others will, too.
 
 \subsection{Softmax parameter sensitivity analysis} 
 
-\mt{These here used $N=100$; need to remake with $N=1000$}
+\begin{itemize}
+  \item 
+    We tested two additional settings of the softmax behavior selection
+    greediness parameter, $\beta=0.01,1.0$, which reproduced qualitative patterns in
+    the evolution of social learning. 
+  \item
+    We see that certain details are changed within this broad agreement between
+    results obtained with different $\beta$. 
+    \begin{enumerate}
+      \item 
+        More drift when $\beta=1$, which can be seen in certain $(\pilow, B)$ pairs
+        (entries in plot matrices in Figure~\ref{fig:softmaxSensitivity}b). 
+        For example, when $\pilow = 0.1$ and $B=10$, there are a few more 
+        data points with greater drift, i.e., where $\meansl \approx 0.5$. 
+    \end{enumerate}
+\end{itemize}
 
 \vspace{-3em} \begin{figure} %\addtocounter{figure}{-1} 
   \centering

@@ -467,11 +467,9 @@ have observed for each behavior. The softmax function is a biologically plausibl
 generalization of behavior selection under uncertainty that enables agents to often
 greedily exploit the most lucrative behavior (based on their observations) but also
 to sometimes explore alternatives~\cite{Schulz2019,Collins2013,Daw2006,Yechiam2005}.
-Such individual-level intelligence is a critical adaptation that has apparently
-co-evolved with the capacity for social learning, and has a marked influence on the
-cultural evolution of social learning as we will demonstrate in our Analysis.
-We will see that individual-level intelligence allows agents to recover from
-the receipt of outdated information due to temporal environmental variability.
+Such individual-level intelligence is a critical adaptation that has 
+co-evolved with the capacity for social learning, and we will show this has a marked influence 
+on the cultural evolution of social learning.
 
 In \emph{evolutionary} agent-based models like ours, agent life cycles are
 programmed to cause agents to reproduce and die off, where reproducers pass on
@@ -482,19 +480,15 @@ payoffs preferentially reproduce. This is a model of cultural evolution, so
 socially at all; ``death'', in this interpretation, means
 loss of the potential to socially influence others. 
 This sets up an inter-generational structure
-that we also use as a scaffold for social learning: we assume social learning occurs
-\emph{obliquely}, meaning learning happens when a new
-generation of agents each select a teacher from the previous generation, possibly
-including their parents.  
-Evolution, then, acts as an optimization routine to identify which heritable trait
-values are most rewarded under in different environmental uncertainty contexts,
-defined by different uncertainty parameter settings
-(Table~\ref{tab:uncertaintyParameters}).  
+that we also use as a scaffold for \emph{oblique} social learning, meaning children
+with the social learning trait learn about payoffs from a member of the
+previous generation. Evolution acts as an optimization routine to identify
+whether individuals with the social learning trait will outperform those without.  
 
-Agents have one heritable trait in this model, whether or not
-an agent, $i$, learns socially, denoted $s_i$. $s_i$ is binary: it is 1
-if the agent is a social learner, and 0 otherwise. In our analysis, we 
-aggregate $s_i$ over all agents and simulation trials to understand the affects of
+Agents inherit one trait in this model, whether or not
+an agent, $i$, learns socially. If $i$ has the trait we write $s_i=1$
+ and 0 otherwise. In our analysis, we 
+average $s_i$ over all agents and simulation trials to understand the affects of
 different uncertainty parameter settings. 
 Our computational analysis amounts to observing patterns in
 the aggregated $s_i$, supported by measuring the number of generations 
@@ -819,7 +813,7 @@ systematically varied uncertainty factor values.
 \subsubsection{Sensitivity analyses}
 
 We performed sensitivity analyses to ensure that our main analysis is reasonably
-robust to a range of auxiliary parameters. Specifically,
+robust to a range of auxiliary parameters. First,
 we varied the population size, $N$, to explore whether smaller $N$ would 
 show more drift due to finite population size effects, but also generally support
 our main conclusions. Next, we varied the
@@ -837,6 +831,7 @@ be more difficult to detect with fewer prosopective teachers.
 
 
 \subsubsection{Implementation}
+
 Our model was implemented in the Julia programming language~\cite{Bezanson2017} 
 using the Agents.jl agent-based modeling library~\cite{Datseris2022} and run
 on the Sherlock supercomputing cluster at Stanford University. Model code and
@@ -888,11 +883,11 @@ Figure~\ref{fig:mainResults}). We analyzed several such patterns of social
 learning evolution and suppression across different uncertainty settings.
 
 Increased selection set size $B$ led nearly uniformly to more prevalent social
-learning, with all other uncertainty parameters held constant. This is first 
-because it is more difficuilt to find the optimal behavior with a larger $B$.
+learning, with all other uncertainty parameters held constant. This is because,
+first, it is more difficuilt to find the optimal behavior with a larger $B$.
 % more options present a more difficult problem for trial-and-error learning within
 % a lifespan. 
-This effect is amplified because agents in a world with larger $B$ are more
+Second, this effect is amplified because agents in a world with larger $B$ are more
 cognitively flexible compared to those in a smaller $B$ world. 
 When $B$ is larger, agents are relatively more likely to choose an alternative to
 their current known optimum. %is easier to correct for larger $B$ relative to smaller $B$.  
@@ -1105,20 +1100,20 @@ we hope others will, too.
 
 \subsection{Convergence information}
 
-\mt{These here used $N=100$; need to remake with $N=1000$}
-
 \begin{table}[h] \caption{Max. iterations = 20000.} \label{tab:convergence} \centering
-  \begin{tabular}{cccc} \toprule $B$ & \# not at fixation & \# total series & Pct. not fixated
-    \\ \midrule  2  & 0  & 132000 & 0.0 \% \\ 4  & 0  & 132000 & 0.0 \% \\ 10 & 44 & 132000 &
-    0.00033  \% \\ \bottomrule \end{tabular} \end{table}
-
+  \begin{tabular}{cccc} 
+    \toprule $B$ & \# not at fixation (out of 132k) & \% not fixated \\ 
+    \midrule  2  & 192  & 0.1 \% \\ 
+              4  & 274  & 0.2 \% \\ 
+              10 & 2935 & 2.0 \% \\ 
+    \bottomrule \end{tabular} 
+\end{table}
 
 \newpage
 
 \subsection{Full net payoff comparison for all nine uncertainty conditions} 
 
 \begin{figure}
-  % \addtocounter{figure}{-1}
   \caption{Comparison of expected payoffs from our computational anaysis (solid
     lines with circles), expected individual payoffs with no social learning
     (dashes without markers), and expected payoffs for all-social learner 
@@ -1137,7 +1132,42 @@ we hope others will, too.
 
 \subsection{Softmax parameter sensitivity analysis} 
 
-\mt{These here used $N=100$; need to remake with $N=1000$}
+We tested two additional settings of the softmax behavior selection greediness parameter,
+$\beta=1,100$, which reproduced qualitative patterns in the evolution of social learning. In
+the main text we used $\beta=10$.  Softmax greediness is achieved formally by increasing the
+probability mass for selecting behaviors that have paid off more frequently over that agent's
+life history. In other words, greater $\beta$ increases the probabilty that the optimal
+observed behavior is chosen over all the rest. If $\beta$ is too small, agents will fail to
+fully exploit their knowledge about which behavior is optimal because they too frequently
+explore less profitable alternatives.  If $\beta$ is too great the agents could more regularly
+settle on a sub-optimal behavior because it paid off first.  In a fuller evolutionary
+exploration of model parameters it would make sense for $\beta$ to co-evolve with the social
+learner trait.  However, our sensitivity analysis demonstrates that our main conclusions of how
+social learning evolves under uncertainty remain unchanged for different $\beta$ over three
+orders of magnitude.
+
+When $\beta=1$, most general trends are preserved, but in many cases the evolution
+of social learning is suppressed or drift dominates due to 
+due to the overall poor quality of information acquired through softmax search-based
+individual learning. 
+
+When $\beta=100$, there 
+  
+Other smaller details can also be observed between tested $\beta$. 
+First, there is generally more drift when $\beta=1$, 
+which can be seen in certain $(\pilow, B)$ pairs
+(entries in plot matrices in Figure~\ref{fig:softmaxSensitivity}a). 
+For example, when $\pilow = 0.1$ and $B=10$, there are a few more 
+data points with greater drift, i.e., where $\meansl \approx 0.5$. 
+The variation in our results when we set $\beta=100$
+(Figure~\ref{fig:softmaxSensitivity}b), changed from the
+main text where $\beta=10$, are more varied and subtle compared
+to setting $\beta=1$. In some cases, such as $(\pilow=0.1, B=10)$ 
+and $(\pilow=0.45, B=2)$,
+there appears to be more drift across all $L$ around the transition
+point when $\meansl = 1$ goes to 0 as $u$ increases. However it appears
+that there is more drift at the transition for $\beta=10$ for
+$(\pilow=0.45, B=10)$. 
 
 \vspace{-3em} \begin{figure} %\addtocounter{figure}{-1} 
   \centering
@@ -1145,25 +1175,30 @@ we hope others will, too.
   $\beta=1$. Recall the main results were obtained with $\beta = 10$.}
   \label{fig:softmaxSensitivity} \vspace{2em}
   \begin{subfigure}{\textwidth}
-	\caption{$\beta = 100$}
-	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}
+	\caption{$\beta = 1$}
+	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
 \newpage
 \begin{figure}
   \ContinuedFloat
   \begin{subfigure}{\textwidth}
-	\caption{$\beta = 1$}
-	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
+	\caption{$\beta = 100$}
+	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
 
 
 \newpage
+
 \subsection{Population size sensitivty analysis}
+
+Drift is greater for smaller populations sizes, especially when
+$\pilow=0.8$, but patterns generally remain.
 
 \begin{figure}
   \centering
+  \addtocounter{figure}{-1}
   \caption{
 	Sensitivity analysis of the main results for different population
 	sizes, $N=50,200,1000$. Recall $N=100$ was used to generate main 
@@ -1196,11 +1231,14 @@ we hope others will, too.
 \newpage
 \subsection{Number of prospective teachers sensitivty analysis}
 
-\mt{These here used $N=100$; need to remake with $N=1000$}
+Slightly more drift when $N_T = 2$, slightly less drift when $N_T = 20$, 
+but mostly just reproduces results for main text setting $N_T = 5$.
+
 
 \vspace{-3em}
 \begin{figure}
   \centering
+  \addtocounter{figure}{-1}
   \caption{Number of prospective teachers sensitivity analysis for $N_T=2,10,20$. Recall
   $N_T=5$ was used to generate main text results.}
   \label{fig:softmaxSensitivity}

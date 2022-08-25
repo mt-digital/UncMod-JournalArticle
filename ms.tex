@@ -393,17 +393,22 @@ search}~\cite{Gershman2019}, described in more detail below.
 In our model we allow just one trait to evolve; social learning, while all other parameters are exogenous. Our primary outcome measure is the overall frequency of the social learning trait at the end of each simulation, and we study how this prevalence responds to the four varieties of uncertainty considered in this paper. 
 
 A population of $N$ individuals each must decide which of $B$ behaviors to perform at
-each time step within a generation consisting of $L$ time steps. The behavior set is a multi-armed bandit with $B$ arms, that is, agents can pick one of $B$ behaviors with random-valued payoffs~\cite{SuttonBartoBook,McElreath2005,Steyvers2009,Rendell2010,Schulz2019}. \ps{To clarify terminology, the entire set of behaviors is one multi-armed bandit with $B$ arms -- each behavior is not itself a bandit.} 
-%Each behavior yields a payoff of either 1 or 0 with some probability that is held fixed within a generation but can change between generations. This probability is therefore equal to the behavior's expected payoff within a generation. 
+each time step within a generation consisting of $L$ time steps. The behavior set is a multi-armed bandit with $B$ arms, that is, agents can pick one of $B$ behaviors with random-valued payoffs~\cite{SuttonBartoBook,McElreath2005,Steyvers2009,Rendell2010,Schulz2019}.  
 In each generation, exactly one behavior is more likely to pay off than all the rest and is therefore optimal. Agents
 optimize their net payoffs over their lifespan by quickly figuring out which
 behavior is optimal and performing it as often as possible within their lifespan.
 %The optimal behavior is static within agent lifespans, but varies in general between generations, representing environmental variability.
 At the end of each
-generation, agents are selected with replacement to reproduce a new generation of $N$ agents, with the probability of reproduction biased by net payoffs. Agents who inherit the social learning trait learn about payoffs from the previous generation, while asocial learners begin life with no \emph{a priori}
-knowledge of the world. \cm{or would you consider having flat priors over all behaviors knowledge?}  
+generation, agents are selected with replacement to reproduce a new generation of $N$ agents,
+with the probability of reproduction biased by net payoffs. Agents who inherit the social
+learning trait learn about payoffs from the previous generation, while asocial learners begin
+life only knowing the number of behaviors the environment affords, but no knowledge
+of behavioral payoffs.
+\cm{or would you consider having flat priors over all behaviors knowledge?} 
+\mt{I changed this last sentence to express that they have flat priors, in somewhat different
+terms.}
 %The specifics of the model construction and dynamics are described in detail below.
-\ps{I cut a bunch of stuff that came right here as being redundant or unnecessary.}
+% \ps{I cut a bunch of stuff that came right here as being redundant or unnecessary.}
 
 % We operationalize four separable varieties of uncertainty that affect the
 % ability of agents to find and choose the optimal behavior: 
@@ -696,10 +701,16 @@ generation, including possibly their parent (i.e., both vertical and oblique lea
 A child chooses its teacher by first randomly selecting $N_T$ prospective
 teachers from the population, then selecting the one with
 highest net payoffs $\pi_i$ as their teacher, with ties broken randomly \cm{this seems to contradict info under 2.2.2 Social learning section where there seems to be a probabilistic element weighted by relative payoff of teachers. I think it doesn't have to be described in both places.}. By first subsetting $N_T$ prospective teachers we represent the fact that access to the entire population is not generally guaranteed, though this type of algorithm yields qualitatively similar results to ones that do not first produce subsamples \cite{smaldino2019open}. 
-Social learners adopt their chosen teacher's expected payoffs observations $\ledger$, \ps{I feel like there should be some indication that the ledger is a vector rather than a scalar. Maybe put it in bold or capitalize the $\Pi$? Using the overbar makes it look like a single average.}
+Social learners adopt their chosen teacher's expected payoffs observations $\ledger$, \ps{I feel
+like there should be some indication that the ledger is a vector rather than a scalar. Maybe put
+it in bold or capitalize the $\Pi$? Using the overbar makes it look like a single average.}
+\mt{The subscript $b$ makes it clear it's a vector over behaviors. Maybe we lose the bar,
+or I may change the notation to at least approximately follow Q-learning notation.}
 and set all $c_{ib} = 1$ so expected payoffs remain within $[0, 1]$. Setting $c_{ib}$ to 1 reflects the fact that the social learning is treating the teacher's information as a single observation with the associated uncertainty.   Asocial
 learners ($s_i = 0$) are initialized with $c_{ib} = 0$ and $\ledger = 0$ 
-(Figure~\ref{fig:schematic}C). \ps{How to account for division by zero?} The
+(Figure~\ref{fig:schematic}C). \ps{How to account for division by zero?} \mt{Count increases
+before average are taken, which I think is clear enough in paragraph \textbf{Within-generation
+dynamics}.} The
 newly initialized population then repeats the within-generation dynamics. 
 
 After reproduction and die-off, the optimal behavior changes with probability
@@ -710,7 +721,7 @@ current optimal behavior excluded from selection.
 population reaches evolutionary fixation with repsect to social learning, where
 $\sum_i s_i = 1$ or $\sum_i s_i = 0$, or until 20k iterations have run. 
 It is rare for simulations not to reach fixation. We report how frequently
-this happens in Table~\ref{tab:convergence}. \ps{Supplementary figures and table should be prefixed with an ``S."}
+this happens in Table~\ref{tab:convergence}. 
 
 \clearpage
 

@@ -5,8 +5,8 @@
 
 \usepackage{geometry}
 \geometry{
-paperwidth=8in,
-paperheight=7.35in,
+paperwidth=12in,
+paperheight=12in,
 margin=0.25in
 }
 
@@ -27,10 +27,22 @@ margin=0.25in
 \newcommand{\bandit}{\text{Bandit}_b(0, 1)}
 
 \begin{document}
+\begin{tikzpicture}
+      \draw[->,thick] (-.1,0)--(1.15,0) node[above]
+        {\huge $B$};
+        % {Number of behaviors $B$};
+      \draw[->,thick] (0,.1)--(0,-1.15) node[below]
+        {\huge $\pilow$};
+        % {Low payoff frequency $\pilow$};
+	  \end{tikzpicture}~\\[-2em]
 
     \begin{minipage}{3.75in}
       \centering
       {\hspace{5.25em}\huge $B = 2$}
+    \end{minipage}%
+    \begin{minipage}{3.75in}
+      \centering
+      {\hspace{1.0em}\huge $B = 4$}
     \end{minipage}%
     \begin{minipage}{3.75in}
       \centering
@@ -47,7 +59,11 @@ margin=0.25in
     \end{rotate}%
     \hspace{2em}
       \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.1_nbehaviors=2.pdf}
-    \end{minipage}\noindent\begin{minipage}{3.75in}%
+    \end{minipage}\noindent\hspace{1.25em}
+	\begin{minipage}{3.75in}%
+      \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.1_nbehaviors=4.pdf}
+    \end{minipage}\noindent
+	\begin{minipage}{3.75in}%
       \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.1_nbehaviors=10.pdf}
     \end{minipage}~\\[0.5em]
 
@@ -61,19 +77,52 @@ margin=0.25in
     \end{rotate}%
     \hspace{2em}
       \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.45_nbehaviors=2.pdf}
+	\end{minipage}\noindent\hspace{1.25em}
+	\begin{minipage}{3.75in}%
+      \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.45_nbehaviors=4.pdf}
+    \end{minipage}\noindent
+	\begin{minipage}{3.75in}%
+      \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.45_nbehaviors=10.pdf}
+    \end{minipage}~\\[0.5em]
+
+    \begin{minipage}{3.75in}
+    \begin{rotate}{90}
+      {\parbox{2.5in}{
+          \centering
+          \vspace{-2.5em} {\huge$ \pilow = 0.8$} \\
+          {\begin{rotate}{-90}{\huge $\frac{\meanpi}{L}$}\hspace{3em}\end{rotate}}
+      }}
+    \end{rotate}%
+    \hspace{2em}
+      \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.8_nbehaviors=2.pdf}
         \\[-2.75em]
         \begin{center}
           {\hspace{3.25em} \huge $\quad u$}
       \end{center}
-        \end{minipage}\noindent\begin{minipage}{3.75in}%
-      \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.45_nbehaviors=10.pdf}
-      \\[-2.75em]
-      \begin{center}
+	  \end{minipage}\noindent\hspace{1.25em}
+		\begin{minipage}{3.75in}%
+		  \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.8_nbehaviors=4.pdf}
+		  \\[-2.75em]
+	  \begin{center}
         {\huge $\quad u$}
       \end{center}
-    \end{minipage} \\[1em]
+    \end{minipage}
+	\begin{minipage}{3.75in}%
+		  \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.8_nbehaviors=10.pdf}
+		  \\[-2.75em]
+	  \begin{center}
+        {\huge $\quad u$}
+      \end{center}
+    \end{minipage} \\[2.5em]
 
     \begin{center}
-    \includegraphics[width=6in]{Figures/payoffs_legend.pdf}
-  \end{center}
+      \includegraphics[width=1.25in]{Figures/legendElements/solid.pdf}
+      {\Huge Simulations} \quad \quad 
+      \includegraphics[width=1.25in]{Figures/legendElements/ldash.pdf}
+      {\Huge$\meanasoc$} \quad \quad 
+      \includegraphics[width=1.25in]{Figures/legendElements/dot.pdf}
+      {\Huge$\meansoc$} \quad \quad
+      \includegraphics[width=1.25in]{Figures/legendElements/ldashdot.pdf}
+      {\Huge$\meanasoc = \meansoc$}
+    \end{center}
 \end{document}

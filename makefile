@@ -13,16 +13,16 @@ tau_supplement_figures:
 
 nagents_supplement_figures:
 	pdflatex -output-directory=Figures/supplement/nagents=50 Figures/supplement/nagents=50/mainResultsPlots.tex && \
+	pdflatex -output-directory=Figures/supplement/nagents=100 Figures/supplement/nagents=100/mainResultsPlots.tex  
 	pdflatex -output-directory=Figures/supplement/nagents=200 Figures/supplement/nagents=200/mainResultsPlots.tex  
-	pdflatex -output-directory=Figures/supplement/nagents=1000 Figures/supplement/nagents=1000/mainResultsPlots.tex  
 
 nteachers_supplement_figures:
 	pdflatex -output-directory=Figures/supplement/nteachers=2 Figures/supplement/nteachers=2/mainResultsPlots.tex && \
 	pdflatex -output-directory=Figures/supplement/nteachers=10 Figures/supplement/nteachers=10/mainResultsPlots.tex  
 	pdflatex -output-directory=Figures/supplement/nteachers=20 Figures/supplement/nteachers=20/mainResultsPlots.tex  
 
-full_mean_payoff_supplement_figure:
-	pdflatex -output-directory=Figures/supplement Figures/supplement/fullMeanPrevNetPayoffs.tex 
+/* full_mean_payoff_supplement_figure: */
+/* 	pdflatex -output-directory=Figures/supplement Figures/supplement/fullMeanPrevNetPayoffs.tex */ 
 
 ms: bibms figures
 

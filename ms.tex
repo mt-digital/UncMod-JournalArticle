@@ -80,14 +80,12 @@
 \newcommand{\bandit}{\text{Bandit}_b(0, 1)}
 
 \begin{abstract} 
-  Social learning is %essential to human survival---it 
-  is a critical
+  Social learning is a critical
   adaptation for dealing with uncertainty. However, uncertainty takes many forms.
   We identified four distinct and theoretically important types of uncertainty: temporal
   environmental variability, ambiguous payoffs, decision set size, and effective
   lifespans. We embed this framework in an evolutionary agent-based model to study conditions for the evolution of  social learning in populations with cognitively realistic individual learning
-  capacities. % We used evolutionary agent-based modeling to track the evolution of social learning versus purely individual learning.
-  %how often social, rather than individual,   learning evolved. 
+  capacities.  
   Agents could perform one of several behaviors, modeled as multi-armed bandit, to acquire payoffs.
   Individual learning used the softmax algorithm.  Social learning involved vertical and oblique transmission between generations, which served as a constraint on subsequent individual learning.  We found that different types of
   uncertainty had different effects. Temporal environmental variability suppressed
@@ -115,8 +113,8 @@
 % Our work advances social learning evolution theory in a way that could help 
 % guide human, non-human, and artificial intelligence towards optimal responses 
 % to existential threats and new opportunities.
-\footnote{This document contains
-\total{citnum} references.}  
+% \footnote{This document contains
+% \total{citnum} references.}  
 \end{abstract}
 
 
@@ -919,7 +917,7 @@ The effect of drift under short effective lifespans and high payoff ambiguity is
   populations.}
   \label{fig:mainResults}
   \centering
-    \includegraphics[width=\textwidth]{{Figures/supplement/nagents=1000/mainResultsPlots.pdf}}
+    \includegraphics[width=\textwidth]{Figures/mainResultsPlots.pdf}
 \end{figure}
 
 \subsection{The relative benefit of social learning and the presence of evolutionary drift}
@@ -958,18 +956,6 @@ payoffs (Figure~\ref{fig:payoffs}).
 %     \includegraphics[width=0.85\textwidth]{Figures/meanNetPayoffs.pdf}
 % \end{figure}
 
-\begin{figure}
-  \caption{Expected payoff rates for homogeneous populations of social or asocial learners. Dashed lines with no markers are expected payoff rates for a population of individual learners. Dashed lines with diamond markers are expected payoff rates to a population of social learners. Solid lines with circle markers are the actual average payoff rates for agents in our evolutionary simulations.  When $\pilow = 0.8$, all-social learner populations underperform
-    since social learners are not subject to an initial evolutionary bottleneck
-    due to the presence of asocial learners, and behavioral misinformation
-    is allowed to circulate more freely than in the base case tested by 
-    our model with an initially even distribution of social and asocial learners.
-    \mt{Correct or nah?}
-}
-  \label{fig:payoffs}
-  \centering
-    \includegraphics[width=\textwidth]{Figures/supplement/fullMeanPrevNetPayoffs.pdf}
-\end{figure}
 
 Figure~\ref{fig:steps} shows the average time to fixation, $\meanG$, for all our our uncertainty parameters. We confirmed that drift increased when $\meansl$ was furthest from either 0 or 1 (that is, when fixation to either extreme was possible), 
 and when the payoff ambiguity $\pilow$ was increased (Figure~\ref{fig:steps}). 
@@ -980,18 +966,6 @@ In some cases, especially when $\pilow=0.8$,
 there is no distinct peak in $\meanG$ across $B$ and $L$ settings, 
 indicating little difference in task difficulty across a range of uncertainty
 parameter settings (Figure~\ref{fig:steps}, bottom row).
-
-
-\begin{figure}
-  \caption{Average number of generations ($\meanG$, y-axes) to fixation . 
-    $\meanG$ increases and peaks around values of $u$ (x-axes) where
-  $\meansoc \approx \meanasoc$. Note the y-axis ticks vary between plots,
-indicating different overall time to fixation for different $(\pilow, B)$
-pairs. Only extremal tested values of $L$ shown for clarity.} 
-  \label{fig:steps}
-\centering
-    \includegraphics[width=\textwidth]{Figures/stepResultsPlots.pdf}
-\end{figure}
 
 
 \section{Discussion}
@@ -1104,6 +1078,35 @@ frequently, so their observed payoffs would have less probability weight in
 the optimal payoffs on average. We give details below of model convergence, and
 outcomes as we varied the three auxiliary parameters $N$, $N_T$, and $\beta$.
 
+\section{Expected payoffs}
+\begin{figure}
+  \caption{Expected payoff rates for homogeneous populations of social or asocial learners. Dashed lines with no markers are expected payoff rates for a population of individual learners. Dashed lines with diamond markers are expected payoff rates to a population of social learners. Solid lines with circle markers are the actual average payoff rates for agents in our evolutionary simulations.  When $\pilow = 0.8$, all-social learner populations underperform
+    since social learners are not subject to an initial evolutionary bottleneck
+    due to the presence of asocial learners, and behavioral misinformation
+    is allowed to circulate more freely than in the base case tested by 
+    our model with an initially even distribution of social and asocial learners.
+    \mt{Correct or nah?}
+}
+  \label{fig:payoffs}
+  \centering
+    \includegraphics[width=\textwidth]{Figures/meanNetPayoffs.pdf}
+\end{figure}
+
+\clearpage
+
+\section{Drift measured by expected generations to fixation}
+\begin{figure}
+  \caption{Average number of generations ($\meanG$, y-axes) to fixation . 
+    $\meanG$ increases and peaks around values of $u$ (x-axes) where
+  $\meansoc \approx \meanasoc$. Note the y-axis ticks vary between plots,
+indicating different overall time to fixation for different $(\pilow, B)$
+pairs. Only extremal tested values of $L$ shown for clarity.} 
+  \label{fig:steps}
+\centering
+    \includegraphics[width=\textwidth]{Figures/stepResultsPlots.pdf}
+\end{figure}
+
+\clearpage
 
 \section{Convergence information}
 
@@ -1171,7 +1174,7 @@ with $u$ and $B$ settings.
   \ContinuedFloat
 	\begin{subfigure}{\textwidth}
 	  \caption{$N=100$}
-	  \includegraphics[width=\textwidth]{Figures/mainResultsPlots.pdf}
+	  \includegraphics[width=\textwidth]{Figures/supplement/nagents=100/mainResultsPlots.pdf}
 	\end{subfigure}
 \end{figure}
 	

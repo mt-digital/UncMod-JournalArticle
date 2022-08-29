@@ -755,7 +755,7 @@ increases. %Note that the hypothesis-testing concept of significance is meaningl
         $\meanpi / L$ & Mean payoffs accumulated across agents, normalized by
         lifespan & $\in [0.0, 1.0]$ \\
 
-        $\meanG$ & Mean number of generations to convergence & 100k / 8 max. \\
+        $\meanG$ & Mean number of generations to convergence & max 100k / 8 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -767,7 +767,7 @@ We performed sensitivity analyses to ensure that our main analysis is reasonably
 robust to a range of auxiliary parameters. \ps{Say these are presented in the supplementary material?} First, we varied the population size, $N$, to explore whether smaller $N$ would show more drift due to finite population size effects. %, but  still generally support our main conclusions. 
 Next, we varied the number of prospective teachers, $N_T \in \{2, 10, 20\}$, to supplement the main results that used $N_T = 5$. The number of prospective
 teachers should not change whether social learning is optimal, but it may induce more drift since the benefit of social learning may
-be more difficult to detect with fewer prosopective teachers. Finally, we varied the
+be more difficult to detect with fewer prospective teachers. Finally, we varied the
 softmax greediness parameter $\beta \in \{1, 100\}$ to supplement the main results
 that used $\beta = 10$. We do not
 expect agents with different $\beta$ to perform equally well 

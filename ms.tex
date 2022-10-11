@@ -669,23 +669,31 @@ agents from our main simulations who evolved to be social learners
 outperform agents in the homogenous social learner populations. This is most
 pronounced when $L=1$, across all other uncertainty parameters, and even more
 pronounced when $\pilow=0.45$ and $B=10$ (Figure~\ref{fig:payoffs}, middle right).
-In these cases, the presence of individual learners before social learning fixation
+In these cases, the presence of asocial learners before social learning fixates
 enabled social learners in our simulations to outperform all-social learner populations.
-Next, we observed cases where long-lived populations ($L=8$) in simple environments
+Frequency dependence of social learning payoffs even pushed social learning to evolve even
+when the expected homogenous social learning payoff was less than the expected homogenous
+asocial learning payoff (Figure~\ref{fig:payoffs}, middle center $L=1$).
+We also observed cases where long-lived populations ($L=4$ and $L=8$) in simple environments
 ($B=2$) evolved to be individual learners, even though all-social learner populations
 outperformed all-individual learner populations (Figure~\ref{fig:payoffs}, upper left).
-By inspecting time series of individual model runs, we observe that
-asocial learning fixates in response to a period of protracted environmental
-instability, which causes social learning to more frequently provide
-outdated information (Figure~\ref{fig:timeseries}a).
-Conversely, sometimes when lifespan was short ($L=1$) and environmental variability
-was moderately high ($u\approx0.5$), a period of environmental
+
+We explain these deviations from expected homogenous payoffs 
+by inspecting time series of individual model runs where we plot the geometric moving averages (with time window 3) of the payoffs for the whole population, and for the series of payoffs broken out by asocial/social learner sub-populations, and compare these series to the expected homogenous social and asocial payoffs, the time series of social learner prevalence, and to the timing of environmental changes within the simulation (Figure~\ref{fig:payoffTimeseries}). 
+When lifespan was minimal ($L=1$) and environmental variability
+was moderately high ($u\approx0.5$), inspection of payoffs a period of environmental
 stability led populations to fixate to social learning, despite individual learning
-being the superior long-term strategy (Figure~\ref{fig:payoffs}, center top and middle). 
-This behavior was again confirmed by examining time series of simultations
+being the superior long-term strategy (Figure~\ref{fig:payoffs}, center top and middle).
+This behavior was again confirmed by examining time series of simulations
 initialized with the commensurate uncertainty parameters, which show that
-social learning fixates during periods of protratcted environmental stability
-(Figure~\ref{fig:timeseries}b).
+social learning fixates during periods of protracted environmental stability
+(Figure~\ref{fig:payoffTimeseries}a).
+When payoff ambiguity was large, decision set size was small $B=2$, and lifespan was long ($L=4$ and $L=8$),
+asocial learning fixates as a hedge against periods of protracted environmental
+instability, which causes social learning to frequently provide
+outdated information, even though expected homogenous social payoffs are greater than
+homogenous asocial payoffs (Figure~\ref{fig:payoffTimeseries}b,c).
+
 
 %We measured drift by the average number of generations to fixation, $\meanG$. Recall fixation is defined as the population becoming homogenous, composed of all social or all asocial learners. 
 % $\meanG$ peaks around the values of $u$ 
@@ -727,7 +735,7 @@ social learning fixates during periods of protratcted environmental stability
 
 \begin{figure}
     \caption{Example time series of geometric moving average (GMA) with window of 3
-      of payoffs from three select simulations (see main text), broken out by 
+      of payoffs from three select uncertainty settings (see main text), broken out by 
     social learners, asocial learners, and whole population, compared with the
     expected homogenous social and asocial population payoffs. 
     Social learner prevalence is also plotted. Vertical lines indicate
@@ -736,6 +744,13 @@ social learning fixates during periods of protratcted environmental stability
   \centering    
 
 \vspace{1em}
+\hspace{-2em}
+    \begin{subfigure}[]{0.75\textwidth}
+      \centering
+    \caption{$\pilow=0.1$, $B=4$, $L=1$, $u=0.5$}
+      \includegraphics[width=0.95\textwidth]{Figures/geopayoff_series/geopayseries_u=0.5-lowpayoff=0.1-nbehaviors=4-L=1.pdf}
+    \end{subfigure} \\
+    
 \hspace{-2em}
   \begin{subfigure}[]{0.75\textwidth}
       \centering
@@ -748,21 +763,15 @@ social learning fixates during periods of protratcted environmental stability
       \centering
       \caption{$\pilow=0.1$, $B=2$, $L=8$, $u=0.2$}
       \includegraphics[width=0.95\textwidth]{Figures/geopayoff_series/geopayseries_u=0.2-lowpayoff=0.1-nbehaviors=2-L=8.pdf}
-    \end{subfigure} \\
-
-\hspace{-2em}
-    \begin{subfigure}[]{0.75\textwidth}
-      \centering
-    \caption{$\pilow=0.1$, $B=4$, $L=1$, $u=0.5$}
-      \includegraphics[width=0.95\textwidth]{Figures/geopayoff_series/geopayseries_u=0.5-lowpayoff=0.1-nbehaviors=4-L=1.pdf}
     \end{subfigure}
+
+
     % \\
     % \begin{subfigure}[]{0.6\textwidth}
     %   \centering
     %   \caption{$\pilow=0.1$, $B=10$, $L=20$, $u=0.5$}
     %   \includegraphics[width=0.95\textwidth]{Figures/geopayoff_series/geopayseries_u=0.5-lowpayoff=0.1-nbehaviors=10-L=20.pdf}
     % \end{subfigure}
-
 \end{figure}
 
 
@@ -776,25 +785,24 @@ We reproduced the well-known results that the uncertainty derived from a tempora
 %Our model reproduced classic predictions that social learning can yield higher payoffs than individual learning when uncertainty is sufficiently limited. 
 We found that larger sets of behavioral options, shorter effective lifespans, and increased payoff ambiguity could all favor the evolution of social learning. However, these effects were not always straightforward. 
 Increased payoff ambiguity and decreased effective lifespan afforded a greater role for drift, which is essentially
-evolutionary uncertainty in a finite-size population. Not surprisingly, when the consequence of one's choice does not affect payoffs much, selection either for or against social learning is substantially weaker. More interestingly, selection is also weaker when the ability to learn asocially is fraught with uncertainty.
+evolutionary uncertainty in a finite-size population. Not surprisingly, when the consequence of one's choice does not affect payoffs much, selection either for or against social learning is substantially weaker. More interestingly, selection is also weaker when the ability to learn asocially is fraught with uncertainty. Our model demonstrated that social learning can act as a scaffold for individual learning---they are not opposite strategies. We endowed agents with a biologically-plausible individual learning mechanism, softmax search. This enabled agents to recover from the potential cost of receiving outdated information. This in turn enabled the evolution of social learning even when social information was likely to be outdated. 
 
-Our model helps to demonstrate that social learning can act as a scaffold for individual learning---they are not opposite strategies. 
-We endowed agents with a biologically-plausible individual learning mechanism, softmax search. This enabled agents to recover from the potential cost of receiving outdated information. This in turn enabled the evolution of social learning 
-even when social information was likely to be outdated. 
 % \cm{this seems to say the opposite of the topic sentence. In topic sentence social learning-> asocial, but the mechanism descibed later is asocial learning -> social. Both seem possible, though the latter is easier for me to understand.}
-Detailed theoretical models like this are likely to be critical for understanding how humans might adapt to an uncertain and rapidly changing world.
+
+Our modeling results suggest, on the one hand, that society might be better to ignore social information from previous generations since our natural world is rapidly changing~\citep{IPCC2022}; on the other hand, however, humans have increasingly more behavioral options (decision set size) with high levels of uncertainty about which behaviors are most beneficial (payoff ambiguity), and in this case our model predicts a greater prevalence of social learning.
+In general, detailed theoretical models like this are likely to be critical for understanding how humans might adapt to an uncertain and rapidly changing world.
 Such understanding could suggest plausibly beneficial interventions to mitigate existential threats~\citep{Moya2020,Jones2021}, especially in
 the most vulnerable communities~\citep{McNamara2020}, and to capitalize on new behavioral opportunities such as transitioning to clean energy use and
-production~\citep{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}. \cm{should we draw out some implications? I find this difficult, but e.g. stressing environmental change may discourage learning from older gen? having more tech options available for dealing with climate change may encourage social learning? Frankly so many of these problems seem to come back to encouraging people to socially learn from the RIGHT people, not just socially or asocially learning.}
+production~\citep{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}. However, to better identify potential pathways to effective adaptation it may be necessary to adjust some of our modeling assumptions to include both the cumulative nature of cultural evolution and group structure of interpersonal exchange, both of which have serious consequences for understanding the sustainability of novel adaptations~\citep{Derex2020,Centola2018,Smaldino2021a}.
+\cm{should we draw out some implications? I find this difficult, but e.g. stressing environmental change may discourage learning from older gen? having more tech options available for dealing with climate change may encourage social learning? Frankly so many of these problems seem to come back to encouraging people to socially learn from the RIGHT people, not just socially or asocially learning.} \mt{I gave this a try, with some restructuring to put the note about social learning as a scaffold for individual learning in the above paragraph.}
 
 Our model necessarily made simplifying assumptions. These were chosen judiciously to address the main
 question of how uncertainty affects the evolution of social learning. Two critical assumptions we made have
 important consequences for comparing our results with previous findings in the literature. First, we assume
-all agents engage in asocial learning. This means that asocial learning is effectively free, though
+all agents engage in individual learning. This means that individual learning is effectively free, though
 potentially inaccurate. Although producing new knowledge may be costly, many other adaptive problems take
-the form of essentially cost free asocial learning. For example, one cannot help but experience, at likely
-asocially learn about the association between; clouds and rain, drinking water and hunger, or smiling and
-being avoided. This model thus avoids scrounger / producer dynamics common in other models
+the form of essentially cost free individual learning. For example, one cannot help but experience the association between; clouds and rain, thirst and drinking water, or smiling and
+being avoided. This model thus avoids scrounger/producer dynamics common in other models
 ~\citep{BoydRicherson1985,Rogers1988} and therefore does not produce any mixed equilibria of social and
 asocial learners.  Second, we only allow for intergenerational social learning and environmental change.
 Within generations agents can only learn asocially, meaning they cannot learn from their peers. This
@@ -824,8 +832,12 @@ understanding of which uncertainty factors interact to determine whether social
 learning evolves. By explicitly modeling a key individual-level learning mechanism
 shared across taxa, namely the ability to adjust behavior to uncertainty and new
 information, we saw that social learning could evolve even if social learning
-often provides outdated information. This work most directly informs our current understanding of the evolution of social learning, but also has broader significance for
-understanding problem solving under uncertainty. \ps{What is this significance? Can't just leave that dangling. I also cut the bit about what comes next. No need for spoilers.} 
+often provides outdated information. 
+
+Social learning is a critical component of problem solving among social creatures. Our work identified and clarified some important forms of uncertainty and catalogued their effects on 
+model populations' collective decisions to learn socially or not when collectively problem solving. Our work, then, advances both the theory of social learning and the theory of collective problem solving more generally, and could eventually be of practical use in designing sustainable adaptations to the immense threats and uncertainties faced by humans today.
+% This work most directly informs our current understanding of the evolution of social learning, but also has broader significance for understanding problem solving under uncertainty. 
+\ps{What is this significance? Can't just leave that dangling. I also cut the bit about what comes next. No need for spoilers.} \mt{Gave this a try, but I think Jamie should have a crack at this.}
 %Our model and its software implementation were designed to be modular and extensible.  Indeed, we plan to extend this model to further develop a more detailed theoretical understanding of the evolution of social learning; we hope others will, too.
 
 

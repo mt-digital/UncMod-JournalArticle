@@ -653,8 +653,13 @@ difference between social and asocial constraints when $L$ is large.
 
 We also tracked and analyzed average net payoffs of agent populations across
 all uncertainty parameters, and compared the simulated payoffs to 
-all-social learner or all-asocial learner populations. 
-Figure~\ref{fig:payoffs} shows the average net payoffs normalzied by lifespan
+homogenous all-social learner or all-asocial learner populations. Homogenous payoffs
+were calculated by initializing simulation populations to be all social or all asocial learners,
+then running the model for 100 generations so payoffs could stabilize; we then averaged 
+the net payoffs from the final generation across 1000 trials to calculate the average
+homogenous payoffs.
+
+Figure~\ref{fig:payoffs} shows the average net payoffs normalized by lifespan
 for our simulations and two reference conditions where agents are initialized
 as homogenous populations fixated either as all social or all asocial learners.
 Often the simulated payoffs follow the payoffs from the better-performing
@@ -732,9 +737,10 @@ We found that larger sets of behavioral options, shorter effective lifespans, an
 Increased payoff ambiguity and decreased effective lifespan afforded a greater role for drift, which is essentially
 evolutionary uncertainty in a finite-size population. Not surprisingly, when the consequence of one's choice does not affect payoffs much, selection either for or against social learning is substantially weaker. More interestingly, selection is also weaker when the ability to learn asocially is fraught with uncertainty.
 
-Our model helps to demonstrate that social learning can act as a scaffold for asocial learning---despite the framing of many other papers, they are not opposite strategies. 
-We endowed agents with a biologically-plausible individual learning mechanism, softmax search. This allowed for highly successful asocial learning that helped agents recover from the potential cost of receiving outdated information. This in turn enabled the evolution of social learning 
-even when social information was likely to be outdated. \cm{this seems to say the opposite of the topic sentence. In topic sentence social learning-> asocial, but the mechanism descibed later is asocial learning -> social. Both seem possible, though the latter is easier for me to understand.}
+Our model helps to demonstrate that social learning can act as a scaffold for individual learning---they are not opposite strategies. 
+We endowed agents with a biologically-plausible individual learning mechanism, softmax search. This enabled agents to recover from the potential cost of receiving outdated information. This in turn enabled the evolution of social learning 
+even when social information was likely to be outdated. 
+% \cm{this seems to say the opposite of the topic sentence. In topic sentence social learning-> asocial, but the mechanism descibed later is asocial learning -> social. Both seem possible, though the latter is easier for me to understand.}
 Detailed theoretical models like this are likely to be critical for understanding how humans might adapt to an uncertain and rapidly changing world.
 Such understanding could suggest plausibly beneficial interventions to mitigate existential threats~\citep{Moya2020,Jones2021}, especially in
 the most vulnerable communities~\citep{McNamara2020}, and to capitalize on new behavioral opportunities such as transitioning to clean energy use and

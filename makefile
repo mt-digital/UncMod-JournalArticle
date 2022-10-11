@@ -5,7 +5,8 @@ bibms: ms ms.tex ~/workspace/Writing/library.bib
 figures: nagents_supplement_figures nteachers_supplement_figures tau_supplement_figures full_mean_payoff_supplement_figure mainResultsPlots.tex meanNetPayoffs.tex stepResultsPlots.tex 
 	pdflatex -output-directory=Figures mainResultsPlots.tex && \
 	pdflatex -output-directory=Figures meanNetPayoffs.tex && \
-	pdflatex -output-directory=Figures stepResultsPlots.tex 
+	pdflatex -output-directory=Figures stepResultsPlots.tex && \
+	pdflatex -output-directory=Figures payoffsPlot.tex 
 
 tau_supplement_figures: 
 	pdflatex -output-directory=Figures/supplement/sensitivity_tau=0.01 Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.tex && \

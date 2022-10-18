@@ -248,12 +248,11 @@ Some more complicated learning strategies that make use of both socially and ind
 
 \section{Model}
 
-In our model we allow just one trait to evolve, social learning; 
-all other parameters are exogenous. Our primary outcome measure is the observed
-frequency that the social learning trait fixates in simulated populations. We study
-how the social learning fixation frequency responds to the four varieties of
+In our model we allow just one trait to evolve: social learning. All other parameters are exogenous. Our primary outcome measure is the observed
+frequency at which the social learning trait fixates in simulated populations. We study
+how the social learning fixation frequency responds to each of the four varieties of
 uncertainty considered in this paper. \mt{I changed this somewhat, please double
-check it's clear}
+check it's clear} \ps{I edited a couple of words but looks good.}
 
 A population of $N$ individuals each must decide which of $B$ behaviors to perform at
 each time step within a generation consisting of $L$ time steps. The behavior set is a multi-armed bandit with $B$ arms. That is, agents can pick one of $B$ behaviors with random-valued payoffs~\citep{SuttonBartoBook,McElreath2005,Steyvers2009,Rendell2010,Schulz2019}. In each generation, exactly one behavior is more likely to pay off than all the rest and is therefore optimal. Agents optimize their net payoffs over their lifespan by quickly learning which behavior is optimal and performing it as often as possible within their lifespan. At the end of each generation, agents are selected with replacement to reproduce a new generation of $N$ agents, with the probability of reproduction biased by net payoffs. Agents who inherit the social learning trait learn about payoffs from the previous generation, while asocial learners begin life only knowing the number of behaviors the environment affords, but have no knowledge of behavioral payoffs.
@@ -493,7 +492,7 @@ $u$. The new behavior is chosen from all other behaviors, with the
 current optimal behavior excluded from selection.
 
 \paragraph{Stopping conditions} The evolutionary process continues until the
-population reaches evolutionary fixation with respect to social learning, where
+population reaches evolutionary fixation with respect to social learning, that is, when
 $\sum_i s_i = N$ or $\sum_i s_i = 0$. 
 
 \clearpage
@@ -619,7 +618,7 @@ learning and temporal environmental variability was moderated by the other three
 
 The number of behavioral options, i.e., larger $B$, favors the evolution of social learning. Increasing the selection set size expands the range of $u$ over which social learning is favored for two reasons. First, when the environment remains constant between generations, the value of social learning increases with more behavioral options, because it effectively increases the number of observations that one can learn from by comparing the payoffs of several models. In other words, relying $only$ on one's asocial trial and error learning is less likely to yield useful information when the search space is large. Second, when the environment changes, bias against the new optimal is weaker with more behavioral options. For example, with only two behavioral choices ($B = 2$), a common assumption in many models, social learning is particularly detrimental when the environment changes since more of the population will have arrived at the optimal behavior in the previous generation and socially learning from them will be biased against the correct choice. These two mechanisms make it particularly profitable to engage in social learning when the selection set size is larger -- for large values of $B$ social learning can even be favored when the environment is more likely to change than not (i.e., $u>0.5$). 
 
-A shorter effective lifespan, $L$, also favors the evolution of social learning in most cases. When effective lifespans are long and there are many opportunities to gather information by learning asocially, the value of social transmission is diminished. Given enough opportunities, all agents will learn the optimal behavior eventually. Thus, under most conditions, longer effective lifespans lead to a narrower range of the parameters $u$ and $B$ under which social learning was favored. It is noteworthy that in many cases, a large increase in the selection regime for social learning could be observed when $L=1$, and by definition no individual learning occurred. The exceptions to this general pattern occur for high levels of payoff ambiguity, $\pilow$ combined with low rates of environmental change, $u$ (left parts of plots on bottom row of Figure~\ref{fig:mainResults}). This reversal is partially explained by higher levels of drift when there is little difference in the payoffs between behaviors, and by the fact that the quality of social information is poorer when payoffs are ambiguous and lifespans are short (more on these effects of payoff ambiguity below).  
+A shorter effective lifespan, $L$, also favors the evolution of social learning in most cases. When effective lifespans are long and there are many opportunities to gather information by learning asocially, the value of social transmission is diminished. Given enough opportunities, all agents will learn the optimal behavior eventually. Thus, under most conditions, longer effective lifespans lead to a narrower range of the parameters $u$ and $B$ under which social learning was favored. It is noteworthy that in many cases, a large increase in the selection regime for social learning is observed when $L=1$, and by definition no individual learning can occur. The exceptions to this general pattern occur for high levels of payoff ambiguity, $\pilow$ combined with low rates of environmental change, $u$ (left parts of plots on bottom row of Figure~\ref{fig:mainResults}). This reversal is partially explained by higher levels of drift when there is little difference in the payoffs between behaviors, and by the fact that the quality of social information is poorer when payoffs are ambiguous and lifespans are short (more on these effects of payoff ambiguity below).  
 % \cm{is this right? I thought we should say something about the exceptions in this paragraph though we describe in more detail below, but not sure I have the right explanation}
 
 Of the four types of uncertainty studied in this paper, payoff ambiguity had the most
@@ -635,7 +634,7 @@ more difficult for them to discern the difference between optimal and sub optima
 behaviors. Second, and perhaps more importantly, natural selection on strategies
 that $do$ reliably select the optimal behavior is relatively weak. This means that
 the effect of drift is relatively stronger, weakening selection in favor of social
-learning under small values of $u$ and weakening selection against social learning
+learning under low values of $u$ and weakening selection against social learning
 under high values of $u$ (Figure~\ref{fig:mainResults}, bottom row). 
 This effect was especially strong under other types of uncertainty, i.e., larger selection set sizes and especially shorter effective lifespans---particularly when $L=1$ where no individual learning occurred. 
 
@@ -815,7 +814,7 @@ homogenous asocial payoffs (Figure~\ref{fig:payoffTimeseries}b,c).
 
 \section{Discussion}
 
- Despite the common claim that copying others makes sense when one is uncertain, we find that different forms of uncertainty can either promote, or impede, the evolution of social learning. By disambiguating various formalizations of uncertainty in a single computational model, we have developed a more nuanced theoretical understanding of how uncertainty affects the evolution of social learning.
+ Despite the common claim that copying others makes sense when one is uncertain, we find that different forms of uncertainty can either promote or impede the evolution of social learning. By disambiguating various formalizations of uncertainty in a single computational model, we have developed a more nuanced theoretical understanding of how uncertainty affects the evolution of social learning.
 %We reviewed and distilled several empirical and theoretical models in the literature along four uncertainty dimensions: temporal environmental uncertainty, selection set size, ambiguous payoffs, and effective lifespan.  
 We reproduced the well-known results that the uncertainty derived from a temporally variable environment can limit the evolution of social learning if environmental change is simply too rapid for intergenerational transmission to be of value. Importantly, we also showed that this relationship is affected by other sources of uncertainty. 
 %Our model reproduced classic predictions that social learning can yield higher payoffs than individual learning when uncertainty is sufficiently limited. 
@@ -825,7 +824,7 @@ evolutionary uncertainty in a finite-size population. Not surprisingly, when the
 
 % \cm{this seems to say the opposite of the topic sentence. In topic sentence social learning-> asocial, but the mechanism descibed later is asocial learning -> social. Both seem possible, though the latter is easier for me to understand.}
 
-Our modeling results suggest, on the one hand, that society might be better to
+Our modeling results suggest, on the one hand, that it might sometimes be better to
 ignore social information from previous generations since our natural world is
 rapidly changing~\citep{IPCC2022}; on the other hand, humans have increasingly more
 behavioral options (selection set size) with high levels of uncertainty about which behaviors are most beneficial (payoff ambiguity), and in this case our model predicts a greater prevalence of social learning.
@@ -1004,9 +1003,9 @@ with $u$ and $B$ settings.
 
 \clearpage
 
-\section{Number of prospective teachers sensitivty analysis}
+\section{Number of prospective teachers sensitivtiy analysis}
 
-We found that the number of prospectve teachers had little effect on $\meansl$
+We found that the number of prospective teachers had little effect on $\meansl$
 over $u$. There was slightly more drift when $N_T = 2$ compared to our 
 main text analysis, slightly less drift than our main analysis when $N_T = 20$; 
 we also tested $N_T=10$, which showed no obvious difference from our main results
@@ -1055,14 +1054,14 @@ results were reproduced across all tested values $N_T=2,5,10,20$.
 \clearpage
 
 
-\section{Softmax parameter sensitivity analysis} 
+\section{Robust patterns, interesting variation, with different agent greediness} 
 
 We tested two additional settings of the softmax behavior selection greediness parameter,
 $\beta=1,100$, which reproduced qualitative patterns in the evolution of social learning
 observed in the main text where we used $\beta=10$.  
 Softmax greediness is achieved formally by increasing the
 probability mass for selecting behaviors that have paid off more frequently over that agent's
-life history. In other words, greater $\beta$ increases the probabilty that the optimal
+life history. In other words, greater $\beta$ increases the probability that the optimal
 observed behavior is chosen over all the rest. If $\beta$ is too small, agents will fail to
 fully exploit their knowledge about which behavior is optimal because they too frequently
 explore less profitable alternatives.  If $\beta$ is too great the agents may prematurely
@@ -1085,7 +1084,7 @@ of $u$ for longer lifespans, $L$, due to maximal excessive exploration of non-op
 behaviors under this setting (Figure~\ref{fig:softmaxSensitivity}a, columns 
 for $B$ and inset for $L$).
 
-The main results were again qualitatively obtained again with $\beta=100$
+\mt{This is the greedier sensitivity analysis---need to frame it that way, note that excessive greediness suppresses the usefulness of social learning.} The main results were obtained with $\beta=100$
 (Figure~\ref{fig:softmaxSensitivity}b). 
 In some cases, especially when $\pilow=0.1$, individual learning may be performing
 better with $\beta=100$ compared to results in the main text ($\beta=10$), 
@@ -1106,7 +1105,9 @@ top row).
 	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
+
 \newpage
+
 \begin{figure}
   \ContinuedFloat
   \begin{subfigure}{\textwidth}

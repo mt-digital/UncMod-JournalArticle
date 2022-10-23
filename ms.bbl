@@ -6,6 +6,12 @@ Allen, J.~A. (2019).
   Learning and Culture Manifest across Diverse Animal Communities}.
 \newblock {\em BioEssays}, 41(11):1--8.
 
+\bibitem[Ant\'{o}n et~al., 2014]{anton_etal2014}
+Ant\'{o}n, S.~C., Potts, R., and Aiello, L.~C. (2014).
+\newblock Evolution of early \textit{Homo}: An integrated biological
+  perspective.
+\newblock {\em Science}, 345(6192):1236828.
+
 \bibitem[Aoki and Feldman, 2014]{aoki2014evolution}
 Aoki, K. and Feldman, M.~W. (2014).
 \newblock Evolution of learning strategies in temporally and spatially variable
@@ -46,16 +52,6 @@ Boyd, R. and Richerson, P.~J. (1995).
 \newblock Why does culture increase human adaptability?
 \newblock {\em Ethology and Sociobiology}, 16(2):125--143.
 
-\bibitem[Brisbois, 2022]{Brisbois2022}
-Brisbois, M.~C. (2022).
-\newblock {Innovation in the future can't slash emissions now}.
-\newblock {\em Nature}, 603(3 March 2022).
-
-\bibitem[Centola, 2018]{Centola2018}
-Centola, D. (2018).
-\newblock {\em {How behavior spreads: The science of complex contagions}}.
-\newblock Princeton University Press.
-
 \bibitem[Clark, 2013]{clark2013whatever}
 Clark, A. (2013).
 \newblock Whatever next? predictive brains, situated agents, and the future of
@@ -83,19 +79,13 @@ Daw, N.~D., O'Doherty, J.~P., Dayan, P., Seymour, B., and Dolan, R.~J. (2006).
 Derex, M., Godelle, B., and Raymond, M. (2013).
 \newblock Social learners require process information to outperform individual
   learners.
-\newblock {\em Evolution: International Journal of Organic Evolution},
-  67(3):688--697.
+\newblock {\em Evolution}, 67(3):688--697.
 
 \bibitem[Derex and Mesoudi, 2020]{Derex2020}
 Derex, M. and Mesoudi, A. (2020).
 \newblock {Cumulative Cultural Evolution within Evolving Population
   Structures}.
 \newblock {\em Trends in Cognitive Sciences}, 24(8):654--667.
-
-\bibitem[Editorial, 2018]{NatureEnergyEditorialPromisesPremises2018}
-Editorial (2018).
-\newblock {Promises and premises}.
-\newblock {\em Nature Energy}, 3(1):1.
 
 \bibitem[Enquist et~al., 2007]{Enquist2007}
 Enquist, M., Eriksson, K., and Ghirlanda, S. (2007).
@@ -148,7 +138,7 @@ Heras-Escribano, M. (2020).
 Heyes, C. (2016).
 \newblock {Blackboxing: Social learning strategies and cultural evolution}.
 \newblock {\em Philosophical Transactions of the Royal Society B: Biological
-  Sciences}, 371(1693).
+  Sciences}, 371(1693):20150369.
 
 \bibitem[IPCC, 2022]{IPCC2022}
 IPCC (2022).
@@ -165,11 +155,6 @@ Johnson, D.~D., Blumstein, D.~T., Fowler, J.~H., and Haselton, M.~G. (2013).
 \newblock The evolution of error: Error management, cognitive constraints, and
   adaptive decision-making biases.
 \newblock {\em Trends in Ecology \& Evolution}, 28(8):474--481.
-
-\bibitem[Jones et~al., 2021]{Jones2021}
-Jones, J.~H., Ready, E., and Pisor, A.~C. (2021).
-\newblock {Want climate-change adaptation? Evolutionary theory can help}.
-\newblock {\em American Journal of Human Biology}, 33(4):1--17.
 
 \bibitem[Kendal et~al., 2018]{Kendal2018}
 Kendal, R.~L., Boogert, N.~J., Rendell, L., Laland, K.~N., Webster, M., and
@@ -198,6 +183,11 @@ Laland, K.~N. (2004).
 \newblock {Social Learning Strategies}.
 \newblock {\em Learning and Behavior}, 32(1):4--14.
 
+\bibitem[Levin, 2015]{levin2015}
+Levin, N.~E. (2015).
+\newblock Environment and climate of early human evolution.
+\newblock {\em Annual Review of Earth and Planetary Sciences}, 43(1):405--429.
+
 \bibitem[Levins, 1962]{levins1962}
 Levins, R. (1962).
 \newblock Theory of fitness in a heterogeneous environment. {I}. the fitness
@@ -217,25 +207,12 @@ McElreath, R., Lubell, M., Richerson, P.~J., Waring, T.~M., Baum, W., Edsten,
   learning}.
 \newblock {\em Evolution and Human Behavior}, 26(6):483--508.
 
-\bibitem[McNamara et~al., 2020]{McNamara2020}
-McNamara, K.~E., Clissold, R., Westoby, R., Piggott-McKellar, A.~E., Kumar, R.,
-  Clarke, T., Namoumou, F., Areki, F., Joseph, E., Warrick, O., and Nunn, P.~D.
-  (2020).
-\newblock {An assessment of community-based adaptation initiatives in the
-  Pacific Islands}.
-\newblock {\em Nature Climate Change}, 10(7):628--639.
-
 \bibitem[Morgan et~al., 2012]{Morgan2012}
 Morgan, T. J.~H., Rendell, L.~E., Ehn, M., Hoppitt, W., and Laland, K.~N.
   (2012).
 \newblock The evolutionary basis of human social learning.
 \newblock {\em Proceedings of the Royal Society B: Biological Sciences},
   279(1729):653--662.
-
-\bibitem[Moya et~al., 2020]{Moya2020}
-Moya, C., {Cruz y Celis Peniche}, P., Kline, M.~A., and Smaldino, P.~E. (2020).
-\newblock {Dynamics of behavior change in the COVID world}.
-\newblock {\em American Journal of Human Biology}, 32(5):1--8.
 
 \bibitem[Muthukrishna et~al., 2016]{Muthukrishna2016a}
 Muthukrishna, M., Morgan, T.~J., and Henrich, J. (2016).
@@ -292,12 +269,6 @@ Smaldino, P.~E., Aplin, L.~M., and Farine, D.~R. (2018).
   Transmission}.
 \newblock {\em Scientific Reports}, 8(1):1--10.
 
-\bibitem[Smaldino and Jones, 2021]{Smaldino2021a}
-Smaldino, P.~E. and Jones, J.~H. (2021).
-\newblock {Coupled dynamics of behaviour and disease contagion among
-  antagonistic groups}.
-\newblock {\em Evolutionary Human Sciences}, 3:1--13.
-
 \bibitem[Smaldino and Richerson, 2012]{Smaldino2012a}
 Smaldino, P.~E. and Richerson, P.~J. (2012).
 \newblock {The origins of options}.
@@ -312,7 +283,7 @@ Smaldino, P.~E., Turner, M.~A., and Contreras~Kallens, P.~A. (2019).
 \bibitem[Smolla and Ak{\c{c}}ay, 2019]{Smolla2019}
 Smolla, M. and Ak{\c{c}}ay, E. (2019).
 \newblock {Cultural selection shapes network structure}.
-\newblock {\em Science Advances}, 5(8).
+\newblock {\em Science Advances}, 5(8):eaaw0609.
 
 \bibitem[Steyvers et~al., 2009]{Steyvers2009}
 Steyvers, M., Lee, M.~D., and Wagenmakers, E.~J. (2009).
@@ -328,7 +299,7 @@ Sutton, R.~S. and Barto, A.~G. (2018).
 Toyokawa, W., Whalen, A., and Laland, K.~N. (2019).
 \newblock {Social learning strategies regulate the wisdom and madness of
   interactive crowds}.
-\newblock {\em Nature Human Behaviour}.
+\newblock {\em Nature Human Behaviour}, 3:183--193.
 
 \bibitem[Turner et~al., 2022]{Turner2022}
 Turner, M.~A., Moya, C., Smaldino, P.~E., and Jones, J.~H. (2022).

@@ -97,15 +97,7 @@
 \newcommand{\bandit}{\text{Bandit}_b(0, 1)}
 
 \begin{abstract} 
-  Social learning is a critical adaptation for dealing with the variable world. However, variability takes different forms. Uncertainty is a severe form of variability where the space of possible decisions or probabilities of associated outcomes are unknown.
-  %"probabilities of decisions" didn't make sense to me so I rephrased, but hopefully still accurate.
-  We identified four distinct and theoretically-important sources of uncertainty: temporal environmental variability, payoff ambiguity, selection-set size, and
-  effective lifespan. All these kinds of uncertainty make it nearly impossible to fully learn about variability. We develop an evolutionary agent-based model to
-  test how each form of uncertainty affects the evolution of social learning. Agents perform one of several behaviors, modeled as a multi-armed bandit, to
-  acquire payoffs. All agents learn individually using the cognitively-realistic softmax algorithm. Additional use of vertical and oblique social learning was
-  allowed to evolve and served as a constraint on intra-generational individual learning. We found that different types of uncertainty had varying effects. Temporal
-  environmental variability suppressed social learning, whereas larger selection-set size promoted social learning, even when the environment changed frequently. Payoff ambiguity and lifespan had more complex effects on social learning, dependent on interactions with other uncertainty parameters. This study shows the importance of clearly operationalizing uncertainty for understanding its role in cultural evolution.
-% Social learning is essential to human survival. It is likely to evolve when it is more
+  Social learning is a critical adaptation for dealing with the variable world. However, variability takes different forms. Uncertainty is a severe form of variability where the space of possible decisions or probabilities of associated outcomes are unknown.  We identified four distinct and theoretically-important sources of uncertainty: temporal environmental variability, payoff ambiguity, selection-set size, and effective lifespan. All these kinds of uncertainty make it nearly impossible to fully learn about variability. We develop an evolutionary agent-based model to test how each form of uncertainty affects the evolution of social learning. Agents perform one of several behaviors, modeled as a multi-armed bandit, to acquire payoffs. All agents learn individually using the cognitively-realistic softmax algorithm. Additional use of vertical and oblique social learning was allowed to evolve and served as a constraint on intra-generational individual learning. We found that different types of uncertainty had varying effects. Temporal environmental variability suppressed social learning, whereas larger selection-set size promoted social learning, even when the environment changed frequently. Payoff ambiguity and lifespan had more complex effects on social learning, dependent on interactions with other uncertainty parameters. This study shows the importance of clearly operationalizing uncertainty for understanding its role in cultural evolution.  % Social learning is essential to human survival. It is likely to evolve when it is more
 % efficient than asocial, trial-and-error learning. Theoretically, social learning
 % is adaptive for some uncertainty, but too much uncertainty makes
 % social information unreliable. This fact is empirically
@@ -754,7 +746,7 @@ for understanding human evolution as evidence increasingly suggests that the gen
 Our work, then, both advances the theory of social learning and could eventually be of practical use in identifying specific mechanisms underlying adaptations to an uncertain environments.
 
 
-\paragraph{Supplementary material.} Supplemental analyses confirming model robustness to free parameters is available at \mt{OSF link to PDF when final and separated)}. Model and analysis code is publicly available on GitHub (\url{https://github.com/mt-digital/UncMod}), and the data used to make the figures presented here is available via OSF (\url{https://osf.io/t8exa/}).
+\paragraph{Supplementary material.} Model and analysis code is publicly available on GitHub (\url{https://github.com/mt-digital/UncMod}). Supplemental analyses confirming model robustness to free parameters and the data used to make the figures presented here is available via OSF (\url{https://osf.io/t8exa/}).
 
 \paragraph{Acknowledgements.} %\mt{Do we write any at this point? Please fill in as you see fit.} \cm{can do later since should be blinded anyway}
 % 
@@ -773,7 +765,7 @@ Our work, then, both advances the theory of social learning and could eventually
 %%%%%%%%%% Merge with supplemental materials %%%%%%%%%%
 \pagebreak
 \begin{center}
-  \textbf{\Large \textsf{Supplement}}
+  \textbf{\Large \textsf{The Form of Uncertainty Affects Selection for Social Learning (Supplementary Material)}}
 \end{center}
 %%%%%%%%%% Merge with supplemental materials %%%%%%%%%%
 %%%%%%%%%% Prefix a "S" to all equations, figures, tables and reset the counter %%%%%%%%%%
@@ -892,7 +884,7 @@ bottom row). The transition from $\meansl = 1$ to $\meansl = 0$ is less sharp
 across $L$ values, with social-learning evolution being suppressed beginning
 at smaller values of $u$. By contrast, when $N_T = 20$, transitions from 
 $\meansl = 1$ to $\meansl = 0$ are sharper across $L$ when $\pilow = 0.8$
-(Figure~\ref{fig:nteachersSensitivity}c, bottom row). Otherwise, the main 
+(Figure~\ref{fig:nteachersSensitivity}b, bottom row). Otherwise, the main 
 results were reproduced across all tested values $N_T=2,5,10,20$.
 
 \clearpage
@@ -901,7 +893,7 @@ results were reproduced across all tested values $N_T=2,5,10,20$.
 \vspace{-3em}
 \begin{figure}
   \centering
-   % \addtocounter{figure}{-1}
+   \addtocounter{figure}{-1}
   \caption{Number of prospective teachers sensitivity analysis for $N_T=2,20$. Recall
   $N_T=5$ was used to generate main text results.}
   \label{fig:nteachersSensitivity}
@@ -967,7 +959,7 @@ in some cases, especially when $\pilow=0.1$, social learning is suppressed compa
 
 \vspace{-3em} \begin{figure} %\addtocounter{figure}{-1} 
   \centering
-  % \addtocounter{figure}{-1}
+  \addtocounter{figure}{-1}
   \caption{Sensitivity analysis of the main results for the softmax parameter $\beta = 100$ and
   $\beta=1$. Recall the main results were obtained with $\beta = 10$.}
   \label{fig:softmaxSensitivity} \vspace{2em}

@@ -52,6 +52,12 @@ Boyd, R. and Richerson, P.~J. (1995).
 \newblock Why does culture increase human adaptability?
 \newblock {\em Ethology and Sociobiology}, 16(2):125--143.
 
+\bibitem[Chimento et~al., 2022]{Chimento2022}
+Chimento, M., Barrett, B.~J., Kandler, A., and Aplin, L.~M. (2022).
+\newblock {Cultural diffusion dynamics depend on behavioural production rules}.
+\newblock {\em Proceedings of the Royal Society B: Biological Sciences},
+  289(1980).
+
 \bibitem[Clark, 2013]{clark2013whatever}
 Clark, A. (2013).
 \newblock Whatever next? predictive brains, situated agents, and the future of
@@ -231,11 +237,6 @@ Perreault, C., Moya, C., and Boyd, R. (2012).
 \newblock A bayesian approach to the evolution of social learning.
 \newblock {\em Evolution and Human Behavior}, 33(5):449--459.
 
-\bibitem[Plutynski, 2007]{plutynski2007drift}
-Plutynski, A. (2007).
-\newblock Drift: A historical and conceptual overview.
-\newblock {\em Biological Theory}, 2(2):156--167.
-
 \bibitem[Rendell et~al., 2010]{Rendell2010}
 Rendell, L., Boyd, R., Cownden, D., Enquist, M., Eriksson, K., Feldman, M.~W.,
   Fogarty, L., Ghirlanda, S., Lillicrap, T., and Laland, K.~N. (2010).
@@ -346,11 +347,16 @@ Wilson, R.~C., Geana, A., White, J.~M., Ludvig, E.~A., and Cohen, J.~D. (2014).
   to solve the exploration-exploitation dilemma}.
 \newblock {\em Journal of Experimental Psychology: General}, 143(6):2074--2081.
 
-\bibitem[Wu et~al., 2022]{Wu2022}
-Wu, C.~M., Schulz, E., Pleskac, T.~J., and Speekenbrink, M. (2022).
+\bibitem[Wu et~al., 2022a]{Wu2022}
+Wu, C.~M., Schulz, E., Pleskac, T.~J., and Speekenbrink, M. (2022a).
 \newblock {Time pressure changes how people explore and respond to
   uncertainty}.
 \newblock {\em Scientific Reports}, 12(1):1--14.
+
+\bibitem[Wu et~al., 2022b]{Wu2022b}
+Wu, C.~M., V{\'{e}}lez, N., and Cushman, F.~A. (2022b).
+\newblock {Representational Exchange in Human Social Learning}.
+\newblock {\em The Drive for Knowledge}, pages 169--192.
 
 \bibitem[Yechiam and Busemeyer, 2005]{Yechiam2005}
 Yechiam, E. and Busemeyer, J.~R. (2005).

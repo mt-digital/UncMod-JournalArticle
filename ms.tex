@@ -31,6 +31,8 @@
 \usepackage[export]{adjustbox}
 \setlength\intextsep{0pt}
 
+\usepackage{xcolor}
+
 % Colored comments 
 \usepackage{color}
 \definecolor{myorange}{RGB}{240, 96, 0}
@@ -45,7 +47,10 @@
 \definecolor{mygreen}{RGB}{26, 153, 51}
 \newcommand{\ps}[1]{{\textcolor{mygreen} {({\tiny PS:} #1)}}}
 
-\newcommand{\edit}[1]{{\textcolor{blue} {#1}}}
+\definecolor{editblue}{HTML}{1055CB}
+
+% \newcommand{\edit}[1]{{\bfseries \textcolor{editblue} {#1}}}
+\newcommand{\edit}[1]{{\bfseries \textcolor{blue} {#1}}}
 
 \newtotcounter{citnum} %From the package documentation
 \def\oldbibitem{} \let\oldbibitem=\bibitem
@@ -70,7 +75,6 @@
 \affil[6]{Santa Fe Institute, Santa Fe, NM 87501 USA}
 \affil[7]{Center for Advanced Study in the Behavioral Sciences, Stanford University, Stanford, CA 94305 USA}
 \affil[*]{Corresponding author; email: \href{mailto:maturner@stanford.edu}{maturner@stanford.edu}}
-\usepackage{xcolor}
 
 \title{The Form of Uncertainty Affects Selection for Social Learning}
 %\title{Different forms of uncertainty differently affect the evolution of social learning}
@@ -107,9 +111,10 @@ We identified four distinct and theoretically-important sources of uncertainty: 
 environmental variability, payoff ambiguity, selection-set size, and effective lifespan. All these
 kinds of uncertainty make it nearly impossible to fully learn about variability. We develop an
 evolutionary agent-based model to test how each form of uncertainty affects the evolution of social
-learning. Agents perform one of several behaviours, modeled as a multi-armed bandit, to acquire
-payoffs. \edit{Agents explore and learn about behavioural payoffs individually through an adaptive
-cognitive model that uses a softmax decision rule for behavior choice.} Use of vertical and oblique social learning \edit{evolved} to serve as a scaffold \edit{for
+learning. Agents perform one of several behaviors, modeled as a multi-armed bandit, to acquire
+payoffs. \edit{Agents explore and learn about behavioral payoffs individually through an adaptive
+cognitive model that uses a softmax decision rule for behavior choice.} Use of
+vertical and oblique \edit{payoff-biased} social learning \edit{evolved} to serve as a scaffold \edit{for
 adaptive individual learning, meaning social and individual learning complement one
 another---they are not opposite strategies.} We found that different types of uncertainty had varying effects.
 Temporal environmental variability suppressed social learning, whereas larger selection-set size
@@ -128,11 +133,11 @@ real-world.}
 % specific classes and types of uncertainty affect social
 % learning evolution. Furthermore, existing models and experimental operationalizations of
 % uncertainty are ambiguously related, and 
-% tend to only consider a small number of behavioural
+% tend to only consider a small number of behavioral
 % choices.  Here we use evolutionary agent-based modeling to consolidate
 % models of uncertainty in social learning evolution to address these issues.
 % We model societies of agents who perform one of a number
-% of possible behaviours to acquire payoffs in a time-varying environment.
+% of possible behaviors to acquire payoffs in a time-varying environment.
 % We identified complex patterns in social learning evolution depending on contextual
 % uncertainty variables: environmental variability, ambiguous payoffs, 
 % decision sets size, and effective lifespans. 
@@ -151,7 +156,7 @@ indicates that social learning is a critical adaptation found across taxa for de
 with variable environments. %When in doubt, copy others. 
 
 Uncertainty weighs particularly heavily on human adaptation because of
-our long lifespans, cosmopolitan societies, and dispersal across highly variable environments, requiring coarse-grained and plastic behavioural adaptations \citep{levins1962}. However, the term ``uncertainty'' is often used loosely in a way that fails to distinguish it from risk. \emph{Risk} represents a decision with a variable payoff where the state space and probabilities associated with the different outcomes are both known. In contrast, \emph{uncertainty} implies that the outcome probabilities, and possibly the state space, are not known \citep{knight1921, keynes1921}. Furthermore, usage of the term uncertainty often conflates several different interpretations of that word. For example, different models define uncertainty in terms of the rate of environmental change, spatial environmental variation, or the reliability of information acquired from the environment. %Furthermore, in translating mathematical models to verbal predictions, the formal meaning of terms like uncertainty is often lost \citep{knight1921, lawson1988probability, volz2012}, facilitating such conflation. %Furthermore, it can be important to distinguish a narrower definition of uncertainty wherein the probabilities of outcomes remain unknown~\citep{knight1921,volz2012}. 
+our long lifespans, cosmopolitan societies, and dispersal across highly variable environments, requiring coarse-grained and plastic behavioral adaptations \citep{levins1962}. However, the term ``uncertainty'' is often used loosely in a way that fails to distinguish it from risk. \emph{Risk} represents a decision with a variable payoff where the state space and probabilities associated with the different outcomes are both known. In contrast, \emph{uncertainty} implies that the outcome probabilities, and possibly the state space, are not known \citep{knight1921, keynes1921}. Furthermore, usage of the term uncertainty often conflates several different interpretations of that word. For example, different models define uncertainty in terms of the rate of environmental change, spatial environmental variation, or the reliability of information acquired from the environment. %Furthermore, in translating mathematical models to verbal predictions, the formal meaning of terms like uncertainty is often lost \citep{knight1921, lawson1988probability, volz2012}, facilitating such conflation. %Furthermore, it can be important to distinguish a narrower definition of uncertainty wherein the probabilities of outcomes remain unknown~\citep{knight1921,volz2012}. 
 As the number of formal models of social learning has expanded, an increasing number of modeling choices~\citep{Kendal2018} and formalizations of
 uncertainty have made it difficult to compare across models or to consolidate our
 understanding of the contexts in which social learning under uncertainty is adaptive. 
@@ -159,7 +164,7 @@ understanding of the contexts in which social learning under uncertainty is adap
 % non-deterministic outcomes, 
 
 %Other (asocial) forms of learning are also likely adaptations to uncertainty that should be accounted for, but are typically glossed over in models.  
-Learning, be it social or not, is an iterative process during which an individual acquires information, forms representations and predictions, and then tests and refines those representations and predictions to manage uncertainty~\citep{jacobs2011bayesian,clark2013whatever}. Because cultural evolutionary models are frequently designed to explain \emph{social} learning mechanisms, they often contrast social learning with a simplistic mechanism for individual learning. In particular, a common assumption is that individual learners can pay a cost to definitively learn the optimal behaviour for a particular environment with certainty. This assumption implies that social learning, by observing an individual learner, is a good bet if the environment has not changed. Such modeling choices may lead us to overestimate both the extent to which individual learning provides quality information and the value of social learning in a population of individual learners. % , both for asocially adapting to uncertainty and for social learners to take advantage of.
+Learning, be it social or not, is an iterative process during which an individual acquires information, forms representations and predictions, and then tests and refines those representations and predictions to manage uncertainty~\citep{jacobs2011bayesian,clark2013whatever}. Because cultural evolutionary models are frequently designed to explain \emph{social} learning mechanisms, they often contrast social learning with a simplistic mechanism for individual learning. In particular, a common assumption is that individual learners can pay a cost to definitively learn the optimal behavior for a particular environment with certainty. This assumption implies that social learning, by observing an individual learner, is a good bet if the environment has not changed. Such modeling choices may lead us to overestimate both the extent to which individual learning provides quality information and the value of social learning in a population of individual learners. % , both for asocially adapting to uncertainty and for social learners to take advantage of.
 %and for the individual to adapt to the challenges assumed to be solved by social learning. 
 % underestimate the quality of information
 % available for social learning. 
@@ -168,11 +173,12 @@ To address these concerns we developed an evolutionary agent-based model that
 simultaneously operationalizes several forms of uncertainty and endows agents
 with a relatively powerful mechanism for individual learning. We model four kinds of
 uncertainty that are common in cultural evolution models and the related empirical
-literature:  (1) temporal environmental variability; (2) selection-set size (the number of possible behaviours); (3) payoff ambiguity
-(the difference in the expected rewards for different behaviours); and (4) the effective lifespan of agents (the number of
+literature:  (1) temporal environmental variability; (2) selection-set size (the number of possible behaviors); (3) payoff ambiguity
+(the difference in the expected rewards for different behaviors); and (4) the effective lifespan of agents (the number of
 opportunities for individual learning), see next section for more details. In our model, social learners learn from the previous
-generation and asocial learners do not. All agents engage in individual learning within their lifespans. The model also assumes a
-cognitively-realistic and empirically-motivated learning mechanism, the softmax algorithm, which allows learners to make full use of the available data acquired by both individual and social learning \citep{SuttonBartoBook}. Our model design thereby affords us a richer and possibly more accurate assessment of trade-offs between social and asocial learning. We use this integrated model to ask which kinds of uncertainty are likely to favor social learning and to clarify the logic underlying the results.
+generation and asocial learners do not. All agents engage in individual learning
+within their lifespans. The model also assumes \edit{an adaptive},
+empirically-motivated learning mechanism, the softmax decision rule, which allows learners to make full use of the available data acquired by both individual and social learning \citep{SuttonBartoBook}. Our model design thereby affords us a richer and possibly more accurate assessment of trade-offs between social and asocial learning. We use this integrated model to ask which kinds of uncertainty are likely to favor social learning and to clarify the logic underlying the results.
 In the remainder of this introduction we briefly review previous research on both the forms of uncertainty and the learning mechanism used in our model. 
 
 
@@ -181,27 +187,27 @@ In the remainder of this introduction we briefly review previous research on bot
 Uncertainty involves a reduced ability to predict what will happen in the future or to assess which actions are likely to yield particular outcomes. Uncertainty can manifest in many ways. We focus on the following four sources of uncertainty for the evolution of social learning: (1) temporal environmental variability, (2) selection-set size, (3) payoff ambiguity, and (4) effective lifespan.
 
 \paragraph{Temporal environmental variability.} When environmental variability is nonstationary (for example, because of climatic events %, migration,
-or technological paradigm shifts), strategies that were previously adaptive may no longer be optimal. The difficulty in predicting either when such shocks will occur or which behaviours will be adaptive in the resulting environments leads to uncertainty. 
+or technological paradigm shifts), strategies that were previously adaptive may no longer be optimal. The difficulty in predicting either when such shocks will occur or which behaviors will be adaptive in the resulting environments leads to uncertainty. 
 
 Temporal environmental variability is fundamental to most evolutionary models of
 social learning. Such fluctuations have been proposed as an important selective
-pressure for learned as opposed to genetically fixed behaviours when genetic adaptation cannot keep pace with environmental change~\citep{Richerson2000}. On the other hand, environments that change \emph{too} quickly will select against social learning so that individuals avoid learning outdated---and therefore maladaptive---information~\citep{Feldman1996,
+pressure for learned as opposed to genetically fixed behaviors when genetic adaptation cannot keep pace with environmental change~\citep{Richerson2000}. On the other hand, environments that change \emph{too} quickly will select against social learning so that individuals avoid learning outdated---and therefore maladaptive---information~\citep{Feldman1996,
 BoydRicherson1985}. This suggests that intermediate levels of temporal variation
 are important for the evolution of social learning mechanisms~\citep{aoki2005}.
 
 %Despite the theoretical centrality of t
 Temporal environmental variability tends to be modeled in one of 
 several ways~\citep{aoki2014evolution}. Most commonly, it is modeled
-as an independent probability that the environment changes its state (and its corresponding optimal behaviour) before each new generation~\citep{BoydRicherson1985,Rogers1988,Feldman1996,McElreath2005,Enquist2007,perreault2012bayesian,aoki2014evolution}, but
+as an independent probability that the environment changes its state (and its corresponding optimal behavior) before each new generation~\citep{BoydRicherson1985,Rogers1988,Feldman1996,McElreath2005,Enquist2007,perreault2012bayesian,aoki2014evolution}, but
 % The probabilities of environmental change are usually fixed per generation
 %~\citep{BoydRicherson1985,Rogers1988,kendal2009evolution}, 
 it has also been modeled using deterministic cycles, so that environments repeat at regular intervals~\citep{Feldman1996, aoki2014evolution}.
 %Furthermore, t
-The consequences of environmental change can range from mild to catastrophic. In the latter case, a change of environment results in the total elimination of any adaptive behaviour, which must be learned \emph{de novo} for the new environment~\citep{Rogers1988}. Such catastrophic environmental changes present
+The consequences of environmental change can range from mild to catastrophic. In the latter case, a change of environment results in the total elimination of any adaptive behavior, which must be learned \emph{de novo} for the new environment~\citep{Rogers1988}. Such catastrophic environmental changes present
 a large adaptive challenge as individuals cannot rely on accumulated information
 from previous generations. Other models of environmental change introduce less
-uncertainty as they fluctuate between two or more environmental states with corresponding adaptive behaviours. This means that previously maladaptive
-behaviours become adaptive when the environment changes~\citep{perreault2012bayesian}. The chosen mechanism for modelling temporal change has important theoretical consequences, reviewed in Aoki \& Feldman (2014).~\nocite{aoki2014evolution} Our study design ignores cases where temporal variation is low enough that genetic selection can canalize a behaviour, and instead considers only behaviours that can be learned.
+uncertainty as they fluctuate between two or more environmental states with corresponding adaptive behaviors. This means that previously maladaptive
+behaviors become adaptive when the environment changes~\citep{perreault2012bayesian}. The chosen mechanism for modeling temporal change has important theoretical consequences, reviewed in Aoki \& Feldman (2014).~\nocite{aoki2014evolution} Our study design ignores cases where temporal variation is low enough that genetic selection can canalize a behavior, and instead considers only behaviors that can be learned.
 
 
 \paragraph{Selection-set size.}
@@ -211,59 +217,53 @@ When one does not know which option to take, uncertainty increases with the numb
 % selection-set doubles in size~\citep{mackay2003information}. 
 % This is intuitive; the more options to consider, the greater one's uncertainty about which option is the best choice. 
 In many studies of social learning, the selection set is often limited to just two options.  For example, in empirical studies of bumble bees (\emph{Bombus
-terresteris}) \citep{Baracchi2018} and great tits (\emph{Parus major}) \citep{Aplin2017}, experimenters provided two behaviours from which the bees or birds
+terresteris}) \citep{Baracchi2018} and great tits (\emph{Parus major}) \citep{Aplin2017}, experimenters provided two behaviors from which the bees or birds
 could choose, with one yielding a higher payoff than the other. %respectively,
 %each yielding greater or smaller payoffs depending on experimental treatment.
 Similarly, many human studies have used just two or three possible
-behaviours~\citep{McElreath2005,Morgan2012, Toyokawa2019}. Behavioral study designs are
+behaviors~\citep{McElreath2005,Morgan2012, Toyokawa2019}. Behavioral study designs are
 often motivated by modeling studies with similar formulations~\citep{Rogers1988,boyd1995does,Feldman1996,
 perreault2012bayesian}.
-Larger, more open sets of behavioural choices are not uncommon in experiments trying to capture more complex or naturalistic tasks~\citep{derex2013, wasielewski2014}, but these map imperfectly onto the theoretical literature that tends to use a limited set of behavioural options.
+Larger, more open sets of behavioral choices are not uncommon in experiments trying to capture more complex or naturalistic tasks~\citep{derex2013, wasielewski2014}, but these map imperfectly onto the theoretical literature that tends to use a limited set of behavioral options.
 Some models have studied systems with larger, but defined, selection sets~\citep{Rendell2010, lindstrom2016co}, while in others the number of options is subsumed under the probability that a learner gets the right  answer~\citep{Feldman1996,Enquist2007}.
 %\mt{How does this work exactly in Enquist et al 2007?}. 
-%Researchers have also compared models with a different number of environment states, corresponding to a different number of optimal behaviours through time~\citep{Feldman1996}. 
+%Researchers have also compared models with a different number of environment states, corresponding to a different number of optimal behaviors through time~\citep{Feldman1996}. 
 Rarely is the size of the selection set explored explicitly as a source of  uncertainty \citep[though see][]{Muthukrishna2016a}, even though the number of options one has is likely to increase the difficulty of the decision task~\citep{haynes2009testing,white2009testing}.  
 %These examples share one common feature: the size of the selection set was held static \emph{within} model generations.
 % as a measure of changing uncertainty in cultural evolutionary models.
 
-\paragraph{Payoff ambiguity.} Most models of social learning necessarily differentiate between the payoffs for adopting optimal vs. non-optimal behaviours
+\paragraph{Payoff ambiguity.} Most models of social learning necessarily differentiate between the payoffs for adopting optimal vs. non-optimal behaviors
 \citep{BoydRicherson1985,Rogers1988,Enquist2007,Rendell2010,aoki2014evolution}. The size of the difference between these payoffs is usually taken to influence the strength of selection on learning strategies.
-However, the ability to discern payoff differences between behaviours is also a source of uncertainty. In reality, payoffs for particular behaviours are not always consistent. A behaviour may yield a large payoff sometimes and a small
+However, the ability to discern payoff differences between behaviors is also a source of uncertainty. In reality, payoffs for particular behaviors are not always consistent. A behavior may yield a large payoff sometimes and a small
 payoff other times \citep{McElreath2005}. This means that signals about the
-relationship between behaviour and payoff are often noisy, and differentiating
-between behavioural options is in part a problem of signal detection. When the
-difference in expected payoffs between optimal and non-optimal behaviours is very
+relationship between behavior and payoff are often noisy, and differentiating
+between behavioral options is in part a problem of signal detection. When the
+difference in expected payoffs between optimal and non-optimal behaviors is very
 large, this noise matters little, as the signal is still very clear. However, when
-the expected payoffs of different behaviours are similar relative to the size of
-their variances, ambiguity arises about which behaviours really are superior.
+the expected payoffs of different behaviors are similar relative to the size of
+their variances, ambiguity arises about which behaviors really are superior.
 Smaller differences between payoffs corresponds to larger ambiguity. Payoff
 ambiguity has been manipulated in both theoretical~\citep{perreault2012bayesian}
 and empirical~\citep{McElreath2005,Toyokawa2019} studies, both of which support the
 claim that payoff ambiguity increases the reliance on social information.
 Importantly, payoff ambiguity %differs from selection-set size in that it not only 
 affects both uncertainty \emph{and} the strength of selection, with smaller payoff differences leading to greater uncertainty for a learner and weaker evolutionary selection favoring optimal strategies. 
-\edit{It is an outstanding problem to understand how payoff variance and payoff distributions
-generally affect evolved behavioural strategies~\citep{Haaland2019}. For the sake
-of theoretical clarity for our goal of understanding the \emph{interaction} of various sources of uncertainty
-we only operationalize payoff ambiguity as the difference between expected 
-payoffs, even though empirical studies often include both forms of payoff
-uncertainty~\citep{McElreath2005,Toyokawa2019}, and a more complete
-model would include differences in mean and variance of payoffs.}
+\edit{It is an outstanding problem to understand how payoff variance and payoff distributions generally affect evolved behavioral strategies~\citep{Haaland2019}. For the sake of theoretical clarity for our goal of understanding the \emph{interaction} of various sources of uncertainty we only operationalize payoff ambiguity as the difference between expected payoffs, even though empirical studies often include both forms of payoff uncertainty~\citep{McElreath2005,Toyokawa2019}, and a more complete model would include differences in mean and variance of payoffs.}
 
 %This parameter sometimes takes the form of differences in
-%expected payoffs arising from different behaviours or strategies~\citep{Enquist2007,Rendell2010} or by varying the standard deviation of payoffs~\citep{McElreath2005}. 
+%expected payoffs arising from different behaviors or strategies~\citep{Enquist2007,Rendell2010} or by varying the standard deviation of payoffs~\citep{McElreath2005}. 
 
-\paragraph{Effective lifespan.} The more opportunities an agent has to learn during its lifespan, the more uncertainty can be reduced, assuming a stationary environment. Correspondingly, a reduction in the number of opportunities to learn will increase the uncertainty about which behavioural options are available and what their associated
+\paragraph{Effective lifespan.} The more opportunities an agent has to learn during its lifespan, the more uncertainty can be reduced, assuming a stationary environment. Correspondingly, a reduction in the number of opportunities to learn will increase the uncertainty about which behavioral options are available and what their associated
 payoffs are. %Such uncertainty can be passed on to future generations.
 % Learning is an iterative process by which one repeatedly acquires information, forms
 % representations and predictions, and tests and refines those representations and
 % predictions to manage uncertainty \citep{jacobs2011bayesian,clark2013whatever}. 
-We refer to the number of individual learning opportunities within a generation as an individual's effective lifespan to highlight that it is the number of opportunities to learn about the payoffs associated with a behaviour, rather than the number of sunrises one experiences, that determines one's uncertainty about the behavioural options.  
+We refer to the number of individual learning opportunities within a generation as an individual's effective lifespan to highlight that it is the number of opportunities to learn about the payoffs associated with a behavior, rather than the number of sunrises one experiences, that determines one's uncertainty about the behavioral options.  
 %throughout the individual's lifespan that matters here, not necessarily how long they live in the absence of relevant learning opportunities.  
 
 Empirically, the number of learning opportunities can be manipulated in the lab, and in the real world will tend to correlate with an individual's relative age. In multi-round studies of information use in novel tasks, US participants' use of social
 information declined precipitously across rounds~\citep{McElreath2005}, suggesting
-they were more likely to use social information when they were most uncertain about the task early on. In a more naturalistic context, \citet{Aplin2017} found that younger great tits more readily used social information compared to older individuals, possibly because they had accrued less information via individual learning, and possibly because younger individuals have the most to gain (because of higher reproductive value) by switching to superior behavioural options. Cross-cultural studies have highlighted the importance of childhood as a phase of heavy social learning in humans \citep{Reyes2016}. Young children are more likely to
+they were more likely to use social information when they were most uncertain about the task early on. In a more naturalistic context, \citet{Aplin2017} found that younger great tits more readily used social information compared to older individuals, possibly because they had accrued less information via individual learning, and possibly because younger individuals have the most to gain (because of higher reproductive value) by switching to superior behavioral options. Cross-cultural studies have highlighted the importance of childhood as a phase of heavy social learning in humans \citep{Reyes2016}. Young children are more likely to
 acquire their beliefs and simple skills from their parents than are older children
 or adults, which is at least partly due to the differential knowledge accrual
 between young children and the older adults to whom they direct the most trust and
@@ -274,23 +274,29 @@ attention \citep{kline2013teaching}. While these phenomena map on imperfectly to
 
 \subsection{Individual-level adaptations to uncertainty} 
 
-While the cultural-evolution literature suggests that several forms of uncertainty have played a role in the evolution of social learning, other cognitive mechanisms have likely also evolved in response to uncertainty \citep{volz2012,johnson2013evolution,van2018uncertainty}. Many of these are flexible learning mechanisms that do not require imitating the behaviours of others. For example, when faced with greater uncertainty individuals may adopt more exploratory learning strategies and may even preferentially test behaviours with greater observed payoff variance \citep{Wilson2014,Gershman2019}.
+While the cultural-evolution literature suggests that several forms of uncertainty have played a role in the evolution of social learning, other cognitive mechanisms have likely also evolved in response to uncertainty \citep{volz2012,johnson2013evolution,van2018uncertainty}. Many of these are flexible learning mechanisms that do not require imitating the behaviors of others. For example, when faced with greater uncertainty individuals may adopt more exploratory learning strategies and may even preferentially test behaviors with greater observed payoff variance \citep{Wilson2014,Gershman2019}.
 
-Many models of social learning simplify by using minimally-cognitive agents. For example, a common modelling strategy compares the payoffs of agents with different pure learning strategies (e.g., those who only engage in social learning versus those who only engage in individual learning) while revealing nothing about the cognition underlying individuals' decisions~\citep{BoydRicherson1985, Rogers1988, 
-aoki2005}. This sort of behavioural gambit is common in evolutionary modeling, but has also been criticized as `blackboxing' key cognitive processes that are important to cultural evolution \citep{Heyes2016,Kendal2018}.  
-Some more complicated learning strategies that make use of both socially and individually learned information have been studied ~\citep{Enquist2007, perreault2012bayesian}, including those that integrate cognitively plausible mechanisms such as reinforcement learning \citep{lindstrom2016co}, though the latter approach remains the exception rather than the norm. In order to understand how social learning evolves as an adaptation to uncertainty, we endowed agents with a biologically-plausible cognition capable of integrating information from various sources to maximize payoffs, using \emph{softmax search}~\citep{Gershman2019}, described in more detail below. 
+Many models of social learning simplify by using minimally-cognitive agents. For example, a common modeling strategy compares the payoffs of agents with different pure learning strategies (e.g., those who only engage in social learning versus those who only engage in individual learning) while revealing nothing about the cognition underlying individuals' decisions~\citep{BoydRicherson1985, Rogers1988, 
+aoki2005}. This sort of behavioral gambit is common in evolutionary modeling, but has also been criticized as `blackboxing' key cognitive processes that are important to cultural evolution \citep{Heyes2016,Kendal2018}.  
+Some more complicated learning strategies that make use of both socially and
+individually learned information have been studied ~\citep{Enquist2007,
+perreault2012bayesian}, including those that integrate cognitively plausible
+mechanisms such as reinforcement learning \citep{lindstrom2016co}, though the latter
+approach remains the exception rather than the norm. In order to understand how
+social learning evolves as an adaptation to uncertainty, we endowed agents with an
+\edit{adaptive} cognition based on a softmax decision rule capable of integrating information from various sources to maximize payoffs~\citep{Gershman2019}, described in more detail below. 
 
 \section{Model}
 
 In our model we allow just one trait to evolve: social learning. All other parameters are exogenous. Our primary outcome measure is the observed frequency at which the social-learning trait fixates in simulated populations. We study how the social learning fixation frequency responds to each of the four varieties of uncertainty considered in this paper. 
 
-A population consists of $N$ individuals, each of whom must decide which of $B$ behaviours to perform at
-each time step within a generation consisting of $L$ time steps. The behavioural selection set is a multi-armed bandit with $B$ arms. That is, agents can pick one of $B$ behaviours with random-valued payoffs~\citep{SuttonBartoBook,McElreath2005,Steyvers2009,Rendell2010,Schulz2019}. In each generation, exactly one behaviour is more likely to pay off than all the rest and is therefore optimal. Agents optimize their net payoffs over their lifespan by quickly learning which behaviour is optimal and performing it as often as possible within their lifespan. At the end of each generation, agents are selected with replacement to reproduce a new generation of $N$ agents, with the probability of reproduction biased by net payoffs. Agents who inherit the social-learning trait learn about payoffs from the previous generation, while asocial learners begin life only knowing the number of behaviours the environment affords, but have no knowledge of behavioural payoffs.
+A population consists of $N$ individuals, each of whom must decide which of $B$ behaviors to perform at
+each time step within a generation consisting of $L$ time steps. The behavioral selection set is a multi-armed bandit with $B$ arms. That is, agents can pick one of $B$ behaviors with random-valued payoffs~\citep{SuttonBartoBook,McElreath2005,Steyvers2009,Rendell2010,Schulz2019}. In each generation, exactly one behavior is more likely to pay off than all the rest and is therefore optimal. Agents optimize their net payoffs over their lifespan by quickly learning which behavior is optimal and performing it as often as possible within their lifespan. At the end of each generation, agents are selected with replacement to reproduce a new generation of $N$ agents, with the probability of reproduction biased by net payoffs. Agents who inherit the social-learning trait learn about payoffs from the previous generation, while asocial learners begin life only knowing the number of behaviors the environment affords, but have no knowledge of behavioral payoffs.
 
 
 \subsection{Model environment and uncertainty}
 
-The structure of the environment is specified by several parameters that remain fixed throughout the course of a given simulation (Table~\ref{tab:uncertaintyParameters}).  The environment affords $B$ behaviours, where $B$ is the \emph{selection-set size}. Uncertainty increases with $B$. Each behaviour is indexed by $b$ and yields a payoff of 1 with probability $\pi_b$ and a payoff of 0 otherwise. As such, $\pi_b$ is equivalently the expected payoff of behaviour $b$. At the beginning of each generation, one behaviour is optimal and yields expected payoff $\pihigh$; the other $B-1$ behaviours yield a lower payoff, $\pilow$. The \emph{payoff ambiguity} is defined by $\pihigh - \pilow$. We fix $\pihigh = 0.9$ to be constant across all simulations, so payoff ambiguity is varied by changing the value of $\pilow$. In other words, payoff ambiguity, and therefore uncertainty, increases with $\pilow$.  Agents have $L$ time steps to learn and act per generation (i.e., the \emph{effective lifespan}). Uncertainty decreases with $L$. At the start of each generation a new optimal behaviour is selected at random from the set of all possible behaviours with probability $u$ (the \emph{environmental variability}), otherwise the optimal behaviour remains unchanged from the previous generation. Uncertainty increases with $u$.
+The structure of the environment is specified by several parameters that remain fixed throughout the course of a given simulation (Table~\ref{tab:uncertaintyParameters}).  The environment affords $B$ behaviors, where $B$ is the \emph{selection-set size}. Uncertainty increases with $B$. Each behavior is indexed by $b$ and yields a payoff of 1 with probability $\pi_b$ and a payoff of 0 otherwise. As such, $\pi_b$ is equivalently the expected payoff of behavior $b$. At the beginning of each generation, one behavior is optimal and yields expected payoff $\pihigh$; the other $B-1$ behaviors yield a lower payoff, $\pilow$. The \emph{payoff ambiguity} is defined by $\pihigh - \pilow$. We fix $\pihigh = 0.9$ to be constant across all simulations, so payoff ambiguity is varied by changing the value of $\pilow$. In other words, payoff ambiguity, and therefore uncertainty, increases with $\pilow$.  Agents have $L$ time steps to learn and act per generation (i.e., the \emph{effective lifespan}). Uncertainty decreases with $L$. At the start of each generation a new optimal behavior is selected at random from the set of all possible behaviors with probability $u$ (the \emph{environmental variability}), otherwise the optimal behavior remains unchanged from the previous generation. Uncertainty increases with $u$.
 
 \vspace{2em}
 \begin{table}[h]
@@ -307,18 +313,18 @@ $\pilow$, $B$, $L$, and $u$. Bold indicates default value tested.} %\emph{defaul
                  & 50, 100, 200, \textbf{1000} \\
                
 
-        $\pihigh$ & Probability that the unique optimal behaviour pays off 1 
+        $\pihigh$ & Probability that the unique optimal behavior pays off 1 
                 & \textbf{0.9} \\
 
-        $\pilow$ & Payoff ambiguity: probability one of $B - 1$ non-optimal behaviours pays off 1
+        $\pilow$ & Payoff ambiguity: probability one of $B - 1$ non-optimal behaviors pays off 1
                  & 0.1, 0.45, 0.8 \\ 
 
-        $B$       & Selection-set size: number of behaviour options
+        $B$       & Selection-set size: number of behavior options
                   & 2, 4, 10 \\
                   
         $L$    & Effective lifespan: time steps per generation & 1, $B/2$, $B$, $2B$, $4B$ \\
         
-        $u$    & Environmental variability: Probability optimal behaviour changes between generations
+        $u$    & Environmental variability: Probability optimal behavior changes between generations
                & 0.0, 0.1, \ldots, 1.0 \\
                
         \bottomrule
@@ -329,24 +335,24 @@ $\pilow$, $B$, $L$, and $u$. Bold indicates default value tested.} %\emph{defaul
 
 \subsection{Agents and learning}
 
-%Agents are endowed with dynamic attributes to intelligently select behaviours and calculate average payoffs for each behaviour. 
+%Agents are endowed with dynamic attributes to intelligently select behaviors and calculate average payoffs for each behavior. 
 All agents learn individually over their lifespan, and those with
 the heritable social learner trait additionally use social information to constrain their individual
 learning. For simplicity, we refer to agents with the social learner trait 
 as social learners. 
 % Learning strategies are assumed to be heritable. Each agent $i$ has a learning trait $s_i$, which is 1 if $i$ is a social learner and zero otherwise. 
 % Every agent engages in individual learning over its lifespan, regardless of learning strategy. 
-Social learners begin life with behavioural preferences based on information learned from an agent chosen from the previous generation. Asocial learners begin life with no behavioural preferences. Agent-level parameters are described in Table~\ref{tab:modelParameters}. 
+Social learners begin life with behavioral preferences based on information learned from an agent chosen from the previous generation. Asocial learners begin life with no behavioral preferences. Agent-level parameters are described in Table~\ref{tab:modelParameters}. 
 
 
 \subsubsection{Individual learning}
 
 All agents perform individual, trial-and-error learning at each time step in
 their lifespan.  Learning is guided by softmax search. Softmax search
-guides agents to exploit more frequently the most profitable behaviours when the
+guides agents to exploit more frequently the most profitable behaviors when the
 agent is more certain it is the optimal one and to explore more frequently when the
 agent is unsure. To do softmax searching, agents track average payoffs acquired
-from each behaviour they have performed, which requires knowing the number of times they have performed each behaviour. The probability that the agent will perform a behaviour is a function of the agent's beliefs about a behaviour's average payoff in that time step and a fixed parameter that influences the amount of exploratory behaviour (more details below). The softmax function used here is a biologically plausible generalization of behaviour selection under uncertainty that enables agents to often greedily exploit the most lucrative behaviour they have observed, but also to sometimes explore alternatives~\citep{Schulz2019,Collins2013,Daw2006,Yechiam2005}.
+from each behavior they have performed, which requires knowing the number of times they have performed each behavior. The probability that the agent will perform a behavior is a function of the agent's beliefs about a behavior's average payoff in that time step and a fixed parameter that influences the amount of exploratory behavior (more details below). The softmax function used here is a biologically plausible generalization of behavior selection under uncertainty that enables agents to often greedily exploit the most lucrative behavior they have observed, but also to sometimes explore alternatives~\citep{Schulz2019,Collins2013,Daw2006,Yechiam2005}.
 
 
 \subsubsection{Social learning}
@@ -355,7 +361,7 @@ At the beginning of each generation other than the first, each social learner se
 one member of the previous generation to learn from in a payoff-biased way. 
 %, if the child inherited $s_i = 1$. A child agent $c$ is a social learner if its parent $p$ was a social learner, i.e.\ $s_c \leftarrow s_p$, without mutation.
 A social learner selects this ``teacher" from the previous generation by first
-choosing the payoff maximizer among these (more details below).  The social learner then inherits information about the likely payoffs of each behaviour from that one teacher, whereas asocial learners do not acquire this information. In this way, the social learner can potentially reduce the amount of exploration needed to both execute and learn about the optimal behaviour.  
+choosing the payoff maximizer among these (more details below).  The social learner then inherits information about the likely payoffs of each behavior from that one teacher, whereas asocial learners do not acquire this information. In this way, the social learner can potentially reduce the amount of exploration needed to both execute and learn about the optimal behavior.  
 
 
 % \subsubsection{Social learning as a scaffold for individual learning}
@@ -364,10 +370,10 @@ choosing the payoff maximizer among these (more details below).  The social lear
 % average to provide greater net payoffs than being an individual learner.  It is not
 % catastrophic for an individual to receive outdated information, as is sometimes
 % assumed~\cite[e.g.]{Rogers1988}. Instead, agents explore alternatives and
-% greedily perform different behaviours that pay off better. 
+% greedily perform different behaviors that pay off better. 
 % This mechanism is critical for explaining the patterns we observe in the 
 % Analysis, where social learning evolves when $u > 0.5$.
-% In this case, the optimal behaviour will switch between generations more often than
+% In this case, the optimal behavior will switch between generations more often than
 % not. Without individual learning, social learning would not evolve when $u > 0.5$.
 
 \begin{table}[h]
@@ -388,10 +394,10 @@ $\protect N_T$, are constant throughout each simulation.}
         $s_i$  & Social-learner trait: 1 if agent $i$ is social learner; 0 otherwise & 0
         or 1 equally likely \\
 
-        $\bar\pi_{ib}$ & Mean payoffs acquired by agent $i$ from behaviour $b$
+        $\bar\pi_{ib}$ & Mean payoffs acquired by agent $i$ from behavior $b$
                        & $B$-vector of zeros \\
 
-        $c_{ib}$ & Count of how many times agent $i$ performed behaviour $b$ 
+        $c_{ib}$ & Count of how many times agent $i$ performed behavior $b$ 
               & $B$-vector of zeros \\
 
         $\pi_i$ & Net payoffs accumulated by $i$ within generation & 0.0 \\
@@ -413,7 +419,7 @@ $\protect N_T$, are constant throughout each simulation.}
 
 Model dynamics proceed by first initializing the environment and agents according
 to the chosen parameter settings. % for the simulation.
-Then, within each generation, agents select and perform behaviours, updating their estimated payoffs, and thus their probabilities of choosing each behaviour, along the way.
+Then, within each generation, agents select and perform behaviors, updating their estimated payoffs, and thus their probabilities of choosing each behavior, along the way.
 Between generations, agents reproduce, teach social learners of the next generation, and die off. 
 %Child agents then begin a new round of generational dynamics, followed by reproduction. 
 This process continues until the population has evolved to fixation as either all social learners or
@@ -423,63 +429,68 @@ all asocial learners. %This process is represented in Figure~\ref{fig:schematic}
 \paragraph{Initialization}
 
 The model is initialized with $N$ agents. Each agent $i$ tracks 
-observed mean payoffs for each behaviour, $b$, which is denoted $\ledger$. Each
-agent $i$ also counts how many times they have tried each behaviour $b$, 
+observed mean payoffs for each behavior, $b$, which is denoted $\ledger$. Each
+agent $i$ also counts how many times they have tried each behavior $b$, 
 denoted $c_{ib}$. At model initialization, $\ledger = 0.0$ and $c_{ib} = 0$ for
 all $i$ and $b$.% (Figure~\ref{fig:schematic}A).
-One of the behaviours is chosen at random to yield expected payoff $\pihigh$, with the other $B-1$ behaviours yielding
+One of the behaviors is chosen at random to yield expected payoff $\pihigh$, with the other $B-1$ behaviors yielding
 expected payoffs $\pilow$. Agents are independently randomly initialized with $s_i
 \in 0,1$, so that $\sim$50\% of the initial population learn socially.
 
 
 \paragraph{Within-generation dynamics}
-% To guide behaviour selection, agent $i$ counts how many times it
-% performed each behaviour $b$, denoted $c_{ib}$. Agents use this count to 
-% update the mean payoff they have obtained from behaviour $b$, denoted $\ledger$.
+% To guide behavior selection, agent $i$ counts how many times it
+% performed each behavior $b$, denoted $c_{ib}$. Agents use this count to 
+% update the mean payoff they have obtained from behavior $b$, denoted $\ledger$.
 % $\ledger$ is initialized to 0 for all $b$ at model start for
 % all agents (Figure~\ref{fig:schematic}A), and at 
 % generation start for asocial learners. Social
 % learning agents' $\ledger$ is initialized as that of its teacher, who is selected
 % through performance-biased oblique learning; $c_ib$ is set to 1 for all social
-% learners $i$ and behaviours $b$ (Figure~\ref{fig:schematic}C). Agent $i$'s
-% accumulated payoffs from performing several behaviours over their lifetime of $L$
+% learners $i$ and behaviors $b$ (Figure~\ref{fig:schematic}C). Agent $i$'s
+% accumulated payoffs from performing several behaviors over their lifetime of $L$
 % time steps is denoted $\pi_{i}$. If an agent $i$ is a social learner, then we write
 % $s_i = 1$, otherwise the agent is an asocial learner and $s_i = 0$.
 
-Within each generation, all $N$ agents perform $L$ behaviours sequentially and
+Within each generation, all $N$ agents perform $L$ behaviors sequentially and
 independently (Figure~\ref{fig:softmaxSensitivity}b).
-% Each agent $i$ selects one behaviour on each step of its lifespan using softmax applied
-% to the vector of mean payoffs the agent has observed for each behaviour
+% Each agent $i$ selects one behavior on each step of its lifespan using softmax applied
+% to the vector of mean payoffs the agent has observed for each behavior
 % ($\ledger$), integrating previous knowledge. 
 % We denote the average payoffs obtained by agent $i$
-% for behaviour $b$ as $\ledger$. We denote the number of times $i$ performed $b$
+% for behavior $b$ as $\ledger$. We denote the number of times $i$ performed $b$
 % as $c_{ib}$ (``$c$'' stands for count). 
-At each time step, agent $i$ performs behaviour $b$ with softmax-weighted probability
+At each time step, agent $i$ performs behavior $b$ with softmax-weighted probability
 \begin{equation}
-  \Pr(\text{Agent $i$ performs behaviour $b$}) = 
+  \Pr(\text{Agent $i$ performs behavior $b$}) = 
     \frac{e^{\beta \ledger}}{\sum_{b=1}^B e^{\beta \ledger}}.
 \end{equation}
 \noindent
 $\beta$ adjusts how frequently agents perform 
-behaviours with high expected payoffs (larger $\beta$) versus how frequently
-agents explore alternative behaviours (smaller $\beta$). %~\citep{McElreath2005}. 
+behaviors with high expected payoffs (larger $\beta$) versus how frequently
+agents explore alternative behaviors (smaller $\beta$). %~\citep{McElreath2005}. 
 We used a default value of $\beta = 10$, but also varied this value in our
 sensitivity analyses~(Figure~\ref{fig:softmaxSensitivity}). 
 
-Agent $i$ using behaviour $b$ receives a payoff of 1 with probability $\pihigh$
-if $b$ is the optimal behaviour, or with probability $\pilow$ otherwise. 
-%Agents probabilistically recieve a payoff of 0 or 1 depending on whether the bandit paid off. Behavior payoffs are drawn from a Bernoulli distribution with mean $\pi_b$, so $\pi_b$ is also the mean payoff from behaviour $b$.  For concreteness we denote this probabilistic payoff $\bandit$. 
-After performing behaviour $b$, agent $i$ updates its
-corresponding \emph{behaviour count} for $b$ by 1, $c_{ib}' \leftarrow c_{ib} + 1$.
-Then the observed average payoffs known by agent $i$ for behaviour $b$ are updated with
-exponentially-weighted averaging
+Agent $i$ using behavior $b$ receives a payoff of 1 with probability $\pihigh$
+if $b$ is the optimal behavior, or with probability $\pilow$ otherwise. 
+%Agents probabilistically recieve a payoff of 0 or 1 depending on whether the bandit paid off. Behavior payoffs are drawn from a Bernoulli distribution with mean $\pi_b$, so $\pi_b$ is also the mean payoff from behavior $b$.  For concreteness we denote this probabilistic payoff $\bandit$. 
+After performing behavior $b$, agent $i$ updates its
+corresponding \emph{behavior count} for $b$ by 1, $c_{ib}' \leftarrow c_{ib} + 1$.
+Then the observed average payoffs known by agent $i$ for behavior $b$ are updated
+via \edit{moving arithmetic averaging},
 \begin{equation}
   \ledger' \leftarrow \ledger + \frac{\bandit - \ledger}{c_{ib}'},
 \end{equation}
 \noindent
-where $\bandit$ is the actual payoff received by agent $i$ for behaviour $b$ on a
+where $\bandit$ is the actual payoff received by agent $i$ for behavior $b$ on a
 given %(implicit) 
-time step. 
+time step. \edit{This form allows the running mean payoffs to be calculated for each
+behavior, weighting each observation equally, without knowing in advance how many
+times a behavior will be performed. While more or less sophisticated averaging may
+better represent specific species' abilities in different contexts, this form
+provides a basic observational learning mechanism that may be further specified as
+appropriate for different cases.}
 
 \paragraph{Intergenerational dynamics} Between generations, agents first reproduce
 via asexual haploid reproduction, which determines the transmission of the social
@@ -495,19 +506,21 @@ replacement over $N$ independent draws, biased by performance:
 \noindent 
 A child inherits its parent's social-learning trait $s_i$ without mutation.  A social learner child with $s_i = 1$ learns from a teacher from its parent's generation, including possibly their parent (i.e., both vertical and oblique learning are possible).  A child chooses its teacher by first randomly selecting $N_T$ prospective teachers from the population, then selecting the one in this set with the greatest payoff net, with ties broken randomly. By first subsetting $N_T$ prospective teachers we represent the fact that access to the entire population is not generally guaranteed, though this type of algorithm yields qualitatively similar results to ones that do not first produce subsamples \citep{smaldino2019open} and we show in the supplement that our results are robust to different $N_T$
 (Figure~\ref{fig:nteachersSensitivity}). Social learner $i$ adopts their chosen 
-teacher $j$'s observed average payoffs for each behaviour, $b$, i.e., 
+teacher $j$'s observed average payoffs for each behavior, $b$, i.e., 
 $\ledger \leftarrow \bar\pi_{jb}$; 
-and agent $i$'s count of behavioural observations, $c_{ib}$, is set to 1 if teacher $j$ had at least
-one observation of behaviour $b$, and $c_{ib}$ is set to 0 otherwise. This way, expected payoffs
+and agent $i$'s count of behavioral observations, $c_{ib}$, is set to 1 if teacher $j$ had at least
+one observation of behavior $b$, and $c_{ib}$ is set to 0 otherwise. This way, expected payoffs
 remain within $[0, 1]$, but social learners are flexible to adjust to environmental change. Setting
 $c_{ib}$ to 1 reflects the fact that the social learner treats the teacher's information as a single
-observation with the associated uncertainty. Asocial learners ($s_i = 0$) are initialized with
-$c_{ib} = 0$ and $\ledger = 0$ for each behaviour, $b$. % (Figure~\ref{fig:schematic}C). 
+observation with the associated uncertainty. \edit{If students have more confidence
+in the teacher's information, or there are biological or cultural factors that more
+strongly weight teacher information, it may be more justifiable to set the learner's $c_{ib}$ to its teacher's $c_{jb}$}. Asocial learners ($s_i = 0$) are initialized with
+$c_{ib} = 0$ and $\ledger = 0$ for each behavior, $b$. % (Figure~\ref{fig:schematic}C). 
 The newly initialized population then repeats the within-generation dynamics. 
 
-After reproduction and die-off, the optimal behaviour changes with probability
-$u$. The new behaviour is chosen from all other behaviours, with the 
-current optimal behaviour excluded from selection.
+After reproduction and die-off, the optimal behavior changes with probability
+$u$. The new behavior is chosen from all other behaviors, with the 
+current optimal behavior excluded from selection.
 
 \paragraph{Stopping conditions} The evolutionary process continues until the
 population reaches evolutionary fixation with respect to social learning, that is, when
@@ -518,7 +531,7 @@ $\sum_i s_i = N$ or $\sum_i s_i = 0$.
 % \begin{figure}
 %   \caption{Agents are randomly initialized as social learners or not, with their
 %   payoff observations all initialized to zero (A). Then agents begin selecting
-% and performing behaviours and accumulating payoffs, which goes on for $L$
+% and performing behaviors and accumulating payoffs, which goes on for $L$
 % timesteps (B). After $L$ time steps, agents are selected to reproduce,
 % social learner children learn from a member of their parent's generation, and
 % the previous generation dies off (C). The simulation stops if children are all
@@ -589,30 +602,43 @@ decreasing selection for social learning. Past some threshold, social learning i
 not favored at all. However, the exact nature of the relationship between social
 learning and temporal environmental variability was moderated by the other three uncertainty parameters. 
 
-The number of behavioural options, i.e., larger $B$, favors the evolution of social learning. Increasing the selection-set size
+The number of behavioral options, i.e., larger $B$, favors the evolution of social learning. Increasing the selection-set size
 expands the range of $u$ over which social learning is favored for two reasons. First, when the environment remains constant between
-generations, the value of social learning increases with more behavioural options, because it effectively increases the number of
+generations, the value of social learning increases with more behavioral options, because it effectively increases the number of
 observations that one can learn from by comparing the payoffs of several models. In other words, relying \emph{only} on one's
-individual trial-and-error learning is less likely to yield useful information when the search space is large. Second, when the environment changes, bias against the new optimal is weaker with more behavioural options. For example, with only two behavioural choices ($B = 2$), a common assumption in many models, social learning is particularly detrimental when the environment changes since more of the population will have arrived at the optimal behaviour in the previous generation and socially learning from them will be biased against the correct choice. These two mechanisms make it particularly profitable to engage in social learning when the selection-set size is larger---for large values of $B$ social learning can even be favored when the environment is more likely to change than not (i.e., $u>0.5$). 
+individual trial-and-error learning is less likely to yield useful information when the search space is large. Second, when the environment changes, bias against the new optimal is weaker with more behavioral options. For example, with only two behavioral choices ($B = 2$), a common assumption in many models, social learning is particularly detrimental when the environment changes since more of the population will have arrived at the optimal behavior in the previous generation and socially learning from them will be biased against the correct choice. These two mechanisms make it particularly profitable to engage in social learning when the selection-set size is larger---for large values of $B$ social learning can even be favored when the environment is more likely to change than not (i.e., $u>0.5$). 
 
-A shorter effective lifespan, $L$, also favors the evolution of social learning in most cases. When effective lifespans are long and there are many opportunities to gather information by individual learning, the value of social transmission is diminished. Given enough opportunities, all agents will learn the optimal behaviour eventually. Thus, under most conditions, longer effective lifespans lead to a narrower range of the parameters $u$ and $B$ under which social learning was favored. It is noteworthy that in many cases, a large increase in the selection regime for social learning is observed when $L=1$, and by definition no individual learning can occur. The exceptions to this general pattern occur for high levels of payoff ambiguity, $\pilow$ combined with low rates of environmental change, $u$ (left parts of plots on bottom row of Figure~\ref{fig:mainResults}). This reversal is partially explained by higher levels of drift when there is little difference in the payoffs between behaviours, and by the fact that the quality of social information is poorer when payoffs are ambiguous and lifespans are short (more on these effects of payoff ambiguity below).  
+A shorter effective lifespan, $L$, also favors the evolution of social learning in
+most cases. When effective lifespans are long and there are many opportunities to
+gather information by individual learning, the value of social transmission is
+diminished. Given enough opportunities, all agents will learn the optimal behavior
+eventually. Thus, under most conditions, longer effective lifespans lead to a
+narrower range of the parameters $u$ and $B$ under which social learning was
+favored. It is noteworthy that in many cases, a large increase in the selection
+regime for social learning is observed when $L=1$, and by definition no individual
+learning can occur. The exceptions to this general pattern occur for high levels of
+payoff ambiguity, $\pilow$ combined with low rates of environmental change, $u$
+(left parts of plots on bottom row of Figure~\ref{fig:mainResults}). This reversal
+is partially explained by \edit{weaker selection} when there is little difference in the payoffs between behaviors, and by the fact that the quality of social information is poorer when payoffs are ambiguous and lifespans are short (more on these effects of payoff ambiguity below).  
 % \cm{is this right? I thought we should say something about the exceptions in this paragraph though we describe in more detail below, but not sure I have the right explanation}
 
 Of the four types of uncertainty studied in this paper, payoff ambiguity had the most
 complex effect on the evolution of social learning. Recall that we operationalized
-payoff ambiguity with $\pilow$, the expected payoff for non-optimal behaviours
-(equivalently the probability that those behaviours yielded a payoff of 1). This was
-relative to $\pihigh = 0.9$, the expected payoff for the optimal behaviour. When
-payoff ambiguity was low, non-optimal behaviours rarely paid off, so that exploration
+payoff ambiguity with $\pilow$, the expected payoff for non-optimal behaviors
+(equivalently the probability that those behaviors yielded a payoff of 1). This was
+relative to $\pihigh = 0.9$, the expected payoff for the optimal behavior. When
+payoff ambiguity was low, non-optimal behaviors rarely paid off, so that exploration
 yielded reliable information and selection on learning strategies was strong. When
 payoff ambiguity is very high ($\pilow = 0.8$), two things happen. First, agents are
-more likely to err by ascribing high value to non-optimal behaviours, since it is
+more likely to err by ascribing high value to non-optimal behaviors, since it is
 more difficult for them to discern the difference between optimal and sub optimal
-behaviours. Second, and perhaps more importantly, natural selection on strategies
-that \emph{do} reliably select the optimal behaviour is relatively weak. This means that the effect of drift is relatively stronger, weakening selection in favor of social learning under low values of $u$ and weakening selection against social learning under high values of $u$ (Figure~\ref{fig:mainResults}, bottom row). 
-This effect was especially strong under other types of uncertainty, i.e., larger selection-set sizes and shorter effective lifespans---particularly when $L=1$ where no individual learning occurred. 
+behaviors. Second, and perhaps more importantly, natural selection on strategies
+that \emph{do} reliably select the optimal behavior is relatively weak. This means
+\edit{selection} is weaker \emph{in favor} of social learning under low values of $u$ and
+\edit{weaker} \emph{against} social learning under high values of $u$ (Figure~\ref{fig:mainResults}, bottom row). 
+This effect was especially \edit{pronounced} under other types of uncertainty, i.e., larger selection-set sizes and shorter effective lifespans---particularly when $L=1$ where no individual learning occurred. 
 
-The effect of drift when the benefit of social learning is ambiguous is powerful and complex. We explain how the frequency of social learning evolves in such circumstances in the following section.
+The effect of \edit{selection strength} when the benefit of social learning is ambiguous is powerful and complex. We explain how the frequency of social learning evolves in such circumstances in the following section.
 %selection on social learning responds to these effects in more detail in the following section. 
 %\cm{I rephrased as I didn't think selection was RESPONDING to drift. Original framing sounded weird since in essence we have weak selection which is why drift is relatively high. }
 
@@ -621,7 +647,7 @@ The effect of drift when the benefit of social learning is ambiguous is powerful
 \begin{figure}
   \caption{Social learning prevalence ($y$-axes) monotonically decreases as 
   environmental variability, $u$, increases ($x$-axes) in most uncertainty contexts. 
-  Other uncertainty values payoff ambiguity, $\pilow$, (rows), number of behavioural options, $B$, (columns), and effective lifespan, $L$, (keys) shift and flatten the slope from all-social-learner populations to all-asocial-learner
+  Other uncertainty values payoff ambiguity, $\pilow$, (rows), number of behavioral options, $B$, (columns), and effective lifespan, $L$, (keys) shift and flatten the slope from all-social-learner populations to all-asocial-learner
   populations.}
   \label{fig:mainResults}
   \centering
@@ -630,11 +656,14 @@ The effect of drift when the benefit of social learning is ambiguous is powerful
 
 \subsection{Strength of selection}
 
-\edit{To begin to confirm our interpretation of , we measured strength of selection via the number of
-time steps to fixation. More steps to fixation here indicates weaker selection.} Strength of selection is the extent to which the
+\edit{To begin to confirm our interpretation of our analysis above, we measured
+  strength of selection via the ensemble average of the number of
+time steps to fixation over all simulation trials for a given parameter setting. More steps to fixation here indicates weaker selection.} Strength of selection is the extent to which the
 social-learning trait provided agents with a consistent benefit. \edit{Selection
   strength is minimal when social and asocial learning
-are equally beneficial.} Even under consistent but weak selection pressure, drift can cause a population to take longer to reach fixation \citep{plutynski2007drift}. We therefore measured drift by the average number of generations to fixation, denoted $\langle G \rangle$, where fixation means that the number of social learners, $\sum_i s_i$, is equal to either zero or $N$. %Indeed, social learning evolution and drift are reflected in the relative benefit of social learning to asocial learning.  
+are equally beneficial.} 
+% Even under consistent but weak selection pressure, drift can cause a population to take longer to reach fixation \citep{plutynski2007drift}. 
+We denote the ensemble average over simultaion trials of the number of generations to fixation, denoted $\langle G \rangle$, where fixation means that the number of social learners, $\sum_i s_i$, is equal to either zero or $N$. %Indeed, social learning evolution and drift are reflected in the relative benefit of social learning to asocial learning.  
 
 Figure~\ref{fig:steps} shows the average number of generations to fixation across all uncertainty parameters. Drift was greatest overall when payoff ambiguity was greatest, i.e., when $\pilow = 0.8$. When payoffs are highly ambiguous there is relatively little advantage to the optimal learning strategy, and therefore relatively weak selective pressure.
 
@@ -647,8 +676,8 @@ the number of steps to fixation. As selection-set size and uncertainty were incr
 social learning was favored for a greater range of environmental variability. 
 % This pushes up the values of $u$ with greatest drift. 
 Effective lifespan, $L$, 
-had some effect on the location of peak
-drift over environmental variability, but effective lifespan, $L$, had a more consistent effect on the
+had some effect on the location of peak time to fixation over environmental variability, 
+but effective lifespan, $L$, had a more consistent effect on the
 overall selection strength: $L=1$ trials took longer to reach fixation on average, 
 especially when payoff ambiguity 
 was low ($\pilow < 0.8$). However, the effect of lifespan on time to fixation was non-monotonic---longer
@@ -656,7 +685,7 @@ lifespans also resulted in longer times to fixation compared to intermediate lif
 Figure~\ref{fig:steps}, top left and top right). When $L=1$, selection pressure may be relatively
 weak since agents have no opportunity for individual learning, and social learning is the only
 learning channel. When $L=8$ ($B=2,4$) or when $L=20$ ($B=10$), individual learning allows agents
-many opportunities to find the optimal behaviour, which means social learning provides a relatively
+many opportunities to find the optimal behavior, which means social learning provides a relatively
 weaker constraint on net payoffs over agent lifespans. This would also results in weaker selection pressure since there is relatively little difference between social and asocial constraints when $L$ is large
 (Figure~\ref{fig:steps}, top two rows).
 
@@ -771,8 +800,14 @@ outdated information too heavily. %\cm{is there something worth pointing out as 
 \subsection{Sensitivity analyses}
 
 We performed sensitivity analyses to ensure that our main analysis was reasonably
-robust to a range of auxiliary parameters. These sensitivity analyses are presented in full in the supplemental material. First, we confirmed that our results were robust to various population sizes $N$, though smaller-$N$ simulations had more drift, as expected, due to stronger effects of finite population size (Figure~\ref{fig:populationSensitivity}). %, but  still generally support our main conclusions. 
-Next, we verified model robustness to the number of prospective teachers, $N_T \in \{2, 20\}$, to supplement the main results that used $N_T = 5$. The number of prospective teachers did not change the results (Figure~\ref{fig:nteachersSensitivity}), except to increase drift when $N_T = 2$, since the benefit of social learning may be more difficult to detect with fewer prospective teachers (Figure~\ref{fig:nteachersSensitivity}a). Finally, we confirmed our results were reasonably robust to a wide range of softmax greediness parameters, $\beta \in \{1, 100\}$, to supplement the main results that used $\beta = 10$. However, when $\beta = 1$, an insufficient reliance on the best-paying behaviour (i.e., low greed) caused agents to often ignore helpful social information  (Figure~\ref{fig:softmaxSensitivity}a). On the other hand, too much greed ($\beta=100$) made social learners inflexible so they could not recover as well when when they learned outdated social information. This cost to greediness was most pronounced for longer-lived agents who may spend several time steps performing a sub-optimal behaviour (Figure~\ref{fig:softmaxSensitivity}b).
+robust to a range of auxiliary parameters. These sensitivity analyses are presented
+in full in the supplemental material. First, we confirmed that our results were
+robust to various population sizes $N$, though smaller-$N$ simulations demonstrated
+weaker selection strength, as expected, due to stronger effects of finite population size (Figure~\ref{fig:populationSensitivity}). %, but  still generally support our main conclusions. 
+Next, we verified model robustness to the number of prospective teachers, $N_T \in
+\{2, 20\}$, to supplement the main results that used $N_T = 5$. The number of
+prospective teachers did not change the results
+(Figure~\ref{fig:nteachersSensitivity}), except to increase time to fixation when $N_T = 2$, since the benefit of social learning may be more difficult to detect with fewer prospective teachers (Figure~\ref{fig:nteachersSensitivity}a). Finally, we confirmed our results were reasonably robust to a wide range of softmax greediness parameters, $\beta \in \{1, 100\}$, to supplement the main results that used $\beta = 10$. However, when $\beta = 1$, an insufficient reliance on the best-paying behavior (i.e., low greed) caused agents to often ignore helpful social information  (Figure~\ref{fig:softmaxSensitivity}a). On the other hand, too much greed ($\beta=100$) made social learners inflexible so they could not recover as well when when they learned outdated social information. This cost to greediness was most pronounced for longer-lived agents who may spend several time steps performing a sub-optimal behavior (Figure~\ref{fig:softmaxSensitivity}b).
 
 \section{Discussion}
 
@@ -782,10 +817,10 @@ Next, we verified model robustness to the number of prospective teachers, $N_T \
 %We reviewed and distilled several empirical and theoretical models in the literature along four uncertainty dimensions: temporal environmental uncertainty, selection-set size, ambiguous payoffs, and effective lifespan.  
 We reproduced the well-known results that the uncertainty derived from a temporally-variable environment can limit the evolution of social learning if environmental change is simply too frequent for intergenerational transmission to be of value. Importantly, we also showed that this relationship is affected by other sources of uncertainty. 
 %Our model reproduced classic predictions that social learning can yield higher payoffs than individual learning when uncertainty is sufficiently limited. 
-We found that larger sets of behavioural options, shorter effective lifespans,
+We found that larger sets of behavioral options, shorter effective lifespans,
 and increased payoff ambiguity could all favor the evolution of social learning.
 However, these effects were not always straightforward. Increased payoff
-ambiguity and decreased effective lifespan afforded a greater role for drift
+ambiguity and decreased effective lifespan weakened selection strength
 (i.e., evolutionary uncertainty in a finite-size population). Not surprisingly,
 when the consequence of one's choice does not affect payoffs much, selection
 either for or against social learning is substantially weaker. More
@@ -801,32 +836,54 @@ social information was likely to be outdated.
 
 Our modeling results suggest, on the one hand, that it might sometimes be better to
 ignore social information from previous generations since our natural world is
-rapidly changing~\citep[e.g.,][]{IPCC2022}. On the other hand, humans have increasingly more behavioural options (selection-set size) with high levels of uncertainty about which behaviours are most beneficial (payoff ambiguity), and in this case our model mostly predicts a greater prevalence of social learning.
+rapidly changing~\citep[e.g.,][]{IPCC2022}. On the other hand, humans have increasingly more behavioral options (selection-set size) with high levels of uncertainty about which behaviors are most beneficial (payoff ambiguity), and in this case our model mostly predicts a greater prevalence of social learning.
 In general, detailed theoretical models like this are likely to be critical for understanding how humans might adapt to an uncertain and rapidly-changing world.
-%Such understanding could suggest plausibly beneficial interventions to mitigate existential threats~\citep{Moya2020,Jones2021}, especially in the most vulnerable communities~\citep{McNamara2020}, and to capitalize on new behavioural opportunities such as transitioning to clean energy use and production~\citep{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}. However, to better identify potential pathways to effective adaptation it may be necessary to adjust some of our modeling assumptions to the cumulative nature of cultural evolution and group structure of interpersonal exchange, both of which affect the sustainability of novel adaptations~\citep{Derex2020,Centola2018,Smaldino2021a}.
+%Such understanding could suggest plausibly beneficial interventions to mitigate existential threats~\citep{Moya2020,Jones2021}, especially in the most vulnerable communities~\citep{McNamara2020}, and to capitalize on new behavioral opportunities such as transitioning to clean energy use and production~\citep{NatureEnergyEditorialPromisesPremises2018,Brisbois2022}. However, to better identify potential pathways to effective adaptation it may be necessary to adjust some of our modeling assumptions to the cumulative nature of cultural evolution and group structure of interpersonal exchange, both of which affect the sustainability of novel adaptations~\citep{Derex2020,Centola2018,Smaldino2021a}.
 %\cm{I guess I'd delete everything from "Such understandinc could suggest .... " It seems like such an implausible connectin and cheap talk, but others may disagree.} \mt{I gave this a try, with some restructuring to put the note about social learning as a scaffold for individual learning in the above paragraph.}
 
-Our model necessarily made simplifying assumptions. These were chosen judiciously to address the main question of how uncertainty
-affects the evolution of social learning. Two critical assumptions we made have important consequences for comparing our results
-with previous findings in the literature. First, we assumed all agents engage in individual learning. This means that individual learning is effectively free, though
-potentially inaccurate. Although producing new knowledge may be costly, many other adaptive problems take the form
-of essentially cost-free individual learning. For example, it is hard not to encode association between clouds and
-rain, between thirst and drinking water, or between friendship and warm laughter. This model thus avoids
-producer/scrounger dynamics common in other models~\citep{BoydRicherson1985,Rogers1988} and therefore does not
-produce any mixed equilibria of social and asocial learners.  Second, we only allow for intergenerational social
-learning and environmental change. Within generations, agents can only learn individually. This assumption allows us
-to replicate the classic finding that if the environment changes too quickly, socially-learned information may
-become \edit{outdated. Adding horizontal social learning between vertical/oblique learning in this model would 
-likely expand the range of environmental variability over which social learning would evolve~\citep{Turner2022},
-i.e., horizontal learning would increase what we have called the social learning extinction variability.}
+Our model necessarily made simplifying assumptions. These were chosen judiciously to
+address the main question of how uncertainty affects the evolution of social
+learning. Two critical assumptions we made have important consequences for comparing
+our results with previous findings in the literature. First, we assumed all agents
+engage in individual learning. This means that individual learning is effectively
+free, though potentially inaccurate. Although producing new knowledge may be costly,
+many other adaptive problems take the form of essentially cost-free individual
+learning. For example, it is hard not to encode association between clouds and rain,
+between thirst and drinking water, or between friendship and warm laughter.
+\edit{Our model operationalizes environmental variability as fully stochastic,
+which forces evolution towards either a population of social or asocial learners
+since environmental change is unpredictable, unlike precursor
+models that allowed for persistent frequency
+dependence~\citep{BoydRicherson1985,Rogers1988,Feldman1996}.} Second, we only allow for
+intergenerational social learning and environmental change. Within generations,
+agents can only learn individually. This assumption allows us to replicate the
+classic finding that if the environment changes too quickly, socially-learned
+information may become \edit{outdated. Adding horizontal social learning between
+vertical/oblique learning in this model would likely expand the range of
+environmental variability over which social learning would
+evolve~\citep{Turner2022}, i.e., horizontal learning would increase what we have
+called the social learning extinction variability. However, depending on the
+setting, there may be little difference between horizontal and oblique learning, for
+example if the generations are purely cultural ‘generations’ where parents, and
+others of the parent's generation, may also be peers.}
 
 We could have made alternative choices for a range of other structural features, the future exploration of which
 will be important to the development of more parsimonious theories of social learning.  
 For example, we only considered success-biased learning, although people may use conformity or other context biases to socially learn~\citep{BoydRicherson1985,Muthukrishna2016a,Smaldino2018b}. This modeling
 choice maximizes the potential benefit to social learners, which suggests that
-other mechanisms, like conformity, may lead to more drift overall. We also assumed that the number of behaviours and their payoffs were constant within a given simulation, but this fails to account for evolutionary feedback which creates new behavioural opportunities as time progresses, e.g., via niche construction~\citep{Smaldino2012a,Heras-Escribano2020} or cumulative cultural evolution~\citep{Smolla2019,Derex2020}.  Group structure and processes such as homophily and other group-level biases could inhibit the evolution of social learning since successful out-group teachers could be cut off from in-group learners~\citep{Golub2012}. We assumed agents choose behaviours via softmax
-search, which is more cognitively sophisticated than most social-learning models, but in line with real human learning
-mechanisms~\citep{Schulz2020a,Wu2022}. Even more realistic and powerful individual learning could further support the evolution of
+other mechanisms, like conformity, may lead to \edit{weaker selection} overall. 
+\edit{Furthermore, our learning procedure could be interpreted as direct copying of
+latent psychological variables (expected payoffs for each behavior); if children
+learned instead from observations of the parent's behaviors without knowing rewards,
+which in some cases would be a more realistic assumption~\citep{Wu2022b}, this may weaken the strength of selection for social learning.} We
+also assumed that the number of behaviors and their payoffs were constant within a
+given simulation, but this fails to account for evolutionary feedback which creates
+new behavioral opportunities as time progresses\edit{~\citep{Chimento2022}}, e.g., via niche
+construction~\citep{Smaldino2012a,Heras-Escribano2020} or cumulative cultural
+evolution~\citep{Smolla2019,Derex2020}.  Group structure and processes such as
+homophily and other group-level biases could inhibit the evolution of social
+learning since successful out-group teachers could be cut off from in-group
+learners~\citep{Golub2012}. We assumed agents choose behaviors via a softmax \edit{decision rule, which is more cognitively sophisticated than most social-learning models and captures the adaptiveness of real human learning mechanisms, which was essential for developing our understanding of how social and individual learning can combine to multiply problem solving capacity of our agents---however true human learning is significantly more sophisticated~\citep{Schulz2020a,Wu2022}}. More realistic and powerful individual learning could further support the evolution of
 social learning. These considerations provide novel opportunities to expand the evolutionary theory of social learning by adding
 such learning mechanisms to our model.
 
@@ -837,7 +894,7 @@ The evolution of social learning is a complex phenomenon, dependent on many inte
 range of taxa. Although social learning is broadly studied, few studies have taken a systematic approach to understanding the role
 of uncertainty in the evolution \edit{of} social learning. Understanding the role of uncertainty in social evolution is particularly important
 for understanding human evolution as evidence increasingly suggests that the genus \emph{Homo} emerged in the context of substantial
-(nonstationary) environmental variability \citep{anton_etal2014, levin2015}, and our global dispersal suggests that human groups regularly face novel environments. By carefully identifying and operationalizing different forms of uncertainty common in social-learning models, we developed a more thorough understanding of how uncertainty can favor social learning and how different forms of uncertainty interact to favor its evolution. By explicitly modeling a key individual-level learning mechanism shared across taxa, namely the ability to adjust behaviour to uncertainty and new information, we found that social learning could evolve even if it provides outdated information. %Social learning is a critical component of problem solving among social creatures. Our work identified and systematized some important forms of uncertainty and catalogued their effects on the evolution of social learning.
+(nonstationary) environmental variability \citep{anton_etal2014, levin2015}, and our global dispersal suggests that human groups regularly face novel environments. By carefully identifying and operationalizing different forms of uncertainty common in social-learning models, we developed a more thorough understanding of how uncertainty can favor social learning and how different forms of uncertainty interact to favor its evolution. By explicitly modeling a key individual-level learning mechanism shared across taxa, namely the ability to adjust behavior to uncertainty and new information, we found that social learning could evolve even if it provides outdated information. %Social learning is a critical component of problem solving among social creatures. Our work identified and systematized some important forms of uncertainty and catalogued their effects on the evolution of social learning.
 Our work, then, both advances the theory of social learning and could eventually be of practical use in identifying specific mechanisms underlying adaptations to uncertain environments.
 
 
@@ -893,7 +950,7 @@ Our work, then, both advances the theory of social learning and could eventually
 % populations of all social learners especially underperform initially mixed
 % populations that evolve to be social learners 
 % (Figure~\ref{fig:fullMeanPrevNetPayoffs}, bottom row). This highlights the
-% importance of diversity for behavioural optimization, even if it is transient.
+% importance of diversity for behavioral optimization, even if it is transient.
 
 
 % \newpage
@@ -904,12 +961,13 @@ In this supplement we support our model conclusions by showing that our model
 outcomes are stable over various settings of the three free auxiliary model
 parameters: the number of agents ($N$), the number of
 prospective teachers which social learner children compare
-($N_T$), and the softmax behaviour selection greediness parameter ($\beta$).
-The results deviate only in minor ways from the main results primarily because of greater drift
+($N_T$), and the softmax behavior selection greediness parameter ($\beta$).
+The results deviate only in minor ways from the main results primarily because of
+\edit{weaker selection}
 due to (1) finite population size effects (smaller $N$);
 (2) lower quality of socially-learned information when agents can access fewer
 prospective teachers (lower $N_T$); and (3) lower quality social information when $\beta$
-was small (teacher agents would have explored non-optimal behaviours more
+was small (teacher agents would have explored non-optimal behaviors more
 frequently, so their observed payoffs would have less probability weight in
 the optimal payoffs on average). We give details below of model convergence, and
 outcomes as we varied the three auxiliary parameters $N$, $N_T$, and $\beta$.
@@ -930,13 +988,13 @@ with $N=50$ and $N=200$ (recall $N=1000$ tested in main analysis).
 Drift is also more pronounced for smaller $N$
 for shorter lifespans, especially $L=1$. When $L=1$ and $N=50$ , the S-shaped
 curve of $\meansl$ over $u$ becomes more linear with increasing $B$, 
-with $\meansl$ values pulled towards maximal drift, $\meansl \to 0.5$ (Figure~\ref{fig:populationSensitivity}a,
+with $\meansl$ values pulled towards \edit{neutral selection}, $\meansl \to 0.5$ (Figure~\ref{fig:populationSensitivity}a,
 purple curves). With
 $N=50$, all $\meansl$ over $u$ curves are flattened with less sharp transitions
 from $\meansl = 1$ for lesser $u$ to $\meansl = 0$ for greater $u$. Despite
 these finite-population effects, we still see the inhibition of social learning
 as $u$ increases, more social learning across $u$ for larger $B$, and the
-same complex drift effects for combinations of $\pilow$ and $L$ that interact
+same complex \edit{selection-strength} effects for combinations of $\pilow$ and $L$ that interact
 with $u$ and $B$ settings.
 
 \clearpage
@@ -970,10 +1028,10 @@ with $u$ and $B$ settings.
 \section{Number of prospective teachers sensitivity analysis}
 
 We found that the number of prospective teachers had little effect on $\meansl$
-over $u$. There was slightly more drift when $N_T = 2$ compared to our 
-main text analysis, slightly less drift than our main analysis when $N_T = 20$; 
+over $u$. There was slightly \edit{weaker selection} when $N_T = 2$ compared to our 
+main text analysis, slightly \edit{stronger selection} than our main analysis when $N_T = 20$; 
 we also tested $N_T=10$, which showed no obvious difference from our main results
-with $N_T = 5$. When $N_T = 2$, increased drift is most pronounced in the
+with $N_T = 5$. When $N_T = 2$, \edit{weakened selection} is most pronounced in the
 $\meansl$ curves when $\pilow=0.8$ (Figure~\ref{fig:nteachersSensitivity}a, 
 bottom row). The transition from $\meansl = 1$ to $\meansl = 0$ is less sharp
 across $L$ values, with social-learning evolution being suppressed beginning
@@ -1020,37 +1078,37 @@ results were reproduced across all tested values $N_T=2,5,10,20$.
 
 \section{Agent greediness sensitivity analysis} 
 
-We tested two additional settings of the softmax behaviour selection greediness parameter,
+We tested two additional settings of the softmax behavior selection greediness parameter,
 $\beta=1,100$, which reproduced qualitative patterns in the evolution of social learning
 observed in the main text where we used $\beta=10$.  
 Formally, softmax greediness changes the 
-probability mass allocated to selecting behaviours according to observed payoffs within that agent's
+probability mass allocated to selecting behaviors according to observed payoffs within that agent's
 life history or learned from a teacher of the previous generation. 
 Greater $\beta$ increases the probability that the optimal
-observed behaviour is chosen over all the rest, while smaller $\beta$ leads agents to explore alternative behaviours more frequently. If $\beta$ is too small, agents will fail to
-fully exploit their knowledge about which behaviour is optimal because they too frequently
+observed behavior is chosen over all the rest, while smaller $\beta$ leads agents to explore alternative behaviors more frequently. If $\beta$ is too small, agents will fail to
+fully exploit their knowledge about which behavior is optimal because they too frequently
 explore less profitable alternatives.  If $\beta$ is too great the agents may prematurely
-settle on a sub-optimal behaviour because that is what they learned from a teacher, 
-or because that behaviour happened to pay off first. In a fuller evolutionary
+settle on a sub-optimal behavior because that is what they learned from a teacher, 
+or because that behavior happened to pay off first. In a fuller evolutionary
 exploration of model parameters one might allow $\beta$ to co-evolve, through
 mutation and selection, with the social learner trait.  
 Regardless, our sensitivity analysis shows our main conclusions of how social learning evolves under uncertainty remain unchanged for different $\beta$ over three orders of magnitude.
 
 First, when $\beta=1$, most general trends are preserved, but in many cases the evolution
-of social learning is suppressed or drift dominates due to 
+of social learning is suppressed, \edit{or selection strength weakens}, due to 
 the overall poor quality of information acquired through softmax search-based
-individual learning with this setting. This increased drift is especially pronounced 
-when $\pilow=0.8$ since sub-optimal behaviours often pay off and $\beta=1$ is
+individual learning with this setting. \edit{Weakened selection} is especially pronounced 
+when $\pilow=0.8$ since sub-optimal behaviors often pay off and $\beta=1$ is
 not greedy enough to efficiently detect and exploit the optimal 
-behaviour (Figure~\ref{fig:softmaxSensitivity}a, bottom row).
+behavior (Figure~\ref{fig:softmaxSensitivity}a, bottom row).
 Similarly, when $\beta = 1$, social learning is suppressed at much smaller values
 of $u$ for longer lifespans, $L$, due to extended exploration of non-optimal
-behaviours under this setting (Figure~\ref{fig:softmaxSensitivity}a, columns 
+behaviors under this setting (Figure~\ref{fig:softmaxSensitivity}a, columns 
 for $B$ and inset for $L$).
 
 When $\beta=100$, our analysis again recovered general trends observed in the main analysis with
 $\beta=10$ (Figure~\ref{fig:softmaxSensitivity}b). However, 
-in some cases, especially when $\pilow=0.1$, social learning is suppressed compared to the main text results ($\beta=10$), because social learners may often greedily perform an outdated socially-learned optimal behaviour over several time steps before possibly identifying the true optimal behaviour (Figure~\ref{fig:softmaxSensitivity}b, top row).
+in some cases, especially when $\pilow=0.1$, social learning is suppressed compared to the main text results ($\beta=10$), because social learners may often greedily perform an outdated socially-learned optimal behavior over several time steps before possibly identifying the true optimal behavior (Figure~\ref{fig:softmaxSensitivity}b, top row).
 
 \vspace{-3em} \begin{figure} %\addtocounter{figure}{-1} 
   \centering

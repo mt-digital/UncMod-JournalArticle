@@ -28,34 +28,26 @@ margin=0.25in
 \newcommand{\bandit}{\text{Bandit}_b(0, 1)}
 
 \begin{document}
-\begin{tikzpicture}
-      \draw[->,thick] (-.1,0)--(1.15,0) node[above]
-        {\huge $B$};
-        % {Number of behaviors $B$};
-      \draw[->,thick] (0,.1)--(0,-1.15) node[below]
-        {\huge $\pilow$};
-        % {Low payoff frequency $\pilow$};
-	  \end{tikzpicture}~\\[-2em]
 
     \begin{minipage}{3.75in}
       \centering
-      {\hspace{5.25em}\huge $B = 2$}
+      {\hspace{5.25em}\huge Selection-set size $ = 2$}
     \end{minipage}%
     \begin{minipage}{3.75in}
       \centering
-      {\hspace{1.0em}\huge $B = 4$}
+      {\hspace{5.25em}\huge Selection-set size $ = 4$}
     \end{minipage}%
     \begin{minipage}{3.75in}
       \centering
-      {\hspace{2.0em}\huge $B = 10$}
+      {\hspace{5.25em}\huge Selection-set size $ = 10$}
     \end{minipage}~\\
 
     \begin{minipage}{3.75in}
     \begin{rotate}{90}
-      {\parbox{2.5in}{
+      {\parbox{3.0in}{
           \centering
-          \vspace{-2.5em} {\huge$ \pilow = 0.1$} \\
-          {\begin{rotate}{-90}{\huge $\meanG$}\hspace{3em}\end{rotate}}
+          \vspace{-1.0em}\hspace{-2.5em} {\huge Low payoff $ = 0.1$} \\[1em]
+          {\huge Mean steps to fixation}
       }}
     \end{rotate}%
     \hspace{2em}
@@ -70,10 +62,10 @@ margin=0.25in
 
     \begin{minipage}{3.75in}
     \begin{rotate}{90}
-      {\parbox{2.5in}{
+      {\parbox{3.0in}{
           \centering
-          \vspace{-2.5em} {\huge$ \pilow = 0.45$} \\
-          {\begin{rotate}{-90}{\huge $\meanG$}\hspace{3em}\end{rotate}}
+          \vspace{-1.0em}\hspace{-2.5em} {\huge Low payoff $ = 0.45$} \\[1em]
+          {\huge Mean steps to fixation}
       }}
     \end{rotate}%
     \hspace{2em}
@@ -88,31 +80,31 @@ margin=0.25in
 
     \begin{minipage}{3.75in}
     \begin{rotate}{90}
-      {\parbox{2.5in}{
+      {\parbox{3.0in}{
           \centering
-          \vspace{-2.5em} {\huge$ \pilow = 0.8$} \\
-          {\begin{rotate}{-90}{\huge $\meanG$}\hspace{3em}\end{rotate}}
+          \vspace{-1.0em}\hspace{-2.5em} {\huge Low payoff $ = 0.8$} \\[1em]
+          {\huge Mean steps to fixation}
       }}
     \end{rotate}%
     \hspace{2em}
       \includegraphics[width=\textwidth]{Figures/step_over_u_lowpayoff=0.8_nbehaviors=2.pdf}
         \\[-2.75em]
         \begin{center}
-          {\hspace{3.25em} \huge $\quad u$}
+          {\hspace{3.25em} \huge Environmental variability}
       \end{center}
 	  \end{minipage}\noindent\hspace{1.25em}
 		\begin{minipage}{3.75in}%
 		  \includegraphics[width=\textwidth]{Figures/step_over_u_lowpayoff=0.8_nbehaviors=4.pdf}
 		  \\[-2.75em]
 	  \begin{center}
-        {\huge $\quad u$}
+          {\hspace{3.25em} \huge Environmental variability}
       \end{center}
     \end{minipage}
 	\begin{minipage}{3.75in}%
 		  \includegraphics[width=\textwidth]{Figures/step_over_u_lowpayoff=0.8_nbehaviors=10.pdf}
 		  \\[-2.75em]
 	  \begin{center}
-        {\huge $\quad u$}
+          {\hspace{3.25em} \huge Environmental variability}
       \end{center}
 	\end{minipage}  
     % \\[2.5em]

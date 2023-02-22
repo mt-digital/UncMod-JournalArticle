@@ -248,7 +248,12 @@ and empirical~\citep{McElreath2005,Toyokawa2019} studies, both of which support 
 claim that payoff ambiguity increases the reliance on social information.
 Importantly, payoff ambiguity %differs from selection-set size in that it not only 
 affects both uncertainty \emph{and} the strength of selection, with smaller payoff differences leading to greater uncertainty for a learner and weaker evolutionary selection favoring optimal strategies. 
-\edit{It is an outstanding problem to understand how payoff variance and payoff distributions generally affect evolved behavioral strategies~\citep{Haaland2019}. For the sake of theoretical clarity for our goal of understanding the \emph{interaction} of various sources of uncertainty we only operationalize payoff ambiguity as the difference between expected payoffs, even though empirical studies often include both forms of payoff uncertainty~\citep{McElreath2005,Toyokawa2019}, and a more complete model would include differences in mean and variance of payoffs.}
+\edit{It is an outstanding problem to understand how payoff variance and payoff
+distributions generally affect evolved behavioral strategies~\citep{Haaland2019}.
+For the sake of theoretical clarity for our goal of understanding the
+\emph{interaction} of various sources of uncertainty we only operationalize payoff
+ambiguity as the difference between expected payoffs, even though empirical studies
+have sometimes included both forms of payoff uncertainty~\citep{McElreath2005,Toyokawa2019}, and a more complete model would include differences in mean and variance of payoffs.}
 
 %This parameter sometimes takes the form of differences in
 %expected payoffs arising from different behaviors or strategies~\citep{Enquist2007,Rendell2010} or by varying the standard deviation of payoffs~\citep{McElreath2005}. 
@@ -528,20 +533,20 @@ $\sum_i s_i = N$ or $\sum_i s_i = 0$.
 
 \clearpage
 
-% \begin{figure}
-%   \caption{Agents are randomly initialized as social learners or not, with their
-%   payoff observations all initialized to zero (A). Then agents begin selecting
-% and performing behaviors and accumulating payoffs, which goes on for $L$
-% timesteps (B). After $L$ time steps, agents are selected to reproduce,
-% social learner children learn from a member of their parent's generation, and
-% the previous generation dies off (C). The simulation stops if children are all
-% social or asocial learners (i.e.\ the system reaches fixation).
-% Otherwise it repeats another generation and evolution continues.} 
-% % \cm{What does (3) denote at end of Fig 1 caption? Does having only green agents in Fig1B give the impression that only social learners are learning within lifetime? Could the agent be half green/purple? Is it weird that in Fig1C a teacher with relatively low payoffs is being selected? Could be fixed by having the dotted line go from rich purple women's head to green baby's. }
-%   \label{fig:schematic}
-%   \centering
-%     \includegraphics[width=\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
-% \end{figure}
+\begin{figure}
+  \caption{Agents are randomly initialized as social learners or not, with their
+  payoff observations all initialized to zero (A). Then agents begin selecting
+and performing behaviors and accumulating payoffs, which goes on for $L$
+timesteps (B). After $L$ time steps, agents are selected to reproduce,
+social learner children learn from a member of their parent's generation, and
+the previous generation dies off (C). The simulation stops if children are all
+social or asocial learners (i.e.\ the system reaches fixation).
+Otherwise it repeats another generation and evolution continues.} 
+% \cm{What does (3) denote at end of Fig 1 caption? Does having only green agents in Fig1B give the impression that only social learners are learning within lifetime? Could the agent be half green/purple? Is it weird that in Fig1C a teacher with relatively low payoffs is being selected? Could be fixed by having the dotted line go from rich purple women's head to green baby's. }
+  \label{fig:schematic}
+  \centering
+    \includegraphics[width=\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
+\end{figure}
 
 
 \subsection{Computational analyses}
@@ -564,26 +569,27 @@ measured the average net payoffs at the end of the simulation across agents and 
 outcomes by plotting $\meansl$ on the y-axis and environmental variability on
 x-axis, since we theoretically expect that $\meansl$ will always decrease monotonically from 1 to 0 as $u$ increases. %Note that the hypothesis-testing concept of significance is meaningless here because we could make any small outcome difference ``significant'' by running more simulation trials.  We instead study the patterns of outcome variables over systematically varied uncertainty factor values. 
 
-% \begin{table}[h]
-%     \caption{Outcome Variables. All averages are computed across trials at the end of the last generation.}
-%     \label{tab:outcomeVariables}
-%     \centering %\hspace{-3em}
-%     \begin{tabular}{cp{4.25in}p{0.85in}} \toprule
+\begin{table}[h]
+    \caption{Outcome Variables. All averages are computed across trials at the end of the last generation.}
+    \label{tab:outcomeVariables}
+    \centering %\hspace{-3em}
+    \begin{tabular}{clp{0.85in}} \toprule
 
-%         Symbol & Description & Values \\ 
+        Symbol & Description & Values \\ 
 
-%         \midrule  
+        \midrule  
 
-%         $\meansl$ & Mean social-learning prevalence over agents
-%                   & $ [0.0, 1.0]$ \\
+        $\meansl$ & Mean social-learning prevalence over agents (Fig.~\ref{fig:mainResults})
+                  & $ [0.0, 1.0]$ \\
 
-%         $\meanpi / L$ & Mean payoffs accumulated across agents, normalized by
-%         lifespan & $ [0.0, 1.0]$ \\
+        $\meanG$ & Mean number of generations to convergence (Fig.~\ref{fig:steps}) & \{1,2,\ldots\} \\
 
-%         $\meanG$ & Mean number of generations to convergence & \{1,2,\ldots\} \\
-%         \bottomrule
-%     \end{tabular}
-% \end{table}
+        $\meanpi / L$ & Mean payoffs accumulated across agents, normalized by
+        lifespan (Fig.~\ref{fig:payoffs}) & $ [0.0, 1.0]$ \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
 
@@ -759,23 +765,30 @@ outdated information too heavily. \edit{In other words, environmental change low
   \label{fig:payoffs}
   \vspace{1em}
   \centering 
-    {\textsf A, Low payoff $=$ 0.1, selection-set size $=$ 2} \\
+    {\textsf A \quad Low payoff, $\pilow = 0.1$; selection-set size, $B = 2$} \\
     \begin{subfigure}[]{0.4\textwidth}
       \centering
       \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.1_nbehaviors=2.pdf}
-    \end{subfigure} \\
+      \\[-0.8em]
+      {\centering \quad Environmental variability, $u$}
+    \end{subfigure} \\[1.5em]
     \centering
-    {\textsf B, Low payoff $=$ 0.45, selection-set size $=$ 4} \\
+    {\textsf B \quad Low payoff, $\pilow = 0.45$; selection-set size, $B = 4$} \\
     \begin{subfigure}[]{0.4\textwidth}
       % {\large \textsf B}
       \centering
       \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.45_nbehaviors=4.pdf}
-    \end{subfigure} \\
-    {\textsf C, Low payoff $=$ 0.45, selection-set size $=$ 10} \\
+      \\[-0.8em]
+      {\centering \quad Environmental variability, $u$}
+    \end{subfigure} \\[1.5em]
+    {\textsf C \quad Low payoff, $\pilow = 0.45$; selection-set size, $B = 10$} \\
     \begin{subfigure}[]{0.4\textwidth}
       \centering
       % {\large \textsf C}
       \includegraphics[width=\textwidth]{Figures/mean_prev_net_payoff_over_u_lowpayoff=0.45_nbehaviors=10.pdf}
+      \\[-0.8em]
+      {\centering \quad Environmental variability, $u$}
+
     \end{subfigure}
 
     \begin{center}
@@ -911,7 +924,13 @@ construction~\citep{Smaldino2012a,Heras-Escribano2020} or cumulative cultural
 evolution~\citep{Smolla2019,Derex2020}.  Group structure and processes such as
 homophily and other group-level biases could inhibit the evolution of social
 learning since successful out-group teachers could be cut off from in-group
-learners~\citep{Golub2012}. We assumed agents choose behaviors via a softmax \edit{decision rule, which is more cognitively sophisticated than most social-learning models and captures the adaptiveness of real human learning mechanisms, which was essential for developing our understanding of how social and individual learning can combine to multiply problem solving capacity of our agents---however true human learning is significantly more sophisticated~\citep{Schulz2020a,Wu2022}}. More realistic and powerful individual learning could further support the evolution of
+learners~\citep{Golub2012}. We assumed agents choose behaviors via a softmax
+\edit{decision rule, which is more cognitively sophisticated than most
+social-learning models and captures the adaptiveness of real human learning
+mechanisms. This modeling decision was essential for developing our understanding of
+how social and individual learning can combine to multiply problem solving capacity
+of our agents, though it is still a pale shadow of the true sophistication of human
+learning capabilities~\citep{Schulz2020a,Wu2022}}. More realistic and powerful individual learning could further support the evolution of
 social learning. These considerations provide novel opportunities to expand the evolutionary theory of social learning by adding
 such learning mechanisms to our model.
 
@@ -923,7 +942,7 @@ range of taxa. Although social learning is broadly studied, few studies have tak
 of uncertainty in the evolution \edit{of} social learning. Understanding the role of uncertainty in social evolution is particularly important
 for understanding human evolution as evidence increasingly suggests that the genus \emph{Homo} emerged in the context of substantial
 (nonstationary) environmental variability \citep{anton_etal2014, levin2015}, and our global dispersal
-suggests that human groups regularly face novel environments. \edit{In our model, more numerous behavioral options led agents to be more cognitively flexible via the softmax decision rule, and thus better able to adjust their behavior if social learning provided outdated information. While Rogers'-style models of social learning evolution may also predict greater social learning reliance in more challenging contexts (larger selection-set sizes), they cannot predict that social learning should be favored for such high values of
+suggests that human groups regularly face novel environments. \edit{In our model, more numerous behavioral options meant agents more flexibly adjusted their behavior if social learning provided outdated information since in the softmax decision rule, more options means relatively less weight is assigned to the most profitable behavior known to agents, and greater weight is put on unexplored behaviors or those behaviors perceived to be less optimal. While Rogers'-style models of social learning evolution may also predict greater social learning reliance in more challenging contexts (larger selection-set sizes), they cannot predict that social learning should be favored for such high values of
 environmental variability as we observed here.} 
 By carefully identifying and operationalizing different forms of uncertainty common in social-learning models, we developed a more thorough understanding of how uncertainty can favor social learning and how different forms of uncertainty interact to favor its evolution. By explicitly modeling a key individual-level learning mechanism shared across taxa, namely the ability to adjust behavior to uncertainty and new information, we found that social learning could evolve even if it provides outdated information. %Social learning is a critical component of problem solving among social creatures. Our work identified and systematized some important forms of uncertainty and catalogued their effects on the evolution of social learning.
 Our work, then, both advances the theory of social learning and could eventually be of practical use in identifying specific mechanisms underlying adaptations to uncertain environments.

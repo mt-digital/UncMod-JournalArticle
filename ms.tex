@@ -103,27 +103,23 @@
 \newcommand{\bandit}{\text{Bandit}_b(0, 1)}
 
 \begin{abstract} 
-Social learning is a critical adaptation for dealing with the variable world. However, variability
-takes different forms. Uncertainty is a severe form of variability where the space of possible
+Social learning is a critical adaptation for dealing with different forms of variability. 
+Uncertainty is a severe form of variability where the space of possible
 decisions or probabilities of associated outcomes are unknown.
-%"probabilities of decisions" didn't make sense to me so I rephrased, but hopefully still accurate.
-We identified four distinct and theoretically-important sources of uncertainty: temporal
-environmental variability, payoff ambiguity, selection-set size, and effective lifespan. All these
-kinds of uncertainty make it nearly impossible to fully learn about variability. We develop an
+We identified four theoretically-important sources of uncertainty: temporal
+environmental variability, payoff ambiguity, selection-set size, and effective lifespan. When these combine,
+it is nearly impossible to fully learn about the environment. We develop an
 evolutionary agent-based model to test how each form of uncertainty affects the evolution of social
 learning. Agents perform one of several behaviors, modeled as a multi-armed bandit, to acquire
-payoffs. \edit{Agents explore and learn about behavioral payoffs individually through an adaptive
-cognitive model that uses a softmax decision rule for behavior choice.} Use of
+payoffs. \edit{All agents learn about behavioral payoffs individually through an adaptive
+behavior-choice model that uses a softmax decision rule.} Use of
 vertical and oblique \edit{payoff-biased} social learning \edit{evolved} to serve as a scaffold \edit{for
-adaptive individual learning, meaning social and individual learning complement one
-another---they are not opposite strategies.} We found that different types of uncertainty had varying effects.
+adaptive individual learning---they are not opposite strategies}. Different types of uncertainty had varying effects.
 Temporal environmental variability suppressed social learning, whereas larger selection-set size
 promoted social learning, even when the environment changed frequently. Payoff ambiguity and lifespan
-had more complex effects on social learning, dependent on interactions with other uncertainty
-parameters. \edit{By assuming adaptive individual-level cognition, this study begins to explain how
-social learning can predominate despite high levels of various forms of uncertainty in the
-real-world.}
-
+interacted with other uncertainty parameters. \edit{This study begins to explain how
+social learning can predominate despite highly variable real-world environments when effective individual learning helps individuals recover from learning outdated social information.}
+%, meaning social and individual learning complement one another
   % the importance of clearly operationalizing uncertainty for understanding its role in cultural evolution.
 % Social learning is essential to human survival. It is likely to evolve when it is more
 % efficient than asocial, trial-and-error learning. Theoretically, social learning
@@ -545,7 +541,7 @@ Otherwise it repeats another generation and evolution continues.}
 % \cm{What does (3) denote at end of Fig 1 caption? Does having only green agents in Fig1B give the impression that only social learners are learning within lifetime? Could the agent be half green/purple? Is it weird that in Fig1C a teacher with relatively low payoffs is being selected? Could be fixed by having the dotted line go from rich purple women's head to green baby's. }
   \label{fig:schematic}
   \centering
-    \includegraphics[width=\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
+    \includegraphics[width=1.05\textwidth]{Figures/IntraInterGenerationalDynamics.pdf}
 \end{figure}
 
 
@@ -579,10 +575,10 @@ x-axis, since we theoretically expect that $\meansl$ will always decrease monoto
 
         \midrule  
 
-        $\meansl$ & Mean social-learning prevalence over agents (Fig.~\ref{fig:mainResults})
-                  & $ [0.0, 1.0]$ \\
+        $\meansl$ & Social learning fixation frequency (Fig.~\ref{fig:mainResults})
+                  &  $[0.0, 1.0]$ \\
 
-        $\meanG$ & Mean number of generations to convergence (Fig.~\ref{fig:steps}) & \{1,2,\ldots\} \\
+        $\meanG$ & Mean time to convergence in units of generations (Fig.~\ref{fig:steps}) & \{1,2,\ldots\} \\
 
         $\meanpi / L$ & Mean payoffs accumulated across agents, normalized by
         lifespan (Fig.~\ref{fig:payoffs}) & $ [0.0, 1.0]$ \\
@@ -608,11 +604,25 @@ Our main results are illustrated by Figure~\ref{fig:mainResults}, which shows th
 proportion of simulation runs that fixated at 100\% social learners as a function of
 each of our four uncertainty measures. First, we found that reliance on social
 learning monotonically decreases as temporal environmental variability, $u$,
-increases. When the environment is more likely to change between generations,
+increases \edit{(Figure~\ref{fig:mainResults})}. 
+When the environment is more likely to change between generations,
 information learned from the previous generation is less likely to be of value,
-decreasing selection for social learning. \edit{Past some threshold, social learning never evolves.  We define this threshold environmental variability as the \emph{social learning extinction variability} (Figure~\ref{fig:extinctionVariability}).} 
+decreasing selection for social learning.  
 However, the exact nature of the relationship between social
 learning and temporal environmental variability was moderated by the other three uncertainty parameters. 
+
+\edit{Across all parameter settings, we observed that there exists some threshold value of environmental
+  variability beyond which the evolution of social learning is exceedingly rare.  We call this the
+  \emph{social learning extinction variability}, denoted $u_\text{e}$ (Figure~\ref{fig:extinctionVariability}), which is expressed formally as 
+\begin{equation}
+  u_\text{e} = \min~\{ u~|~\meansl < 0.01 \}.
+  \label{eq:extinctionVariability}
+\end{equation}
+\noindent
+In other words, $u_\text{e}$ is the smallest value of $u$ for which the social learning fixated
+less than one in one hundred times. We will use this auxiliary measure to analyze the effect of
+the other uncertainty parameters and to highlight that social learning frequently 
+evolves despite high levels of environmental variability.}
 
 The number of behavioral options, i.e., larger $B$, favors the evolution of social learning. Increasing the selection-set size
 expands the range of $u$ over which social learning is favored for two reasons. First, when the environment remains constant between
@@ -679,10 +689,11 @@ The effect of \edit{selection strength} when the benefit of social learning is a
 
 
 \begin{figure}
-  \caption{As the number of
-  behaviors afforded by the environment increases (x-axis), 
-  social learning is supported up to increasingly large values of environmental variability (SL extinction
-    varibility, y-axis).}
+  \caption{As the selection-set size, $B$, and effective lifespan, $L$, increase (set equal along x-axis), 
+  social learning frequently evolves across an increasingly large range of
+  environmental variability values, i.e., up to
+  increasingly large values of social learning extinction variability
+(y-axis; defined in Equation~\ref{eq:extinctionVariability}).}
   \label{fig:extinctionVariability}
   \centering
     \includegraphics[width=0.8\textwidth]{Figures/SL_Extinction_Variability.pdf}

@@ -427,7 +427,7 @@ This process continues until the population has evolved to fixation as either al
 all asocial learners. %This process is represented in Figure~\ref{fig:schematic}.
 
 
-\paragraph{Initialization}
+\paragraph{Initialization.}
 
 The model is initialized with $N$ agents. Each agent $i$ tracks 
 observed mean payoffs for each behavior, $b$, which is denoted $\ledger$. Each
@@ -439,7 +439,7 @@ expected payoffs $\pilow$. Agents are independently randomly initialized with $s
 \in 0,1$, so that $\sim$50\% of the initial population learn socially.
 
 
-\paragraph{Within-generation dynamics}
+\paragraph{Within-generation dynamics.}
 % To guide behavior selection, agent $i$ counts how many times it
 % performed each behavior $b$, denoted $c_{ib}$. Agents use this count to 
 % update the mean payoff they have obtained from behavior $b$, denoted $\ledger$.
@@ -493,7 +493,7 @@ better represent specific species' abilities in different contexts, this form
 provides a basic observational learning mechanism that may be further specified as
 appropriate for different cases.}
 
-\paragraph{Intergenerational dynamics} Between generations, agents first reproduce
+\paragraph{Intergenerational dynamics.} Between generations, agents first reproduce
 via asexual haploid reproduction, which determines the transmission of the social
 learning trait. Social learners then learn from the previous generation, after which
 all agents from the previous generation die off. % (Figure~\ref{fig:schematic}C). 
@@ -523,7 +523,7 @@ After reproduction and die-off, the optimal behavior changes with probability
 $u$. The new behavior is chosen from all other behaviors, with the 
 current optimal behavior excluded from selection.
 
-\paragraph{Stopping conditions} The evolutionary process continues until the
+\paragraph{Stopping condition.} The evolutionary process continues until the
 population reaches evolutionary fixation with respect to social learning, that is, when
 $\sum_i s_i = N$ or $\sum_i s_i = 0$. 
 
@@ -575,13 +575,13 @@ x-axis, since we theoretically expect that $\meansl$ will always decrease monoto
 
         \midrule  
 
-        $\meansl$ & Social learning fixation frequency (Fig.~\ref{fig:mainResults})
+        $\meansl$ & Social learning fixation frequency (Figure~\ref{fig:mainResults})
                   &  $[0.0, 1.0]$ \\
 
-        $\meanG$ & Mean time to convergence in units of generations (Fig.~\ref{fig:steps}) & \{1,2,\ldots\} \\
+        $\meanG$ & Mean time to fixation in units of generations (Figure~\ref{fig:steps}) & \{1,2,\ldots\} \\
 
         $\meanpi / L$ & Mean payoffs accumulated across agents, normalized by
-        lifespan (Fig.~\ref{fig:payoffs}) & $ [0.0, 1.0]$ \\
+        lifespan (Figure~\ref{fig:payoffs}) & $ [0.0, 1.0]$ \\
 
         \bottomrule
     \end{tabular}
@@ -595,7 +595,11 @@ x-axis, since we theoretically expect that $\meansl$ will always decrease monoto
 
 Our model was implemented in the Julia programming language~\citep{Bezanson2017} 
 using the Agents.jl agent-based modeling library~\citep{Datseris2022} and run
-on the Sherlock supercomputing cluster at Stanford University. Model and analysis code is publicly available on GitHub at \url{https://github.com/mt-digital/UncMod}.
+on the Sherlock supercomputing cluster at Stanford University. All Analysis figures
+except Figure~\ref{fig:extinctionVariability} were made using the Julia plotting
+library Gadfly~\citep{Jones2021b}. Figure~\ref{fig:extinctionVariability} was made in R~\citep{R}
+using the ggplot2 package~\citep{ggplot2}. 
+Model and analysis code is publicly available on GitHub at \url{https://github.com/mt-digital/UncMod}.
 
 
 \section{Analysis}

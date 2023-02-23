@@ -169,6 +169,11 @@ Johnson, D.~D., Blumstein, D.~T., Fowler, J.~H., and Haselton, M.~G. (2013).
   adaptive decision-making biases.
 \newblock {\em Trends in Ecology \& Evolution}, 28(8):474--481.
 
+\bibitem[Jones et~al., 2021]{Jones2021b}
+Jones, D.~C., Arthur, B., Nagy, T., Mattriks, S.~G., and Contributors, O.
+  (2021).
+\newblock {Gadfly.jl}.
+
 \bibitem[Kendal et~al., 2018]{Kendal2018}
 Kendal, R.~L., Boogert, N.~J., Rendell, L., Laland, K.~N., Webster, M., and
   Jones, P.~L. (2018).
@@ -236,6 +241,11 @@ Muthukrishna, M., Morgan, T.~J., and Henrich, J. (2016).
 Perreault, C., Moya, C., and Boyd, R. (2012).
 \newblock A bayesian approach to the evolution of social learning.
 \newblock {\em Evolution and Human Behavior}, 33(5):449--459.
+
+\bibitem[{R Core Team}, 2022]{R}
+{R Core Team} (2022).
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria.
 
 \bibitem[Rendell et~al., 2010]{Rendell2010}
 Rendell, L., Boyd, R., Cownden, D., Enquist, M., Eriksson, K., Feldman, M.~W.,
@@ -340,6 +350,11 @@ White, C.~M. and Hoffrage, U. (2009).
 \newblock Testing the tyranny of too much choice against the allure of more
   choice.
 \newblock {\em Psychology \& Marketing}, 26(3):280--298.
+
+\bibitem[Wickham, 2016]{ggplot2}
+Wickham, H. (2016).
+\newblock {\em ggplot2: Elegant Graphics for Data Analysis}.
+\newblock Springer-Verlag New York.
 
 \bibitem[Wilson et~al., 2014]{Wilson2014}
 Wilson, R.~C., Geana, A., White, J.~M., Ludvig, E.~A., and Cohen, J.~D. (2014).

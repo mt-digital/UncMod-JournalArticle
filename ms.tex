@@ -112,13 +112,10 @@ it is nearly impossible to fully learn about the environment. We develop an
 evolutionary agent-based model to test how each form of uncertainty affects the evolution of social
 learning. Agents perform one of several behaviors, modeled as a multi-armed bandit, to acquire
 payoffs. \edit{All agents learn about behavioral payoffs individually through an adaptive
-behavior-choice model that uses a softmax decision rule.} Use of
-vertical and oblique \edit{payoff-biased} social learning \edit{evolved} to serve as a scaffold \edit{for
-adaptive individual learning---they are not opposite strategies}. Different types of uncertainty had varying effects.
+behavior-choice model that uses a softmax decision rule.} Use of vertical and oblique \edit{payoff-biased} social learning \edit{evolved} to serve as a scaffold \edit{for adaptive individual learning---they are not opposite strategies}. Different types of uncertainty had varying effects.
 Temporal environmental variability suppressed social learning, whereas larger selection-set size
 promoted social learning, even when the environment changed frequently. Payoff ambiguity and lifespan
-interacted with other uncertainty parameters. \edit{This study begins to explain how
-social learning can predominate despite highly variable real-world environments when effective individual learning helps individuals recover from learning outdated social information.}
+interacted with other uncertainty parameters. \edit{This study begins to explain how social learning can predominate despite highly variable real-world environments when effective individual learning helps individuals recover from learning outdated social information.}
 %, meaning social and individual learning complement one another
   % the importance of clearly operationalizing uncertainty for understanding its role in cultural evolution.
 % Social learning is essential to human survival. It is likely to evolve when it is more
@@ -700,7 +697,7 @@ The effect of \edit{selection strength} when the benefit of social learning is a
 (y-axis; defined in Equation~\ref{eq:slCeiling}).}
   \label{fig:slCeiling}
   \centering
-    \includegraphics[width=0.8\textwidth]{Figures/SL_Extinction_Variability.pdf}
+    \includegraphics[width=0.8\textwidth]{Figures/SL_ceiling.pdf}
 \end{figure}
 
 
@@ -929,11 +926,7 @@ will be important to the development of more parsimonious theories of social lea
 For example, we only considered success-biased learning, although people may use conformity or other context biases to socially learn~\citep{BoydRicherson1985,Muthukrishna2016a,Smaldino2018b}. This modeling
 choice maximizes the potential benefit to social learners, which suggests that
 other mechanisms, like conformity, may lead to \edit{weaker selection} overall. 
-\edit{Furthermore, our learning procedure could be interpreted as direct copying of
-latent psychological variables (expected payoffs for each behavior); if children
-learned instead from observations of the parent's behaviors without knowing rewards,
-which in some cases would be a more realistic assumption~\citep{Wu2022b}, this may weaken the strength of selection for social learning.} We
-also assumed that the number of behaviors and their payoffs were constant within a
+\edit{Furthermore, our learning procedure could be interpreted as direct copying of latent psychological variables (expected payoffs for each behavior); if children learned instead from observations of the parent's behaviors without knowing rewards, which in some cases would be a more realistic assumption~\citep{Wu2022b}, this may weaken the strength of selection for social learning.} We also assumed that the number of behaviors and their payoffs were constant within a
 given simulation, but this fails to account for evolutionary feedback which creates
 new behavioral opportunities as time progresses\edit{~\citep{Chimento2022}}, e.g., via niche
 construction~\citep{Smaldino2012a,Heras-Escribano2020} or cumulative cultural
@@ -1076,7 +1069,7 @@ with $u$ and $B$ settings.
   }
   \label{fig:populationSensitivity}
   \begin{subfigure}{\textwidth}
-	\caption{$N=50$}
+	\caption{Population size, $N=50$}
 	\includegraphics[width=\textwidth]{Figures/supplement/numagents=50/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
@@ -1084,7 +1077,7 @@ with $u$ and $B$ settings.
 \begin{figure}
   \ContinuedFloat
 	\begin{subfigure}{\textwidth}
-	  \caption{$N=200$}
+	  \caption{Population size, $N=200$}
 	  \includegraphics[width=\textwidth]{Figures/supplement/numagents=200/mainResultsPlots.pdf}
 	\end{subfigure}
 \end{figure}
@@ -1119,7 +1112,7 @@ results were reproduced across all tested values $N_T=2,5,10,20$.
   \label{fig:nteachersSensitivity}
   \vspace{2em}
   \begin{subfigure}{\textwidth}
-	\caption{$N_T = 2$}
+	\caption{Number of prospective teachers, $N_T = 2$}
 	\includegraphics[width=\textwidth]{Figures/supplement/nteachers=2/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
@@ -1135,7 +1128,7 @@ results were reproduced across all tested values $N_T=2,5,10,20$.
 \begin{figure}
   \ContinuedFloat
   \begin{subfigure}{\textwidth}
-	\caption{$N_T = 20$}
+	\caption{Number of prospective teachers, $N_T = 20$}
 	\includegraphics[width=\textwidth]{Figures/supplement/nteachers=20/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
@@ -1184,7 +1177,7 @@ in some cases, especially when $\pilow=0.1$, social learning is suppressed compa
   $\beta=1$. Recall the main results were obtained with $\beta = 10$.}
   \label{fig:softmaxSensitivity} \vspace{2em}
   \begin{subfigure}{\textwidth}
-	\caption{$\beta = 1$}
+	\caption{Softmax greediness, $\beta = 1$}
 	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=1.0/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}
@@ -1194,7 +1187,7 @@ in some cases, especially when $\pilow=0.1$, social learning is suppressed compa
 \begin{figure}
   \ContinuedFloat
   \begin{subfigure}{\textwidth}
-	\caption{$\beta = 100$}
+	\caption{Softmax greediness, $\beta = 100$}
 	\includegraphics[width=\textwidth]{Figures/supplement/sensitivity_tau=0.01/mainResultsPlots.pdf}
   \end{subfigure}
 \end{figure}

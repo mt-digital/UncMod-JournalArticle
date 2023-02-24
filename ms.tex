@@ -596,8 +596,8 @@ x-axis, since we theoretically expect that $\meansl$ will always decrease monoto
 Our model was implemented in the Julia programming language~\citep{Bezanson2017} 
 using the Agents.jl agent-based modeling library~\citep{Datseris2022} and run
 on the Sherlock supercomputing cluster at Stanford University. All Analysis figures
-except Figure~\ref{fig:extinctionVariability} were made using the Julia plotting
-library Gadfly~\citep{Jones2021b}. Figure~\ref{fig:extinctionVariability} was made in R~\citep{R}
+except Figure~\ref{fig:slCeiling} were made using the Julia plotting
+library Gadfly~\citep{Jones2021b}. Figure~\ref{fig:slCeiling} was made in R~\citep{R}
 using the ggplot2 package~\citep{ggplot2}. 
 Model and analysis code is publicly available on GitHub at \url{https://github.com/mt-digital/UncMod}.
 
@@ -617,13 +617,13 @@ learning and temporal environmental variability was moderated by the other three
 
 \edit{Across all parameter settings, we observed that there exists some threshold value of environmental
   variability beyond which the evolution of social learning is exceedingly rare.  We call this the
-  \emph{social learning extinction variability}, denoted $u_\text{e}$ (Figure~\ref{fig:extinctionVariability}), which is expressed formally as 
+  \emph{social learning ceiling}, denoted $u_\text{c}$ (Figure~\ref{fig:slCeiling}), which is expressed formally as 
 \begin{equation}
-  u_\text{e} = \min~\{ u~|~\meansl < 0.01 \}.
-  \label{eq:extinctionVariability}
+  u_\text{c} = \min~\{ u~|~\meansl < 0.01 \}.
+  \label{eq:slCeiling}
 \end{equation}
 \noindent
-In other words, $u_\text{e}$ is the smallest value of $u$ for which the social learning fixated
+In other words, $u_\text{c}$ is the smallest value of $u$ for which social learning fixated
 less than one in one hundred times. We will use this auxiliary measure to analyze the effect of
 the other uncertainty parameters and to highlight that social learning frequently 
 evolves despite high levels of environmental variability.}
@@ -640,7 +640,7 @@ arrived at the optimal behavior in the previous generation and socially learning
 against the correct choice. These two mechanisms make it particularly profitable to engage in social
 learning when the selection-set size is larger---for large values of $B$ social learning can even be favored
 when the environment is more likely to change than not (i.e.,
-$u>0.5$\edit{---see Figure~\ref{fig:extinctionVariability}}). 
+$u>0.5$\edit{---see Figure~\ref{fig:slCeiling}}). 
 
 A shorter effective lifespan, $L$, also favors the evolution of social learning in
 most cases. When effective lifespans are long and there are many opportunities to
@@ -696,9 +696,9 @@ The effect of \edit{selection strength} when the benefit of social learning is a
   \caption{As the selection-set size, $B$, and effective lifespan, $L$, increase (set equal along x-axis), 
   social learning frequently evolves across an increasingly large range of
   environmental variability values, i.e., up to
-  increasingly large values of social learning extinction variability
-(y-axis; defined in Equation~\ref{eq:extinctionVariability}).}
-  \label{fig:extinctionVariability}
+  increasingly large values of the social learning ceiling
+(y-axis; defined in Equation~\ref{eq:slCeiling}).}
+  \label{fig:slCeiling}
   \centering
     \includegraphics[width=0.8\textwidth]{Figures/SL_Extinction_Variability.pdf}
 \end{figure}
@@ -905,7 +905,8 @@ free, though potentially inaccurate. Although producing new knowledge may be cos
 many other adaptive problems take the form of essentially cost-free individual
 learning. For example, it is hard not to encode association between clouds and rain,
 between thirst and drinking water, or between friendship and warm laughter.
-\edit{If there were an exogenous cost of individual learning, this would likely increase the social learning extinction variability across uncertainty parameter settings.
+\edit{If there were an exogenous cost of individual learning, this would likely
+  increase the social learning ceiling across uncertainty parameter settings.
 Our model operationalizes environmental variability as fully stochastic,
 which forces evolution towards either a population of social or asocial learners
 since environmental change is unpredictable, unlike precursor
@@ -918,7 +919,7 @@ information may become \edit{outdated. Adding horizontal social learning between
 vertical/oblique learning in this model would likely expand the range of
 environmental variability over which social learning would
 evolve~\citep{Turner2022}, i.e., horizontal learning would increase what we have
-called the social learning extinction variability. However, depending on the
+called the social learning ceiling. However, depending on the
 setting, there may be little difference between horizontal and oblique learning, for
 example if the generations are purely cultural ‘generations’ where parents, and
 others of the parent's generation, may also be peers.}

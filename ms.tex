@@ -63,17 +63,16 @@
 \renewcommand\Affilfont{\small}
 
 \author[1,2,*]{Matthew A. Turner}
-\author[3,4]{Cristina Moya}
-\author[5,6,7]{Paul E. Smaldino}
-\author[1,2,7]{James~Holland~Jones}
+\author[3]{Cristina Moya}
+\author[4,5,6]{Paul E. Smaldino}
+\author[1,2,6]{James~Holland~Jones}
 
 \affil[1]{Department of Earth System Science, Stanford University, Stanford, CA 94305 USA}
 \affil[2]{Division of Social Sciences, Stanford Doerr School of Sustainability, Stanford University, Stanford, CA 94305 USA}
 \affil[3]{Department of Anthropology, University of California at Davis, Davis, CA 95616 USA}
-\affil[4]{Centre for Culture and Evolution, Brunel University London, Uxbridge, UB8 3PH UK}
-\affil[5]{Cognitive and Information Sciences, University of California at Merced, Merced, CA 95340 USA}
-\affil[6]{Santa Fe Institute, Santa Fe, NM 87501 USA}
-\affil[7]{Center for Advanced Study in the Behavioral Sciences, Stanford University, Stanford, CA 94305 USA}
+\affil[4]{Cognitive and Information Sciences, University of California at Merced, Merced, CA 95340 USA}
+\affil[5]{Santa Fe Institute, Santa Fe, NM 87501 USA}
+\affil[6]{Center for Advanced Study in the Behavioral Sciences, Stanford University, Stanford, CA 94305 USA}
 \affil[*]{Corresponding author; email: \href{mailto:maturner@stanford.edu}{maturner@stanford.edu}}
 
 \title{The Form of Uncertainty Affects Selection for Social Learning}
@@ -759,7 +758,7 @@ Our simulations' deviations from expected homogeneous payoffs reflect the effect
 
 When payoff ambiguity and selection-set size was small ($\pilow=0.1$ and $B=2$), and lifespan was long ($L \geq 4$), asocial learning fixated as a hedge against periods of protracted environmental instability, even though expected
 homogeneous social payoffs were greater than homogeneous asocial payoffs (Figure~\ref{fig:payoffTimeseries}A). Runs of environmental change strongly affected the geometric mean fitness of social learners who were weighing
-outdated information too heavily. \edit{In other words, environmental change lowers social learners' mean payoffs, but social learner payoffs build back up when (blue dots, Figure~\ref{fig:payoffTimeseries}A).  Even though an homogenous population of social learners would outperform individual learners in this case, unpredictable environmental stochasticity undermines the reliability of social learning.  When lifespan was minimal ($L=1$) and environmental variability was moderate ($u\approx0.5$), the opposite, unexpected outcome could occur where social learning fixates despite the fact that an homogenous population of asocial learners would outperform an homogenous population of social learners (Figure~\ref{fig:payoffTimeseries}B). In this case, it takes relatively few consecutive generations with environmental stability to attract the population to all become social learners.}
+outdated information too heavily. \edit{In other words, environmental change lowers social learners' mean payoffs, but social learner payoffs build back up as the information quality in the population improves (blue dots, Figure~\ref{fig:payoffTimeseries}A).  Even though an homogenous population of social learners would outperform individual learners in this case, unpredictable environmental stochasticity undermines the reliability of social learning.  When lifespan was minimal ($L=1$) and environmental variability was moderate ($u\approx0.5$), the opposite, unexpected outcome could occur where social learning fixates despite the fact that an homogenous population of asocial learners would outperform an homogenous population of social learners (Figure~\ref{fig:payoffTimeseries}B). In this case, it takes relatively few consecutive generations with environmental stability to attract the population to all become social learners.}
 
 \begin{figure}
   \caption{Average number of generations (y-axes) to fixation. 
@@ -910,7 +909,7 @@ since environmental change is unpredictable, unlike precursor
 models that allowed for persistent frequency
 dependence~\citep{BoydRicherson1985,Rogers1988,Feldman1996}.} Second, we only allow for
 intergenerational social learning and environmental change. Within generations,
-agents can only learn individually. This assumption allows us to replicate the
+agents can only learn individually. This assumption \edit{is consistent with previous modeling work starting at least from \cite{Rogers1988}, and therefore} allows us to replicate the
 classic finding that if the environment changes too quickly, socially-learned
 information may become \edit{outdated. Adding horizontal social learning between
 vertical/oblique learning in this model would likely expand the range of
@@ -926,7 +925,7 @@ will be important to the development of more parsimonious theories of social lea
 For example, we only considered success-biased learning, although people may use conformity or other context biases to socially learn~\citep{BoydRicherson1985,Muthukrishna2016a,Smaldino2018b}. This modeling
 choice maximizes the potential benefit to social learners, which suggests that
 other mechanisms, like conformity, may lead to \edit{weaker selection} overall. 
-\edit{Furthermore, our learning procedure could be interpreted as direct copying of latent psychological variables (expected payoffs for each behavior); if children learned instead from observations of the parent's behaviors without knowing rewards, which in some cases would be a more realistic assumption~\citep{Wu2022b}, this may weaken the strength of selection for social learning.} We also assumed that the number of behaviors and their payoffs were constant within a
+\edit{Furthermore, our learning procedure could be interpreted as direct copying of latent psychological variables (expected payoffs for each behavior). Such detailed information is most likely transmitted through teaching wherein the model explicitly informs the learner of their experiences. If children learned instead from observations of the parent's behaviors without knowing rewards, which in some cases would be a more realistic assumption~\citep{Wu2022b}, this may weaken the strength of selection for social learning.} We also assumed that the number of behaviors and their payoffs were constant within a
 given simulation, but this fails to account for evolutionary feedback which creates
 new behavioral opportunities as time progresses\edit{~\citep{Chimento2022}}, e.g., via niche
 construction~\citep{Smaldino2012a,Heras-Escribano2020} or cumulative cultural
@@ -951,7 +950,7 @@ range of taxa. Although social learning is broadly studied, few studies have tak
 of uncertainty in the evolution \edit{of} social learning. Understanding the role of uncertainty in social evolution is particularly important
 for understanding human evolution as evidence increasingly suggests that the genus \emph{Homo} emerged in the context of substantial
 (nonstationary) environmental variability \citep{anton_etal2014, levin2015}, and our global dispersal
-suggests that human groups regularly face novel environments. \edit{In our model, more numerous behavioral options meant agents more flexibly adjusted their behavior if social learning provided outdated information since in the softmax decision rule, more options means relatively less weight is assigned to the most profitable behavior known to agents, and greater weight is put on unexplored behaviors or those behaviors perceived to be less optimal. While Rogers'-style models of social learning evolution may also predict greater social learning reliance in more challenging contexts (larger selection-set sizes), they cannot predict that social learning should be favored for such high values of
+suggests that human groups regularly face novel environments. \edit{In our model, more behavioral options meant agents more flexibly adjusted their behavior if social learning provided outdated information since in the softmax decision rule, more options means relatively less weight is assigned to the most profitable behavior known to agents, and greater weight is put on unexplored behaviors or those behaviors perceived to be less optimal. While Rogers'-style models of social learning evolution may also predict greater social learning reliance in more challenging contexts (larger selection-set sizes), they would not predict that social learning should be favored for such high values of
 environmental variability as we observed here.} 
 By carefully identifying and operationalizing different forms of uncertainty common in social-learning models, we developed a more thorough understanding of how uncertainty can favor social learning and how different forms of uncertainty interact to favor its evolution. By explicitly modeling a key individual-level learning mechanism shared across taxa, namely the ability to adjust behavior to uncertainty and new information, we found that social learning could evolve even if it provides outdated information. %Social learning is a critical component of problem solving among social creatures. Our work identified and systematized some important forms of uncertainty and catalogued their effects on the evolution of social learning.
 Our work, then, both advances the theory of social learning and could eventually be of practical use in identifying specific mechanisms underlying adaptations to uncertain environments.

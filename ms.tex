@@ -510,7 +510,7 @@ and agent $i$'s count of behavioral observations, $c_{ib}$, is set to 1 if teach
 one observation of behavior $b$, and $c_{ib}$ is set to 0 otherwise. This way, expected payoffs
 remain within $[0, 1]$, but social learners are flexible to adjust to environmental change. Setting
 $c_{ib}$ to 1 reflects the fact that the social learner treats the teacher's information as a single
-observation with the associated uncertainty. \edit{If students have more confidence
+observation with the associated uncertainty. \edit{If learners have more confidence
 in the teacher's information, or there are biological or cultural factors that more
 strongly weight teacher information, it may be more justifiable to set the learner's $c_{ib}$ to its teacher's $c_{jb}$}. Asocial learners ($s_i = 0$) are initialized with
 $c_{ib} = 0$ and $\ledger = 0$ for each behavior, $b$. % (Figure~\ref{fig:schematic}C). 
@@ -928,15 +928,9 @@ between thirst and drinking water, or between friendship and warm laughter.
   increase the social learning ceiling across uncertainty parameter settings.
 This means that our model does not capture the information-scrounging rewards to individual learning that produce mixed equilibria in precursor models \cite{Rogers1988}. Furthermore, our model operationalizes environmental variability as fully stochastic in a finite population. This makes it exceedingly unlikely for a heterogeneous population to persist since chance runs of very stable environments will lead to the extinction of asocial learners, while runs of very unstable environments will lead to the extinction of social learners. This further differentiates our results from precursor
 models that allowed for persistent frequency
-dependence~\citep{BoydRicherson1985,Rogers1988,Feldman1996}.} Second, we only allow for
+dependence of social learning benefit~\citep{BoydRicherson1985,Rogers1988,Feldman1996}.} Second, we only allow for
 intergenerational social learning and environmental change. Within generations,
-agents can only learn individually. This assumption \edit{is consistent with previous modeling work starting at least from \cite{Rogers1988}, and therefore} allows us to replicate the
-classic finding that if the environment changes too quickly, socially-learned
-information may become \edit{outdated. Adding horizontal social learning between
-vertical/oblique learning in this model would likely expand the range of
-environmental variability over which social learning would
-evolve~\citep{Turner2022}, i.e., horizontal learning would increase what we have
-called the social learning ceiling. However, depending on the
+agents can only learn individually. This assumption \edit{is consistent with previous modeling work starting at least from \cite{Rogers1988}, and therefore} allows us to replicate the classic finding that if the environment changes too quickly, socially-learned information may become \edit{outdated. Adding horizontal social learning between vertical/oblique learning in this model would likely expand the range of environmental variability over which social learning would evolve~\citep{Turner2022}, i.e., horizontal learning would increase what we have called the social learning ceiling. However, depending on the
 setting, there may be little difference between horizontal and oblique learning, for
 example if the generations are purely cultural ‘generations’ where parents, and
 others of the parent's generation, may also be peers.}
@@ -953,13 +947,7 @@ construction~\citep{Smaldino2012a,Heras-Escribano2020} or cumulative cultural
 evolution~\citep{Smolla2019,Derex2020}.  Group structure and processes such as
 homophily and other group-level biases could inhibit the evolution of social
 learning since successful out-group teachers could be cut off from in-group
-learners~\citep{Golub2012}. We assumed agents choose behaviors via a softmax
-\edit{decision rule, which is more cognitively sophisticated than most
-social-learning models and captures the adaptiveness of real human learning
-mechanisms. This modeling decision was essential for developing our understanding of
-how social and individual learning can combine to multiply the problem solving capacity
-of our agents, though it is still a pale shadow of the true sophistication of human
-learning capabilities~\citep{Schulz2020a,Wu2022}}. More realistic and powerful individual learning could further support the evolution of
+learners~\citep{Golub2012}. We assumed agents choose behaviors via a softmax \edit{decision rule, which is more cognitively sophisticated than most social-learning models and captures the adaptiveness of real human learning mechanisms. This modeling decision was essential for developing our understanding of how social and individual learning can combine to multiply the problem solving capacity of our agents, though it is still a pale shadow of the true sophistication of human learning capabilities~\citep{Schulz2020a,Wu2022}}. More realistic and powerful individual learning could further support the evolution of
 social learning. These considerations provide novel opportunities to expand the evolutionary theory of social learning by adding
 such learning mechanisms to our model.
 
@@ -971,7 +959,13 @@ range of taxa. Although social learning is broadly studied, few studies have tak
 of uncertainty in the evolution \edit{of} social learning. Understanding the role of uncertainty in social evolution is particularly important
 for understanding human evolution as evidence increasingly suggests that the genus \emph{Homo} emerged in the context of substantial
 (nonstationary) environmental variability \citep{anton_etal2014, levin2015}, and our global dispersal
-\edit{meant} that human groups regularly faced novel environments. \edit{These conditions, combined with long lifespan, obviated the possibility of genetic adaptation to specific ecological circumstances, requiring instead the evolution of learning mechanisms for dealing with uncertainty. In our model, numerous behavioral options led agents to be more cognitively flexible via the softmax decision rule, and thus better able to adjust their behavior if social learning provided outdated information. While Rogers-style models of social learning evolution may also predict greater social learning reliance in more challenging contexts (larger selection-set sizes), these models rely on limited individual learning mechanisms that are furthermore mutually exclusive with social learning. This may prevent social learning from evolving under such high values of environmental variability as we observed here, even if these models included more adaptive individual learning mechanisms.} 
+\edit{meant} that human groups regularly faced novel environments. \edit{These
+conditions and our longevity obviated the possibility of genetic
+adaptation to specific ecological circumstances, requiring instead the evolution of
+learning mechanisms for dealing with uncertainty. In our model, numerous behavioral
+options led agents to be more cognitively flexible via the softmax decision rule, and
+thus better able to adjust their behavior if social learning provided outdated
+information. While Rogers'-style models of social learning evolution may also predict greater social learning reliance in more challenging contexts (larger selection-set sizes), these models rely on limited individual learning mechanisms that are furthermore mutually exclusive with social learning. This may prevent social learning from evolving under such high values of environmental variability as we observed here, even if these models included more adaptive individual learning mechanisms.} 
 By carefully identifying and operationalizing different forms of uncertainty common in social-learning models, we developed a more thorough understanding of how uncertainty can favor social learning and how different forms of uncertainty interact to favor its evolution. By explicitly modeling a key individual-level learning mechanism shared across taxa, namely the ability to adjust behavior to uncertainty and new information, we found that social learning could evolve even if it provides outdated information. %Social learning is a critical component of problem solving among social creatures. Our work identified and systematized some important forms of uncertainty and catalogued their effects on the evolution of social learning.
 Our work, then, both advances the theory of social learning and could eventually be of practical use in identifying specific mechanisms underlying adaptations to uncertain environments.
 

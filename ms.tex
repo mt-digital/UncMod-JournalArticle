@@ -510,7 +510,7 @@ teacher $j$'s observed average payoffs for each behavior, $b$, i.e.,
 $\ledger \leftarrow \bar\pi_{jb}$; 
 and agent $i$'s count of behavioral observations, $c_{ib}$, is set to 1 if teacher $j$ had at least
 one observation of behavior $b$, and $c_{ib}$ is set to 0 otherwise. This way, expected payoffs
-remain within $[0, 1]$, but social learners are flexible to adjust to environmental change. Setting $c_{ib}$ to 1 reflects the fact that the social learner treats the teacher's information as a single observation with the associated uncertainty, \edit{and serves as a useful baseline for understanding the interaction of different sources of uncertainty that we focus on here. In the real world this could represent the fact that some amount of information is always lost in social learning, through instruction or otherwise.  If a learner's $c_{ib}$ is set instead to the teacher's $c_{jb}$, or some sizable fraction of it, learners will more slowly update their mean payoff values, making individual learning less adaptive, which could be desirable if there is good reason to have more confidence in a teacher's information, or there are other biological or cultural factors that make social learning more trustworthy.} Asocial learners ($s_i = 0$) are initialized with
+remain within $[0, 1]$, but social learners are flexible to adjust to environmental change. Setting $c_{ib}$ to 1 reflects the fact that the social learner treats the teacher's information as a single observation with the associated uncertainty, and serves as a useful baseline for understanding the interaction of different sources of uncertainty that we focus on here. In the real world this could represent the fact that some amount of information is always lost in social learning, through instruction or otherwise.  If a learner's $c_{ib}$ is set instead to the teacher's $c_{jb}$, or some sizable fraction of it, learners will more slowly update their mean payoff values, making individual learning less adaptive, which could be desirable if there is good reason to have more confidence in a teacher's information, or there are other biological or cultural factors that make social learning more trustworthy. Asocial learners ($s_i = 0$) are initialized with
 $c_{ib} = 0$ and $\ledger = 0$ for each behavior, $b$. % (Figure~\ref{fig:schematic}C). 
 The newly initialized population then repeats the within-generation dynamics. 
 
@@ -751,9 +751,9 @@ asocial-learning payoff (Figure~\ref{fig:payoffs}B, e.g., $L=1$).
 Our simulations' deviations from expected homogeneous payoffs reflect the effects of frequency-dependent payoffs and of stochastic environmental changes that affect geometric mean fitness. Frequency dependence is implicated in cases where our simulated agents that ended up as social learners outperformed homogeneous all-social-learner populations. In such cases, the earlier presence of asocial learners before social learning fixated enabled social learners in our simulations to outperform all-social learner populations. To illustrate the effects of stochastic runs of stable and unstable environments we inspected time series of individual model runs (Figure~\ref{fig:payoffTimeseries}). We plotted the geometric moving averages (time window = 3) of the payoffs for the whole simulated population, and for the simulated sub-populations of asocial and social learners. We compared these mean-payoff series to the expected homogeneous social and asocial payoffs, the time series of social-learner prevalence, and to the timing of environmental changes within the simulation (Figure~\ref{fig:payoffTimeseries}). 
 
 When payoff ambiguity and selection-set size were small ($\pilow=0.1$ and $B=2$), and lifespan
-was long ($L \geq 4$), asocial learning fixated \edit{because} periods of protracted
-environmental instability \edit{caused social learners to more severely underperform compared
-to asocial learners}, even though expected
+was long ($L \geq 4$), asocial learning fixated because periods of protracted
+environmental instability caused social learners to more severely underperform compared
+to asocial learners, even though expected
 homogeneous social payoffs were greater than homogeneous asocial payoffs (Figure~\ref{fig:payoffTimeseries}A). Runs of environmental change strongly affected the geometric mean fitness of social learners who were weighing
 outdated information too heavily. In other words, environmental change lowers social learners'
 mean payoffs, but social-learner payoffs build back up as the information quality in the
@@ -763,7 +763,7 @@ environmental stochasticity undermines the reliability of social learning. When 
 minimal ($L=1$) and environmental variability was moderate ($u\approx0.5$), the opposite,
 unexpected outcome could occur where social learning fixates despite the fact that a homogenous
 population of asocial learners would outperform a homogenous population of social learners
-(Figure~\ref{fig:payoffTimeseries}B). In this case, it takes relatively few consecutive generations with environmental stability to attract the population to all become social learners \edit{since social learners greatly outperform asocial learners during longer periods of environmental stability}.
+(Figure~\ref{fig:payoffTimeseries}B). In this case, it takes relatively few consecutive generations with environmental stability to attract the population to all become social learners since social learners greatly outperform asocial learners during longer periods of environmental stability.
 \begin{figure}
   \caption{Average number of generations (y-axes) to fixation. 
     Note the y-axis scale varies between plots, indicating different overall 

@@ -82,6 +82,10 @@
 
 \begin{document}
 \maketitle
+\noindent
+\textbf{Social media summary:} You won’t believe this one weird adaptive trick social learners use{\ldots}asocial
+learners hate it! \\
+\textbf{Keywords:} Uncertainty, social learning, cultural evolution, agent-based modeling \\
 \clearpage
 
 
@@ -347,7 +351,13 @@ their lifespan.  Learning is guided by softmax search. Softmax search
 guides agents to exploit more frequently the most profitable behaviors when the
 agent is more certain it is the optimal one and to explore more frequently when the
 agent is unsure. To do softmax searching, agents track average payoffs acquired
-from each behavior they have performed, which requires knowing the number of times they have performed each behavior. The probability that the agent will perform a behavior is a function of the agent's beliefs about a behavior's average payoff in that time step and a fixed parameter that influences the amount of exploratory behavior (more details below). The softmax function used here is a biologically plausible generalization of behavior selection under uncertainty that enables agents to often greedily exploit the most lucrative behavior they have observed, but also to sometimes explore alternatives~\citep{Schulz2019,Collins2013,Daw2006,Yechiam2005}.
+from each behavior they have performed, which requires knowing the number of times they have performed each
+behavior. The probability that an agent will perform a behavior is a function of the agent's beliefs about a
+behavior's average payoff in that time step and a fixed parameter that influences the amount of exploratory
+behavior (more details below). The softmax function used here is a biologically plausible generalization of
+behavior selection under uncertainty that enables agents to often greedily exploit the most lucrative
+behavior they have observed, but also to sometimes explore
+alternatives~\citep{Yechiam2005,Daw2006,Collins2013,Schulz2019}.
 
 
 \subsubsection{Social learning}
@@ -427,7 +437,7 @@ The model is initialized with $N$ agents. Each agent $i$ tracks
 observed mean payoffs for each behavior, $b$, which is denoted $\ledger$. Each
 agent $i$ also counts how many times they have tried each behavior $b$, 
 denoted $c_{ib}$. At model initialization, $\ledger = 0.0$ and $c_{ib} = 0$ for
-all $i$ and $b$.% (Figure~\ref{fig:schematic}A).
+all $i$ and $b$. % (Figure~\ref{fig:schematic}A).
 One of the behaviors is chosen at random to yield expected payoff $\pihigh$, with the other $B-1$ behaviors yielding
 expected payoffs $\pilow$. Agents are independently randomly initialized with $s_i
 \in 0,1$, so that $\sim$50\% of the initial population learn socially.
@@ -522,14 +532,7 @@ $\sum_i s_i = N$ or $\sum_i s_i = 0$.
 \clearpage
 
 \begin{figure}
-  \caption{Model summary. Agents are randomly initialized as social learners or not, with their
-  payoff observations all initialized to zero (A). Then agents begin selecting
-and performing behaviors and accumulating payoffs, which goes on for $L$
-timesteps (B). After $L$ time steps, agents are selected to reproduce,
-social learner children learn from a member of their parent's generation, and
-the previous generation dies off (C). The simulation stops if children are all
-social or asocial learners (i.e.\ the system reaches fixation).
-Otherwise it repeats another generation and evolution continues.} 
+  \caption{Model summary. Agents are randomly initialized as social learners or not, with their payoff observations all initialized to zero (A). Then agents begin selecting and performing behaviors and accumulating payoffs, which goes on for $L$ timesteps (B). After $L$ time steps, agents are selected to reproduce, social learner children learn from a member of their parent's generation, and the previous generation dies off (C). The simulation stops if children are all social or asocial learners (i.e.\ the system reaches fixation).  Otherwise it repeats another generation and evolution continues.} 
 % \cm{What does (3) denote at end of Fig 1 caption? Does having only green agents in Fig1B give the impression that only social learners are learning within lifetime? Could the agent be half green/purple? Is it weird that in Fig1C a teacher with relatively low payoffs is being selected? Could be fixed by having the dotted line go from rich purple women's head to green baby's. }
   \label{fig:schematic}
   \centering
@@ -655,7 +658,7 @@ payoff ambiguity was low, non-optimal behaviors rarely paid off, so that explora
 yielded reliable information and selection on learning strategies was strong. When
 payoff ambiguity is very high ($\pilow = 0.8$), two things happen. First, agents are
 more likely to err by ascribing high value to non-optimal behaviors, since it is
-more difficult for them to discern the difference between optimal and sub optimal
+more difficult for them to discern the difference between optimal and suboptimal
 behaviors. Second, and perhaps more importantly, natural selection on strategies
 that \emph{do} reliably select the optimal behavior is relatively weak. This means
 selection is weaker \emph{in favor} of social learning under low values of $u$ and
@@ -700,9 +703,10 @@ social-learning trait provided agents with a consistent benefit. Selection
 strength is minimal when social and asocial learning
 are equally beneficial. 
 % Even under consistent but weak selection pressure, drift can cause a population to take longer to reach fixation \citep{plutynski2007drift}. 
-We denote the ensemble average over simultaion trials of the number of generations to fixation, denoted $\langle G \rangle$, where fixation means that the number of social learners, $\sum_i s_i$, is equal to either zero or $N$. %Indeed, social learning evolution and drift are reflected in the relative benefit of social learning to asocial learning.  
+We denote the ensemble average over simultaion trials of the number of generations to fixation as $\langle G \rangle$, where fixation means that the number of social learners, $\sum_i s_i$, is equal to either zero or $N$. %Indeed, social learning evolution and drift are reflected in the relative benefit of social learning to asocial learning.  
 
-Figure~\ref{fig:steps} shows the average number of generations to fixation across all uncertainty parameters. Drift was greatest overall when payoff ambiguity was greatest, i.e., when $\pilow = 0.8$. When payoffs are highly ambiguous there is relatively little advantage to the optimal learning strategy, and therefore relatively weak selective pressure.
+Figure~\ref{fig:steps} shows the average number of generations to fixation across all uncertainty
+parameters. Strength of selection was weakest overall when payoff ambiguity was greatest, i.e., when $\pilow = 0.8$. When payoffs are highly ambiguous there is relatively little advantage to the optimal learning strategy, and therefore relatively weak selective pressure.
 
 The average number of steps to fixation peaks at environmental variabilities 
 where social learning goes from being favored to suppressed. 
@@ -736,7 +740,7 @@ the last generation across 1000 trials. Because simulations had no mutation, the
 or all-asocial learners.
 
 Figure~\ref{fig:payoffs} shows the average net payoffs normalized by lifespan
-for our main simulation compared with the two reference homogeneous populations
+from a selection of our main simulations compared with the two reference homogeneous populations
 initialized either as all-social or all-asocial learners. Often the simulated payoffs follow the payoffs of the better-performing homogeneous group. However, there are several important deviations worth explaining. First, populations sometimes evolved to be asocial learners, even
 though all-social learner populations outperformed all-individual-learner populations when agents were
 long-lived ($L=4$ and $L=8$) and in simple environments ($B=2$; e.g., Figure~\ref{fig:payoffs}A).
@@ -755,7 +759,7 @@ homogeneous social payoffs were greater than homogeneous asocial payoffs. Runs o
 outdated information too heavily. In other words, environmental change lowers social learners'
 mean payoffs, but social-learner payoffs build back up as the information quality in the
 population improves (blue dots, Figure~\ref{fig:payoffTimeseries}A). Even though a homogenous
-population of social learners would outperform individual learners in this case, unpredictable
+population of social learners would outperform asocial learners in this case, unpredictable
 environmental stochasticity undermines the reliability of social learning. When lifespan was
 minimal ($L=1$) and environmental variability was moderate ($u\approx0.5$), the opposite,
 unexpected outcome could occur where social learning fixates despite the fact that a homogenous
@@ -845,10 +849,7 @@ population of asocial learners would outperform a homogenous population of socia
 
 \begin{figure}
   % \addtocounter{figure}{-1}
-    \caption{Example time series of geometric moving average (GMA) with window of 3
-      of payoffs from two select uncertainty settings (see main text), broken out by
-    social learners, asocial learners, and whole population, compared with the
-    expected homogeneous social and asocial population payoffs. Social-learner prevalence is also plotted. Vertical lines indicate environmental change.}
+    \caption{Example time series of geometric moving average (GMA) with window of 3 of payoffs from two select uncertainty settings (see main text), broken out by social learners, asocial learners, and whole population, compared with the expected homogeneous social and asocial population payoffs. Social-learner prevalence is also plotted. Vertical lines indicate environmental change.}
     \label{fig:payoffTimeseries}
   \centering    
 
@@ -983,13 +984,15 @@ furthermore mutually exclusive with social learning. This may prevent social lea
 evolving under such high values of environmental variability as we observed here.
 % , even if these models included more adaptive individual learning mechanisms. 
 
-By carefully identifying and operationalizing different forms of uncertainty common in social-learning models, we developed a more thorough understanding of how uncertainty can favor social learning and how different forms of uncertainty interact to favor its evolution. By explicitly modeling a key individual-level learning mechanism shared across taxa, namely the ability to adjust behavior to uncertainty and new information, we found that social learning could evolve even if it provides outdated information. %Social learning is a critical component of problem solving among social creatures. Our work identified and systematized some important forms of uncertainty and catalogued their effects on the evolution of social learning.
+By carefully identifying and operationalizing different forms of uncertainty common in social-learning
+models, we developed a more thorough understanding of how uncertainty can favor social learning and how
+different forms of uncertainty interact to favor its evolution. By explicitly modeling a key
+individual-level learning mechanism shared across taxa, namely the ability to adjust behavior to uncertainty
+and new information, we found that social learning could evolve even if it regularly provides outdated information. %Social learning is a critical component of problem solving among social creatures. Our work identified and systematized some important forms of uncertainty and catalogued their effects on the evolution of social learning.
 Our work, then, both advances the theory of social learning and could eventually be of practical use in identifying specific mechanisms underlying adaptations to uncertain environments.
 
 
-\paragraph{Supplementary material.} Supplemental analyses confirming model robustness to free parameters is available at \url{https://osf.io/tpsy9}. Model and analysis code is
-publicly available on GitHub (\url{https://github.com/mt-digital/UncMod}), and the data used to make the figures presented here is available via OSF
-(\url{https://osf.io/t8exa/}). A guide to running the analyses is available on the GitHub repository.
+\paragraph{Supplementary material.} Supplemental analyses confirming model robustness to free parameters is available at \url{https://osf.io/tpsy9}. 
 
 
 \paragraph{Acknowledgements.} We thank colleagues at the Cultural Evolution
@@ -999,9 +1002,19 @@ for helping to improve to the original manuscript.%\mt{Do we write any at this p
 % 
 
 \paragraph{Author contributions.} JHJ, CM, PES, and MAT conceived of the project. MAT developed the model
-and analyses, with contributions from CM, PES, and JHJ. MAT implemented and analyzed the model. MAT wrote and edited the initial manuscript draft, which was extensively expanded and edited by CM, PES, and JHJ.
+and analyses, with contributions from CM, PES, and JHJ. MAT implemented and analyzed the model. MAT wrote and edited the initial manuscript draft, which was expanded and edited by CM, PES, and JHJ.
 
 \paragraph{Financial support.} This work was supported by NSF grants BCS-2028160 and BCS-2118926 (JHJ PI) and awards from the Center for Innovation in Global Health and the Center for Existential Risk, Stanford University to JHJ.
+
+\paragraph{Research transparency and reproducibility.}
+Model and analysis code is publicly available on GitHub (\url{https://github.com/mt-digital/UncMod}).  
+A guide to running the analyses is available on the GitHub repository.
+The code version used to generate the results presented here has been archived
+with a persistent identifier through Zenodo: \url{https://doi.org/10.5281/zenodo.7873161}.
+
+\paragraph{Data availability statement.} 
+The data used to make the figures presented here is available via OSF
+(\url{https://osf.io/t8exa/}).
 
 \paragraph{Conflict of interest.} No conflict declared. \\[1em]
 
@@ -1156,7 +1169,7 @@ results were reproduced across all tested values $N_T=2,5,10,20$.
 %   \ContinuedFloat
 %   \begin{subfigure}{\textwidth}
 % 	\caption{$N_T = 10$}
-% 	\includegraphics[width=\textwidth]{Figures/supplement/nteachers=10/mainResultsPlots.pdf}
+% 	\includegraphics[width=\textwidth]{Figures/nteachers=10/mainResultsPlots.pdf}
 %   \end{subfigure}
 % \end{figure}
 \newpage
